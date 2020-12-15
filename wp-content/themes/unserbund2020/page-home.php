@@ -7,8 +7,11 @@ get_header();
 ?>
 <div id="primary" class="content-area">
     <div id="content" class="site-content container" role="main">
-        <div class="col-md-12">
-            <div class="node">
+    <div class="row">
+        <?php echo do_shortcode('[transitionslider id="1"]'); ?>
+    </div>
+        <div class="row">
+            <div class="col-md-12 node">
                 <h2 class="avansome">Выберите своего ротвейлера</h2>
                 <?php  $new_query = new WP_Query(); $new_query->query('post_type=post&showposts=15'.'&paged='.$paged) ?>
                 <?php  while ($new_query->have_posts()) : 

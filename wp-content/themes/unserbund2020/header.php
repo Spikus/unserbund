@@ -31,7 +31,7 @@
                     <div class="logo__info">
                         <h1 class="logo__h1"><?php bloginfo('name'); ?></h1>
                         <h2 class="hidden-xs logo__h2"><?php bloginfo('description'); ?></h2>
-                        <span class="hidden-lg hidden-md hidden-sm">+380504785508</span>
+                        <span class="hidden-lg hidden-md hidden-sm  logo__h1">+380504785508</span>
                     </div>
                 </div>
             </nav>

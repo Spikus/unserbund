@@ -630,8 +630,9 @@ class Responsive_Lightbox_Frontend {
 			// checkbox field?
 			if ( $field['type'] === 'checkbox' ) {
 				// valid argument?
-				if ( array_key_exists( $field_key, $atts ) )
-					$atts[$field_key] = $rl->galleries->sanitize_field( $field_key, array_flip( explode( ',', $atts[$field_key] ) ), $field );
+				if ( array_key_exists( $field_key, $atts ) ) {
+					$atts[$field_key] = $rl->galleries->sanitize_field( $field_key, array_flip( $atts[$field_key] ), $field );
+				}
 			// boolean field?
 			} elseif ( $field['type'] === 'boolean' ) {
 				// multiple field?
