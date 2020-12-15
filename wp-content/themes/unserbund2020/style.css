@@ -91,6 +91,16 @@ table {
   .logo__info {
     padding-top: 5px;
     padding-left: 80px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 640px) {
+    .logo__info {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   .logo__h1  {
@@ -190,7 +200,8 @@ table {
 
   .navbar.navbar-fixed-top.sticky-header {
     background:#211A13;
-    border-bottom:1px solid #7B6E5F
+    border-bottom:1px solid #7B6E5F;
+    z-index: 9999999;
   } 
   .navbar.navbar-fixed-top.sticky-header  .navbar-toggle {
     float: left;
@@ -251,7 +262,7 @@ transform:rotate(5deg) scale(1.2,1.2);
 .titules p {margin:0px;display:block;text-align:center;line-height:34px;text-transform: uppercase;}
 .titules {background:rgba(255,166,78,0.5); color:white;height:220px;font-weight:400;-webkit-transition: all 0.3s ease-out; 
 transition: all 0.3s ease-out;position:absolute; width:100%;}
-.node{background:white;padding:35px 20px 15px;float:left;font-family: 'Open Sans', sans-serif;width:100%;margin-bottom:30px}
+.node{background:white;padding:35px 20px 15px;float:left;font-family: 'Open Sans', sans-serif;width:100%;margin:30px 0}
 h1.avansome,h2.avansome {text-transform: uppercase ;
 font-family: 'Open Sans', cursive;
 font-size: 30px;
