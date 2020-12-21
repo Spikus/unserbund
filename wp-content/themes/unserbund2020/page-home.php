@@ -52,14 +52,15 @@ get_header();
                 </article>
                 <?php endwhile; ?>
                 <?php while (have_posts()) : the_post(); ?>
-                <div class="col-md-12">
-
-                    <header class="entry-header">
-                        <h1 class="avansome"><?php the_title(); ?></h1>
-                    </header><!-- .entry-header -->
-                    <div class="entry-content">
-                        <?php the_content(); ?>
-                    </div><!-- .entry-content -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <header class="entry-header">
+                            <h1 class="avansome"><?php the_title(); ?></h1>
+                        </header><!-- .entry-header -->
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div><!-- .entry-content -->
+                    </div>  
                 </div>
                 <?php endwhile; ?>
             </div>
