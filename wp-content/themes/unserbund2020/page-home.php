@@ -52,7 +52,7 @@ get_header();
                 </article>
                 <?php endwhile; ?>
                 <?php while (have_posts()) : the_post(); ?>
-                <div class="row">
+                <div class="rotNew">
                     <div class="col-md-12">
                         <header class="entry-header">
                             <h1 class="avansome"><?php the_title(); ?></h1>
