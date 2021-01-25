@@ -28,7 +28,7 @@ function custom_excerpt_length( $length ) {
  * @since Twenty Thirteen 1.0
  */
 function unserbund_scripts_styles() {
-	wp_enqueue_style( 'unserbund-style', get_stylesheet_uri(), array(), '2014-05-18' );
+	wp_enqueue_style( 'unserbund-style', get_stylesheet_uri(), array(), date() );
     wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', array( 'jquery' ), '2014-04-18', true );
 	wp_enqueue_script( 'hoverdirection-script', get_template_directory_uri() . '/bootstrap/js/jquery-hoverdirection.min.js', array( 'jquery' ), '2014-01-18', true );
 

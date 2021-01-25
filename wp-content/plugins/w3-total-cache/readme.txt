@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: boldgrid, fredericktownes, maxicusc, gidomanders, bwmarkle, harryjackson1221, joemoto
 Tags: seo, cache, optimize, pagespeed, performance, caching, compression, maxcdn, nginx, varnish, redis, new relic, aws, amazon web services, s3, cloudfront, rackspace, cloudflare, azure, apache
-Requires at least: 3.2
+Requires at least: 3.8
 Tested up to: 5.6
-Stable tag: 0.15.2
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -275,6 +275,25 @@ Please reach out to all of these people and support their projects if you're so 
 
 == Changelog ==
 
+= 2.1.0 =
+* Feature: Added a Feature Showcase to highlight new and existing features
+* Update: Consolidated cache groups settings pages
+* Update: Replaced deprecated jQuery method for WordPress 5.6
+* Fix: PHP warnings for sprintf placeholders in PHP 8
+* Fix: PHP deprecated warnings in PHP 8
+* Fix: Browser Cache Quick Reference Chart link
+* Fix: Bad nonce in help
+* Fix: Google Drive CDN JavaScript
+
+= 2.0.1 =
+* Fix: Corrected redirection logic for the new Setup Guide
+* Fix: Fixed JavaScript w3tc_ga error
+
+= 2.0.0 =
+* Feature: Added the Setup Guide wizard for onboarding
+* Update: Updated jQuery compatibility and methods deprecated in WordPress 5.6
+* Fix: Browser Cache: Fixed ExpiresByType code; changed from modified time to client access time
+
 = 0.15.2 =
 * Fix: Minify: Do not remove quotes around meta tags
 * Fix: Minify: Removal of spaces in calc function was breaking CSS
@@ -312,7 +331,7 @@ Please reach out to all of these people and support their projects if you're so 
 * Update: Support background-image: together with background: for lazy loading
 
 = 0.14.2 =
-* Fixed WP-CLI rediect issue in multisite
+* Fixed WP-CLI redirect issue in multisite
 * Fix: Avoid PREG_JIT_STACKLIMIT_ERROR in minify
 * Fix: Prevent empty needle PHP warning
 * Update: Allow to specify URIs with a query string in Additional Pages

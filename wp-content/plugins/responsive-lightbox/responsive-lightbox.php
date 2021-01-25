@@ -2,7 +2,7 @@
 /*
 Plugin Name: Responsive Lightbox & Gallery
 Description: Responsive Lightbox & Gallery allows users to create galleries and view larger versions of images, galleries and videos in a lightbox (overlay) effect optimized for mobile devices.
-Version: 2.3.0
+Version: 2.3.1
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/responsive-lightbox/
@@ -43,7 +43,7 @@ include_once( RESPONSIVE_LIGHTBOX_PATH . 'includes' . DIRECTORY_SEPARATOR . 'fun
  * Responsive Lightbox class.
  *
  * @class Responsive_Lightbox
- * @version	2.3.0
+ * @version	2.3.1
  */
 class Responsive_Lightbox {
 
@@ -302,7 +302,7 @@ class Responsive_Lightbox {
 			'origin_left'		=> true,
 			'origin_top'		=> true
 		),
-		'version' => '2.3.0',
+		'version' => '2.3.1',
 		'activation_date' => ''
 	);
 	public $options = array();
@@ -327,21 +327,6 @@ class Responsive_Lightbox {
 	private $version = false;
 	private $notices = array();
 	private static $_instance;
-
-	public function __clone() {}
-	public function __wakeup() {}
-
-	/**
-	 * Main Responsive Lightbox instance.
-	 * 
-	 * @return object
-	 */
-	public static function instance() {
-		if ( self::$_instance === null )
-			self::$_instance = new self();
-
-		return self::$_instance;
-	}
 
 	/**
 	 * Constructor.
@@ -390,6 +375,7 @@ class Responsive_Lightbox {
 		$this->options['basicmasonry_gallery'] = array_merge( $this->defaults['basicmasonry_gallery'], ( ( $array = get_option( 'responsive_lightbox_basicmasonry_gallery', $this->defaults['basicmasonry_gallery'] ) ) == false ? array() : $array ) );
 
 		// actions
+		add_action( 'upgrader_process_complete', array( $this, 'update_plugin' ), 10, 2 );
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded_init' ) );
 		add_action( 'in_admin_header', array( $this, 'display_breadcrumbs' ) );
 		add_action( 'after_setup_theme', array( $this, 'init_remote_libraries' ), 11 );
@@ -407,6 +393,28 @@ class Responsive_Lightbox {
 		// filters
 		add_filter( 'plugin_action_links', array( $this, 'plugin_settings_link' ), 10, 2 );
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_extend_links' ), 10, 2 );
+	}
+
+	/**
+	 * Disable object cloning.
+	 */
+	public function __clone() {}
+
+	/**
+	 * Disable unserializing of the class.
+	 */
+	public function __wakeup() {}
+
+	/**
+	 * Main Responsive Lightbox instance.
+	 * 
+	 * @return object
+	 */
+	public static function instance() {
+		if ( self::$_instance === null )
+			self::$_instance = new self();
+
+		return self::$_instance;
 	}
 
 	/**
@@ -535,6 +543,31 @@ class Responsive_Lightbox {
 	}
 
 	/**
+	 * Update plugin hook.
+	 *
+	 * @return void
+	 */
+	public function update_plugin( $upgrader_object, $options ) {
+		// plugin update?
+		if ( $options['action'] === 'update' && $options['type'] === 'plugin' ) {
+			// get current plugin name
+			$current_plugin = plugin_basename( __FILE__ );
+
+			// search for a plugin
+			foreach ( $options['plugins'] as $plugin ) {
+				// found?
+				if ( $plugin === $current_plugin ) {
+					// 2.3.1
+					if ( version_compare( $this->version, '2.3.1', '<' ) ) {
+						// grant new capabilities just before the version update
+						$this->grant_new_capabilities();
+					}
+				}
+			}
+		}
+	}
+
+	/**
 	 * Grant new capabilities to user roles.
 	 *
 	 * @return void
@@ -542,15 +575,35 @@ class Responsive_Lightbox {
 	public function grant_new_capabilities() {
 		global $wp_roles;
 
+		$user = wp_get_current_user();
+
 		// add new capabilities to roles
 		foreach ( $wp_roles->roles as $role_name => $label ) {
 			// get user role
 			$role = $wp_roles->get_role( $role_name );
 
+			// treat such role as administrator
+			if ( $role->has_cap( 'install_plugins' ) ) {
+				// add every capability
+				foreach ( $this->capabilities as $capability => $label ) {
+					$role->add_cap( $capability );
+				}
+
+				// force capability on the current user
+				if ( is_a( $user, 'WP_User' ) && ! $user->has_cap( 'edit_lightbox_settings' ) )
+					$user->add_cap( 'edit_lightbox_settings' );
+			}
+
+			// add new capabilities to the current roles nevertheless
 			foreach ( $this->capabilities as $capability => $label ) {
 				// role and capability exist?
-				if ( array_key_exists( $role_name, $this->defaults['capabilities'] ) && in_array( $capability, $this->defaults['capabilities'][$role_name], true ) )
+				if ( array_key_exists( $role_name, $this->defaults['capabilities'] ) && in_array( $capability, $this->defaults['capabilities'][$role_name], true ) ) {
 					$role->add_cap( $capability );
+
+					// force capability on the current user
+					if ( $capability === 'edit_lightbox_settings' && is_a( $user, 'WP_User' ) && ! $user->has_cap( 'edit_lightbox_settings' ) && in_array( $role_name, $user->roles, true ) )
+						$user->add_cap( 'edit_lightbox_settings' );
+				}
 			}
 		}
 	}
@@ -572,32 +625,35 @@ class Responsive_Lightbox {
 			'basicmasonry'	=> __( 'Basic Masonry', 'responsive-lightbox' )
 		);
 
-		// set capabilities with labels
-		$this->capabilities = array(
-			'publish_galleries'				=> __( 'Publish Galleries', 'responsive-lightbox' ),
-			'edit_galleries'				=> __( 'Edit Galleries', 'responsive-lightbox' ),
-			'edit_published_galleries'		=> __( 'Edit Published Galleries', 'responsive-lightbox' ),
-			'edit_others_galleries'			=> __( 'Edit Others Galleries', 'responsive-lightbox' ),
-			'edit_private_galleries'		=> __( 'Edit Private Galleries', 'responsive-lightbox' ),
-			'delete_galleries'				=> __( 'Delete Galleries', 'responsive-lightbox' ),
-			'delete_published_galleries'	=> __( 'Delete Published Galleries', 'responsive-lightbox' ),
-			'delete_others_galleries'		=> __( 'Delete Others Galleries', 'responsive-lightbox' ),
-			'delete_private_galleries'		=> __( 'Delete Private Galleries', 'responsive-lightbox' ),
-			'read_private_galleries'		=> __( 'Read Private Galleries', 'responsive-lightbox' ),
-			'manage_gallery_categories'		=> __( 'Manage Gallery Categories', 'responsive-lightbox' ),
-			'manage_gallery_tags'			=> __( 'Manage Gallery Tags', 'responsive-lightbox' ),
-			'edit_lightbox_settings'		=> __( 'Manage Settings', 'responsive-lightbox' )
-		);
+		// only for backend
+		if ( is_admin() ) {
+			// set capabilities with labels
+			$this->capabilities = array(
+				'publish_galleries'				=> __( 'Publish Galleries', 'responsive-lightbox' ),
+				'edit_galleries'				=> __( 'Edit Galleries', 'responsive-lightbox' ),
+				'edit_published_galleries'		=> __( 'Edit Published Galleries', 'responsive-lightbox' ),
+				'edit_others_galleries'			=> __( 'Edit Others Galleries', 'responsive-lightbox' ),
+				'edit_private_galleries'		=> __( 'Edit Private Galleries', 'responsive-lightbox' ),
+				'delete_galleries'				=> __( 'Delete Galleries', 'responsive-lightbox' ),
+				'delete_published_galleries'	=> __( 'Delete Published Galleries', 'responsive-lightbox' ),
+				'delete_others_galleries'		=> __( 'Delete Others Galleries', 'responsive-lightbox' ),
+				'delete_private_galleries'		=> __( 'Delete Private Galleries', 'responsive-lightbox' ),
+				'read_private_galleries'		=> __( 'Read Private Galleries', 'responsive-lightbox' ),
+				'manage_gallery_categories'		=> __( 'Manage Gallery Categories', 'responsive-lightbox' ),
+				'manage_gallery_tags'			=> __( 'Manage Gallery Tags', 'responsive-lightbox' ),
+				'edit_lightbox_settings'		=> __( 'Manage Settings', 'responsive-lightbox' )
+			);
 
-		// 2.3.0 update
-		if ( version_compare( $this->version, '2.3.0', '<' ) ) {
-			// grant new capabilities
-			$this->grant_new_capabilities();
+			// 2.3.0 update
+			if ( version_compare( $this->version, '2.3.0', '<' ) ) {
+				// grant new capabilities just before the version update
+				$this->grant_new_capabilities();
+			}
+
+			// plugin version update
+			if ( version_compare( $this->version, $this->defaults['version'], '<' ) )
+				update_option( 'responsive_lightbox_version', $this->defaults['version'], false );
 		}
-
-		// plugin version update
-		if ( version_compare( $this->version, $this->defaults['version'], '<' ) )
-			update_option( 'responsive_lightbox_version', $this->defaults['version'], false );
 
 		include_once( RESPONSIVE_LIGHTBOX_PATH . 'includes' . DIRECTORY_SEPARATOR . 'class-multilang.php' );
 	}

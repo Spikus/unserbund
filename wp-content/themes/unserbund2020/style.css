@@ -1,10 +1,9 @@
 /*
 Theme Name: unserbund theme
-Theme URI: http://www.upmaster.co.il/
-Author: the WSpike
+Author: the Spike
 Author URI: http://wordpress.org/
 Description: unserbund theme
-Version: 1.1
+Version: 2.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -83,76 +82,7 @@ table {
   -------------------------------------------------------
 */
 
-  .logo {
-    z-index: 3;
-    position: relative;
-  }
-
-  .logo__info {
-    padding-top: 5px;
-    padding-left: 80px;
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media (max-width: 640px) {
-    .logo__info {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  }
-
-  .logo__h1  {
-    font-size: 2rem;
-    display: inline-block;  
-    color:#fff;
-    margin: 0;
-    padding: 0;
-  }
   
-  .logo__h2 {
-    font-size: 1.3rem;
-    color:#fff;
-    margin: 0;
-    padding: 0;
-  }
-
-  .logo__image {
-    position: absolute;
-    height: 60px;
-    width: auto;
-  }
-
-  .site-content {
-    margin-top: 100px;
-  }
-
-  .newThumb { 
-      max-height:400px; 
-      width: 100%;
-      overflow: hidden;
-      text-align:center; 
-      border:2px solid #FAA64E;
-  }
-
-  .newThumb img {
-    width: 100%;
-    height: auto;
-  }
-
-  .rotNew_title {
-    background-color: #FAA64E;
-    display: inline-block;
-    padding: 5px;
-    position: absolute;
-    z-index: 100;
-    font-size: 1.7rem;
-    color: white;
-    left: -10px;
-    top: -10px
-  }
-
   .info {
     line-height: 1.3em;
   }
@@ -170,6 +100,10 @@ table {
     font-family: 'Open Sans', sans-serif;
     -webkit-transition: color 0.3s ease-out; 
     transition: color 0.3s ease-out;
+  }
+
+  .pedigree {
+    display: flex;
   }
 
   .pedigree table {
@@ -272,17 +206,6 @@ color: #2E2419;
 margin: 0;
 padding: 16px 0 34px;
 border-top: 1px solid;}
-.datesNow,.dates_post{position: relative;
-padding: 10px 13px 0;
-float:right;
-margin-top: -16px;
-float: right;
-text-align: center;
-background: #2E2419;}
-.dates_post {float:left;position: absolute;
-z-index: 99;
-background:#FAA64E;
-background:rgba(255,166,78,0.7);margin-top:10px}
 
 .rotNew {margin:30px 0; position: relative;float: left;}
 .rotNew small {font-weight: 400;
@@ -594,3 +517,126 @@ border-color:rgba(255,166,78,0.7);margin:5px 15px 5px 5px;}
   0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-100%, 0, 0); }
 }
+
+/* =========== NEW STYLE  =========== */
+
+.uns_navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.uns_menu {
+  flex:1;
+}
+
+.uns_menu .navbar-nav>li>a {
+  font-weight: 600;
+}
+
+.uns_logo {
+  position: absolute;
+  height: 60px;
+  right: 0;
+  width: auto;
+}
+
+.logo {
+  z-index: 3;
+  position: relative;
+}
+
+.logo__info {
+  padding-top: 5px;
+  padding-right: 80px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-end;
+}
+
+
+@media (max-width: 640px) {
+  .logo__info {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.logo__h1  {
+  font-size: 2rem;
+  display: inline-block;  
+  color:#fff;
+  margin: 0;
+  padding: 0;
+}
+
+.logo__h2 {
+  font-size: 1.3rem;
+  color:#fff;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.site-content {
+  margin-top: 100px;
+}
+
+.newThumb { 
+    max-height:400px; 
+    width: 100%;
+    overflow: hidden;
+    text-align:center; 
+    border:2px solid #FAA64E;
+}
+
+.newThumb img {
+  width: 100%;
+  height: auto;
+}
+
+.rotNew_title {
+  background-color: #FAA64E;
+  display: inline-block;
+  padding: 5px;
+  position: absolute;
+  z-index: 100;
+  font-size: 1.7rem;
+  color: white;
+  left: -10px;
+  top: -10px
+}
+
+.dates_post strong{
+  font-size: 22px;
+  line-height: 20px;
+  display: block;
+}
+
+.datesNow,
+.dates_post{
+  position: relative;
+  padding: 10px 13px 0;
+  float:right;
+  margin-top: -16px;
+  float: right;
+  text-align: center;
+  background: #2E2419;
+}
+  .dates_post {
+    float:left;
+    position: absolute;
+    z-index: 99;
+    background:#FAA64E;
+    color: white;
+    background:rgba(255,166,78,0.7);
+    width: 60px;
+    height: 60px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }

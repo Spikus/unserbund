@@ -2,70 +2,102 @@
 /**
 Template Name: Home Page
  */
-
 get_header();
 ?>
 <div id="primary" class="content-area">
     <div id="content" class="site-content container" role="main">
-    <div class="row">
-        <?php echo do_shortcode('[transitionslider id="1"]'); ?>
-    </div>
         <div class="row">
-            <div class="col-md-12 node">
-                <h2 class="avansome">Выберите своего ротвейлера</h2>
-                <?php  $new_query = new WP_Query(); $new_query->query('post_type=post&showposts=15'.'&paged='.$paged) ?>
-                <?php  while ($new_query->have_posts()) : 
-                    $new_query->the_post() ?>
-                <article class="rotNew">
-                    <h3 class="rotNew_title">
-                        <?php the_title(); ?>
-                    </h3>
-                    <div class="col-md-3">
-                        <figure class="newThumb">
-                            <?php the_post_thumbnail('medium'); ?>
-                        </figure>
-                    </div>
-                    <div class="col-md-9">
-                        <ul class="nav nav-tabs nav-justified" id="mediaTabs">
-                            <li class="active"><a href="#info<?php the_ID(); ?>" data-toggle="tab">Информация</a></li>
-                            <li><a href="#pedigree<?php the_ID(); ?>" data-toggle="tab">Родословная</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active info" id="info<?php the_ID(); ?>">
-                                <?php the_content() ?>
-                                <div class="photos">
-                                    <?php $var_gallery = get_field('album') ?>
-                                    <?php foreach($var_gallery as $img): ?>
-                                    <a rel="lightbox[roadtrip]" href="<?php echo $img["sizes"]["large"] ?>"
-                                        rel="lightbox" data-link="#">
-                                        <img class="img-thumbnail" src="<?php echo $img["sizes"]["thumbnail"] ?>"
-                                            alt="ротвейлер <?php get_the_title() ?>">
+            <?php echo do_shortcode('[transitionslider id="1"]'); ?>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="node">
+                    <h2 class="avansome">Новости Питомника</h2>
+                    <?php $new_query = new WP_Query(); ?>
+                    <?php $new_query->query('post_type=post&showposts=5'.'&paged='.$paged); ?>
+                    <?php while ($new_query->have_posts()) : ?>
+                        <?php $new_query->the_post();  ?>
+                            <article class="rotNew">
+                                <time class="dates_post">
+                                    <strong>
+                                        <?php echo the_date('d') ?>
+                                    </strong>
+                                    <span>
+                                        <?php echo the_time('M'); ?>
+                                    </span>
+                                </time>
+                                <div class="col-md-5 col-sm-5">
+                                    <a href="<?php the_permalink() ?>" class="noHover">
+                                        <figure class="newThumb">
+                                            <?php the_post_thumbnail('medium'); ?>
+                                            <span class="shader glyphicon glyphicon-zoom-in"></span>
+                                        </figure>
                                     </a>
-                                    <?php endforeach; ?>
                                 </div>
-
-                            </div>
-                            <div class="tab-pane pedigree" id="pedigree<?php the_ID(); ?>">
-                                <?php echo get_field('first') ?>
-                            </div>
-                        </div>
-                </article>
-                <?php endwhile; ?>
-                <?php while (have_posts()) : the_post(); ?>
-                <div class="rotNew">
-                    <div class="col-md-12">
-                        <header class="entry-header">
-                            <h1 class="avansome"><?php the_title(); ?></h1>
-                        </header><!-- .entry-header -->
-                        <div class="entry-content">
-                            <?php the_content(); ?>
-                        </div><!-- .entry-content -->
-                    </div>  
+                                <div class="col-md-7 col-sm-7">
+                                    <h3>
+                                        <a href="<?php the_permalink() ?>" class="noHover">
+                                            <?php the_title(); ?>
+                                        </a>
+                                    </h3>
+                                    <small>
+                                        <?php the_excerpt() ?>
+                                    </small>
+                                    <?php $dogs=get_field('dogs') ?>
+                                    <?php if ($dogs): ?>
+                                        <b> Ротвейлеры в новости</b>
+                                        <ul>
+                                            <?php foreach ($dogs as $object): ?>
+                                            <li class="dogLink">
+                                                <a href="<?php echo get_permalink($object['dog']->ID); ?>" class="noHover">
+                                                    <?php echo $object['dog']->post_title ?>
+                                                </a>
+                                            </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                </div>
+                            </article>
+                    <?php endwhile; ?>
+                    <div id="ajaxAdd" class="clearfix"> </div>
+                    <a id="pagination" href="./wp-content/themes/unserbund/ajax.php" data-page="1">Показать Ещё <span
+                            class="glyphicon glyphicon-refresh"></span></a>
                 </div>
-                <?php endwhile; ?>
             </div>
-        </div><!-- #content -->
-    </div>
+            <div class="col-md-4">
+                <div class="node">
+                    <h2 class="avansome">Материалы</h2>
+                    <ul class="nav nav-tabs nav-justified" role="tablist" id="mediaTabs">
+                        <li class="active">
+                            <a href="#photo" role="tab" data-toggle="tab">Фото</a>
+                        </li>
+                        <li>
+                            <a href="#video" role="tab" data-toggle="tab">Видео</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="photo"><?php  side_photos(); ?></div>
+                        <div class="tab-pane fade" id="video"><?php side_video() ?></div>
+                    </div>
+                </div>
+
+                <div class="node">
+                    <h2 class="avansome">Мы на Facebook</h2>
+                    <div id="fb-root"></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/unserbund/" data-tabs="timeline"
+                        data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                        data-show-facepile="true">
+                        <div class="fb-xfbml-parse-ignore">
+                            <blockquote cite="https://www.facebook.com/unserbund/">
+                                <a href="https://www.facebook.com/unserbund/">Vadim Komarov Kennel Unserbund</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- #content -->
+</div>
 </div>
 
 <?php get_footer(); ?>
