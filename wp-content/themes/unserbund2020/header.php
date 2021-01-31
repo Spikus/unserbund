@@ -52,18 +52,15 @@
                         <a title="Собаки" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Собаки <span class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
                                 <li id="menu-item-4086" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4086">
-                                    <a title="Самки Ротвейлеров" href="/females/">Самки Ротвейлеров</a>
+                                    <a title="Суки Ротвейлеров" href="/females/">Самки Ротвейлеров</a>
                                 </li>
                                 <li id="menu-item-4072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4072">
                                     <a title="Кобели Ротвейлеров" href="/males/">Кобели Ротвейлеров</a>
                                 </li>
-                                <li id="menu-item-4085" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4085">
-                                    <a title="Юниоры" href="/juniors/">Юниоры</a>
-                                </li>
                             </ul>
                         </li>
                         <li id="menu-item-4175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4175">
-                            <a title="Продажа" href="rottweilers-for-sale/">Продажа</a>
+                            <a title="Продажа" href="/rottweilers-for-sale/">Продажа</a>
                         </li>
                     </ul>
                     </div>
