@@ -4,11 +4,11 @@ Template Name: Home Page
  */
 get_header();
 ?>
+<div class="row">
+    <?php echo do_shortcode('[transitionslider id="1"]'); ?>
+</div>
 <div id="primary" class="content-area">
     <div id="content" class="site-content container" role="main">
-        <div class="row">
-            <?php echo do_shortcode('[transitionslider id="1"]'); ?>
-        </div>
         <div class="row">
             <div class="col-md-8">
                 <div class="node">
