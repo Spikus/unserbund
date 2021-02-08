@@ -6,14 +6,6 @@
         var $box = $(this).parent();
     $box.filter('[class*="-leave-"]').hoverDirection('removeClass');});
 
-    $('.js-red').on('click', function () {
-        var id = $(this).data('link');
-        if (id > 0 && $(this).html().indexOf("анных")==-1 ){
-            window.location.href = 'http://unserbund.com/?post_type=dogs&p=' + id;
-        }
-
-    });
-
     $('#pagination').on('click', function (e) {
         e.preventDefault();
         var pagein = $(this).attr('data-page');
