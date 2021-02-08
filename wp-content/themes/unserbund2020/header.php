@@ -41,28 +41,30 @@
                             <span class="icon-bar"></span> 
                             <span class="icon-bar"></span> 
                         </button>
-                    <ul id="menu-mainmenu" class="nav navbar-nav mainmenu">
-                    <li id="menu-item-3568" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-3568 active">
-                        <a title="Главная" href="/">Главная</a>
-                    </li>
-                    <li id="menu-item-4068" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4068">
-                        <a title="Наш питомник" href="kennel/">Наш питомник</a>
-                    </li>
-                    <li id="menu-item-3572" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3572 dropdown">
-                        <a title="Собаки" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Собаки <span class="caret"></span></a>
-                            <ul role="menu" class=" dropdown-menu">
-                                <li id="menu-item-4086" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4086">
-                                    <a title="Суки Ротвейлеров" href="/females/">Самки Ротвейлеров</a>
-                                </li>
-                                <li id="menu-item-4072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4072">
-                                    <a title="Кобели Ротвейлеров" href="/males/">Кобели Ротвейлеров</a>
-                                </li>
-                            </ul>
+                    <div id="collapse-1" class="collapse navbar-collapse">
+                        <ul id="menu-mainmenu" class="nav navbar-nav mainmenu">
+                        <li id="menu-item-3568" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-3568 active">
+                            <a title="Главная" href="/">Главная</a>
                         </li>
-                        <li id="menu-item-4175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4175">
-                            <a title="Продажа" href="/rottweilers-for-sale/">Продажа</a>
+                        <li id="menu-item-4068" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4068">
+                            <a title="Наш питомник" href="kennel/">Наш питомник</a>
                         </li>
-                    </ul>
+                        <li id="menu-item-3572" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3572 dropdown">
+                            <a title="Собаки" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Собаки <span class="caret"></span></a>
+                                <ul role="menu" class=" dropdown-menu">
+                                    <li id="menu-item-4086" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4086">
+                                        <a title="Суки Ротвейлеров" href="/females/">Самки Ротвейлеров</a>
+                                    </li>
+                                    <li id="menu-item-4072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4072">
+                                        <a title="Кобели Ротвейлеров" href="/males/">Кобели Ротвейлеров</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-4175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4175">
+                                <a title="Продажа" href="/rottweilers-for-sale/">Продажа</a>
+                            </li>
+                        </ul>
+                    </div>
                     </div>
                     <div class="logo__info">
                             <h1 class="logo__h1"><?php bloginfo('name'); ?></h1>
