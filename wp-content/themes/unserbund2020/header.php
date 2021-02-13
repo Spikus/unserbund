@@ -58,6 +58,9 @@
                                     <li id="menu-item-4072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4072">
                                         <a title="Кобели Ротвейлеров" href="/males/">Кобели Ротвейлеров</a>
                                     </li>
+                                    <li id="menu-item-4072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4072">
+                                        <a title="Юниоры Ротвейлеров" href="/juniors/">Юниоры Ротвейлеров</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li id="menu-item-4175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4175">
