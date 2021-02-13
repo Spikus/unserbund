@@ -561,6 +561,8 @@ border-color:rgba(255,166,78,0.7);margin:5px 15px 5px 5px;}
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    right: 0;
   }
 }
 
@@ -608,6 +610,10 @@ border-color:rgba(255,166,78,0.7);margin:5px 15px 5px 5px;}
   font-size: 22px;
   line-height: 20px;
   display: block;
+}
+
+.navbar-collapse.in {
+  padding-top: 50px;
 }
 
 .datesNow,
