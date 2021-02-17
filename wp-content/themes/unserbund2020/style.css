@@ -104,6 +104,7 @@ table {
 
   .pedigree {
     display: flex;
+    overflow: scroll;
   }
 
   .pedigree table {
