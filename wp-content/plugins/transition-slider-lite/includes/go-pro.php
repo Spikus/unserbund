@@ -44,7 +44,7 @@
                <td class="STX-td-element"><i class="dashicons dashicons-yes"></i></td>
             </tr>
             <tr valign="top" class="field-row">
-               <th scope="row" class="STX-th-label"><h4>Free templates</h4><p>5 Free templates included for easy start</p></th>
+               <th scope="row" class="STX-th-label"><h4>Free templates</h4><p>11 Free templates included for easy start</p></th>
                <td class="STX-td-element"><i class="dashicons dashicons-yes"></i></td>
                <td class="STX-td-element"><i class="dashicons dashicons-yes"></i></td>
             </tr>
@@ -55,6 +55,11 @@
             </tr>
             <tr valign="top" class="field-row">
                <th scope="row" class="STX-th-label"><h4>Premium templates</h4><p>33 high quality templates</p></th>
+               <td class="STX-td-element"><i class="dashicons dashicons-no"></i></td>
+               <td class="STX-td-element"><i class="dashicons dashicons-yes"></i></td>
+            </tr>
+            <tr valign="top" class="field-row">
+               <th scope="row" class="STX-th-label"><h4>Premium text effects</h4><p>14 quality text animations</p></th>
                <td class="STX-td-element"><i class="dashicons dashicons-no"></i></td>
                <td class="STX-td-element"><i class="dashicons dashicons-yes"></i></td>
             </tr>
@@ -74,7 +79,7 @@
                <td class="STX-td-element"><i class="dashicons dashicons-yes"></i></td>
             </tr>
             <tr valign="top" class="field-row">
-               <th scope="row" class="STX-th-label"><h4>PRO slide transitions</h4><p>Line advanced, Crossfade gradient, more coming soom</p></th>
+               <th scope="row" class="STX-th-label"><h4>PRO slide transitions</h4><p>Line advanced, Crossfade gradient, more coming soon</p></th>
                <td class="STX-td-element"><i class="dashicons dashicons-no"></i></td>
                <td class="STX-td-element"><i class="dashicons dashicons-yes"></i></td>
             </tr>

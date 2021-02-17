@@ -31,11 +31,21 @@
             animateCSSName,
             previewSlilderInstance,
             sliderOptionsChanged = false,
-            colorPickerArray = {};
+            colorPickerArray = {},
+            listOfDropdownsInEditor;
 
         $(".slide-settings-tabs-wrapper").tabs();
         $(".element-settings-tabs-wrapper").tabs();
         $(".style-font-wrapper").tabs();
+
+        $(".dashicons-tablet").tipsy({ gravity: "n", opacity: 1, title: function() { return "This feature is available in PRO version!" } });
+        $(".dashicons-smartphone").tipsy({ gravity: "n", opacity: 1, title: function() { return "This feature is available in PRO version!" } });
+        $(".STX-elements-item-iframe").tipsy({ gravity: "w", opacity: 1, title: function() { return "This feature is available in PRO version!" } });
+        $(".STX-elements-item-iframe").css({
+            'opacity':'0.5',
+            'cursor':'not-allowed'
+        });
+        $(".device-desktop").css("opacity", "1");
 
         $(".accordion").accordion({
             heightStyle: "content",
@@ -44,23 +54,25 @@
             icons: false
         });
 
-        $('.property-description').tipsy({gravity: 'w', opacity: 1});
+        $(".element-settings-tabs-wrapper").on( "tabsactivate", updateAccordion );
 
-		function initTextEditor(content) {
-            wp.editor.initialize('text-content', {
+        $(".property-description").tipsy({ gravity: "w", opacity: 1 });
+
+        function initTextEditor(content) {
+            wp.editor.initialize("text-content", {
                 tinymce: {
-                    setup: function (editor) {
-                        editor.on('change keyup paste', function (e) {
+                    setup: function(editor) {
+                        editor.on("change keyup paste", function(e) {
                             var el = getCurrentElement();
-                            el.content = wp.editor.getContent('text-content');
+                            el.content = wp.editor.getContent("text-content");
                             updateCurrentElement("content");
                         });
-                        editor.on('init', function (e) {
+                        editor.on("init", function(e) {
                             editor.setContent(content);
                         });
                     }
                 },
-                quicktags: true,
+                quicktags: true
             });
         }
         options = jQuery.parseJSON(json_str);
@@ -104,7 +116,7 @@
 
         $(".STX-button-modal-save").click(function() {
             $(".slider-save-btn").click();
-			unfocusLayerElement();
+            unfocusLayerElement();
         });
 
         $form.submit(submitCallback);
@@ -177,14 +189,14 @@
             });
         }
 
-        $(".slide-settings-main-header-left-button").click(function () {
+        $(".slide-settings-main-header-left-button").click(function() {
             unfocusLayerElement();
-            $('.slide-tab-slide a').click();
+            $(".slide-tab-slide a").click();
         });
 
-        $(".slide-settings-main-header-right-button").click(function () {
+        $(".slide-settings-main-header-right-button").click(function() {
             unfocusLayerElement();
-            $('.slide-tab-layer a').click();
+            $(".slide-tab-layer a").click();
         });
 
         $(".STX-footer-layer-btn").click(function() {
@@ -192,7 +204,7 @@
         });
 
         $(".STX-preview-btn-wrapper").click(function(e) {
-			if($(this).hasClass("btn-disabled")) return;
+            if ($(this).hasClass("btn-disabled")) return;
             $("#preview-slider-modal").show();
 
             $("body").css("overflow", "hidden");
@@ -201,7 +213,7 @@
 
             var o = JSON.parse(JSON.stringify(options));
 
-                       if (o.navigation && !o.navigation.enable) o.navigation = false;
+            if (o.navigation && !o.navigation.enable) o.navigation = false;
             if (o.wheelNavigation && !o.wheelNavigation.enable) o.wheelNavigation = false;
             if (o.pagination && !o.pagination.enable) o.pagination = false;
             if (o.thumbs && !o.thumbs.enable) o.thumbs = false;
@@ -210,6 +222,8 @@
             if (o.shadow && o.shadow == "off") o.shadow = null;
             o.initialSlide = 0;
             o.hashNavigation = false;
+			o.forceResponsive = false;
+			o.forceFullscreen = false;
 
             for (var key in o.slides) {
                 if (o.slides[key].elements) {
@@ -252,21 +266,23 @@
         addOption("general-settings", "invertColorSelectors", "text", "CSS selector for Menu (used to change menu colors on slide change)", "", "", "");
 
         addOption("size", "responsive", "checkbox", "Responsive mode", true, "", "hasSubitem");
-        addOption("size", "ratio", "text", "Responsive ratio (width / height)", "2", "", "isSubitem");
-        addOption("size", "fullscreen", "checkbox", "Fullscreen mode", false, "", "hasSubitem");
-		addOption("size", "sliderSize", "textOnly", "Fixed mode", "", "", "hasSubitem", "");
-        addOption("size", "width", "textWithUnit", "Width", "1000", "px", "isSubitem", "");
-        addOption("size", "height", "textWithUnit", "Height", "550", "px", "isSubitem", "");
-        addOption("layer", "layerBackground", "color", "Background Color", "", "", "");
-		addOption("layer", "layerStarOnTransitionStart", "checkbox", "Layer start on transition start", false, "", "");
+        addOption("size", "ratio", "text", "Responsive ratio (width / height)", "2", "", "isSubitem", "", "desktop");
+        addOption("size", "forceResponsive", "checkbox", "Force responsive mode", false, "", "isSubitem");
 
-        addOption("layer", "sliderSize", "textOnly", "Desktop", "", "", "hasSubitem", "");
-        addOption("layer", "layerWidth", "textWithUnit", "Width", "", ["px", "%"], "isSubitem", "");
-        addOption("layer", "layerWidthMin", "textWithUnit", "Min Width", "",["px", "%"], "isSubitem", "");
-        addOption("layer", "layerWidthMax", "textWithUnit", "Max Width", "", ["px", "%"], "isSubitem", "");
-        addOption("layer", "layerHeight", "textWithUnit", "Height", "", ["px", "%"], "isSubitem", "");
-        addOption("layer", "layerHeightMin", "textWithUnit", "Min Height", "", ["px", "%"], "isSubitem", "");
-        addOption("layer", "layerHeightMax", "textWithUnit", "Max Height", "", ["px", "%"], "isSubitem", "");
+        addOption("size", "fullscreen", "checkbox", "Fullscreen mode", false, "", "hasSubitem");
+		addOption("size", "forceFullscreen", "checkbox", "Force fullscreen mode", false, "", "isSubitem");
+        addOption("size", "sliderSize", "textOnly", "Fixed mode", "", "", "hasSubitem", "");
+        addOption("size", "width", "textWithUnit", "Width", "1000", "px", "isSubitem", "", "");
+        addOption("size", "height", "textWithUnit", "Height", "550", "px", "isSubitem", "", "desktop");
+        addOption("layer", "layerBackground", "color", "Background Color", "", "", "");
+        addOption("layer", "layerStarOnTransitionStart", "checkbox", "Layer start on transition start", false, "", "");
+
+        addOption("layer", "layerWidth", "textWithUnit", "Width", "", ["px", "%"], "", "", "desktop");
+        addOption("layer", "layerWidthMin", "textWithUnit", "Min Width", "", ["px", "%"], "", "", "desktop");
+        addOption("layer", "layerWidthMax", "textWithUnit", "Max Width", "", ["px", "%"], "", "", "desktop");
+        addOption("layer", "layerHeight", "textWithUnit", "Height", "", ["px", "%"], "", "", "desktop");
+        addOption("layer", "layerHeightMin", "textWithUnit", "Min Height", "", ["px", "%"], "", "", "desktop");
+        addOption("layer", "layerHeightMax", "textWithUnit", "Max Height", "", ["px", "%"], "", "", "desktop");
         addOption("autoplay", "autoplay.enable", "checkbox", "Enable", false, "", "");
         addOption("autoplay", "autoplay.delay", "textWithUnit", "Delay between transitions", 3000, "ms", "");
         addOption("autoplay", "autoplay.disableOnInteraction", "checkbox", "Disable on user interaction", true, "", "");
@@ -275,6 +291,7 @@
         addOption("buttons", "buttons.pauseVisible", "checkbox", "Pause button", false, "", "", "");
         addOption("buttons", "buttons.muteVisible", "checkbox", "Mute button", false, "", "", "");
         addOption("buttons", "resetVideos", "checkbox", "Reset video on slide change", false, "", "", "");
+        addOption("buttons", "videoAutoplay", "checkbox", "Autoplay video", true, "", "", "");
 
         addOption("arrows", "navigation", "textOnly", "Arrows", "", "", "hasSubitem", "");
         addOption("arrows", "navigation.enable", "checkbox", "Enable", true, "", "isSubitem", "");
@@ -352,7 +369,7 @@
         addOption("lightbox", "lightbox.backgroundColor", "color", "Background color", "rgba(0, 0, 0, 0.95)", "", "");
         addOption("lightbox", "lightbox.closeColor", "color", "Close button color", "#ffffff", "", "");
 
-        function addOption(section, name, type, desc, defaultValue, values, subItemType, hasPreview) {
+        function addOption(section, name, type, desc, defaultValue, values, subItemType, hasPreview, hasClass) {
             var table = $("#slider-options-" + section + "");
             var tableBody = table.find("tbody");
             var row = $('<tr valign="top"  class="field-row"></tr>').appendTo(tableBody);
@@ -362,6 +379,10 @@
             var val;
 
             if (subItemType) $(th).addClass(subItemType);
+            if (hasClass)
+                $(th)
+                    .parent()
+                    .attr("data-type", hasClass);
 
             if (name2 && options.hasOwnProperty(name1) && options[name1].hasOwnProperty(name2)) val = options[name1][name2];
             else if (!name2 && options.hasOwnProperty(name1)) val = options[name1];
@@ -483,19 +504,19 @@
                             '<div class="STX-publish-text STX-admin">Copy and paste this shortcode into your posts or pages:</div>' +
                             '<div class="STX-STX-publish-shortcode">' +
                             '<div class="STX-publish-table">' +
-                            '<input type="text" id="STX-shortcode-left">' +
+                            '<input type="text" id="STX-shortcode-left" readonly>' +
                             '<div id="' + options.id + '" title="Copy shortcode" id="1" class="STX-shortcode-right STX-btn-copy-shortcode">COPY</div>' +
                             "</div>" +
                             "</div>" +
                             "</div>"
                     ).appendTo(tableBody);
-                    $('#STX-shortcode-left').val('[transitionslider id="' + options.id + '"]');
-                    $('#STX-shortcode-left').keypress(function(e) {
+                    $("#STX-shortcode-left").val('[transitionslider id="' + options.id + '"]');
+                    $("#STX-shortcode-left").keypress(function(e) {
                         e.preventDefault();
                     });
                     break;
 
-				case "slidesArea":
+                case "slidesArea":
                     tableBody.empty();
                     $('<div class="STX-slides-content">' +
 								'<div class="STX-slides-container ui-sortable">' +
@@ -546,10 +567,12 @@
                     jQueryInputElement.trigger("change");
                 })
                 .on("change", function() {
-                    jQueryInputElement.val(pickr
-                        .getColor()
-                        .toHEXA()
-                        .toString(0));
+                    jQueryInputElement.val(
+                        pickr
+                            .getColor()
+                            .toHEXA()
+                            .toString(0)
+                    );
                     pickr.applyColor();
                     jQueryInputElement.trigger("change");
                 })
@@ -557,10 +580,11 @@
                     jQueryInputElement.val("");
                     jQueryInputElement.trigger("change");
                 });
-            if(name) colorPickerArray[name] = {
-                pickr: pickr,
-                el: colorElement
-            };
+            if (name)
+                colorPickerArray[name] = {
+                    pickr: pickr,
+                    el: colorElement
+                };
         }
 
         $(".STX-edit-dropdown").click(function() {
@@ -619,6 +643,7 @@
                 if (formElementText.hasClass("focus")) formElementText.removeClass("focus");
             }
         });
+
         if (options.slides) {
             enableButtons();
 
@@ -650,7 +675,7 @@
             $(".tabs").tabs();
 
             $(".ui-sortable").sortable({
-                items: '.slide-item',
+                items: ".slide-item",
                 opacity: 0.6,
                 stop: function(event, ui) {
                     onSlideReorder();
@@ -664,13 +689,14 @@
             $("." + val).show();
         }
 
-
-        $(".googleFontList").append('<option value="initial">Default</option>');
+		var fonts = [];
 
         $.getJSON("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBmNd8k2DDxBqmU2d4B9AbPDSHfR12DJ6c", function(response) {
             for (var key in response.items) {
-                $(".googleFontList").append('<option value="' + response.items[key].family + '" style="font-family: ' + response.items[key].family + '; font-weight: 400" class="">' + response.items[key].family + "</option>");
+				fonts.push(response.items[key].family)
             }
+			var fontselectOptions = { fonts: fonts }
+			$('#font').fontselect(fontselectOptions);
         });
 
         var $editSlideModal = $("#edit-slide-modal");
@@ -688,10 +714,12 @@
         });
 
         var $slider = $(".slider-preview-area").css("minWidth", "1024px");
+        var $sliderPreviewContainer = $("#slider-preview-container");
 
         resizeLayers();
 
         var deviceType, oldDeviceType;
+        var devices = ["desktop", "tablet", "mobile"];
 
         function showPrevSlide() {
             currentSlide += options.slides.length - 1;
@@ -710,9 +738,7 @@
                 var arr = this.name.split(".");
                 var val = this.type == "checkbox" ? this.checked : this.value;
 
-                if(val && this.classList.contains('unit'))
-                    val += document.getElementsByClassName('unit-' + this.name)[0].innerText
-
+                if (val && this.classList.contains("unit")) val += document.getElementsByClassName("unit-" + this.name)[0].innerText;
 
                 if (arr.length == 2) {
                     if (typeof options[arr[0]] != "object") options[arr[0]] = {};
@@ -849,7 +875,7 @@
 
                 for (var i = 0; i < arr.models.length; i++) {
                     var src = arr.models[i].attributes.url;
-                    var thumbSrc = arr.models[i].attributes.sizes && arr.models[i].attributes.sizes.medium.url
+                    var thumbSrc = arr.models[i].attributes.sizes && arr.models[i].attributes.sizes.medium.url;
 
                     slides.push({
                         url: src,
@@ -858,7 +884,7 @@
 
                     options.slides[counterForSlides] = {
                         src: src,
-                        thumbSrc : thumbSrc
+                        thumbSrc: thumbSrc
                     };
 
                     createSlidesHtml(counterForSlides, src);
@@ -960,12 +986,16 @@
                             .get(0)
                             .pause();
                     });
-					addBreadcrumbActive($(".STX-admin").find(".btn-slider-name").addClass("STX-active"));
+                    addBreadcrumbActive(
+                        $(".STX-admin")
+                            .find(".btn-slider-name")
+                            .addClass("STX-active")
+                    );
                 }
             });
 
             $(".media-modal-close").click(function(e) {
-				closeModal();
+                closeModal();
                 $("body").css("overflow", "auto");
 
                 $("video").each(function() {
@@ -998,12 +1028,12 @@
                         .first()
                         .toJSON();
                     var src = attachment.url;
-                    var thumbSrc
+                    var thumbSrc;
 
                     var img, video, type, ext;
                     if (/\.(jpg|jpeg|gif|png)$/i.test(src)) {
                         (type = img), (ext = "img");
-                        thumbSrc = attachment.sizes.medium.url
+                        thumbSrc = "medium" in attachment.sizes ? attachment.sizes.medium.url : attachment.url;
                     } else if (/\.(mp4|ogg|ogv|webm)$/i.test(src)) {
                         (type = video), (ext = "video");
                     }
@@ -1073,11 +1103,9 @@
         }
 
         function setSlideSrc(index, src, thumbSrc) {
-
             options.slides[index].src = src;
 
-            if(thumbSrc)
-                options.slides[index].thumbSrc = thumbSrc;
+            if (thumbSrc) options.slides[index].thumbSrc = thumbSrc;
 
             if (/\.(jpg|jpeg|gif|png)$/i.test(src)) {
                 $(".STX-video-preview")
@@ -1124,14 +1152,14 @@
             });
 
             if (type == "img") {
-                $(".slider-preview-area")[0].style.backgroundImage = 'url("' + src + '")';
+                $slider[0].style.backgroundImage = 'url("' + src + '")';
 
                 $(".STX-slide-src-preview")
                     .show()
                     .attr("src", src);
                 $(".STX-slide-src-preview-video").hide();
             } else {
-                $(".slider-preview-area")[0].style.backgroundImage = "none";
+                $slider[0].style.backgroundImage = "none";
                 var $vid = $('<video id="edit-slide-video" class="wp-video-shortcode" src="' + src + '" preload="metadata" controls style="width: 100% "></video>').appendTo($(".video-container"));
 
                 $(".STX-slide-src-preview-video")
@@ -1144,19 +1172,19 @@
                 };
             }
 
-			removeBreadcrumbActive();
+            removeBreadcrumbActive();
 
             $editSlideModal
                 .find(".media-frame-title")
                 .find(".btn-slide-name")
-                .text("Slide " + String(parseInt(index) + 1))
+                .text("Slide " + String(parseInt(index) + 1));
 
             $editSlideModal
                 .find('[data-setting="url"]')
                 .find("input")
                 .val(src);
 
-			addBreadcrumbActive($editSlideModal.find(".btn-slide-name"))
+            addBreadcrumbActive($editSlideModal.find(".btn-slide-name"));
 
             var dropdowns = ["direction", "easing"];
 
@@ -1208,13 +1236,15 @@
             resizeLayers();
         }
 
-		function removeBreadcrumbActive(){
-			$(".STX-breadcrumb").find(".STX-active").removeClass("STX-active");
-		}
+        function removeBreadcrumbActive() {
+            $(".STX-breadcrumb")
+                .find(".STX-active")
+                .removeClass("STX-active");
+        }
 
-		function addBreadcrumbActive(element){
-			$(element).addClass("STX-active");
-		}
+        function addBreadcrumbActive(element) {
+            $(element).addClass("STX-active");
+        }
 
         function clearSlideElements() {
             $(".layer-item").remove();
@@ -1272,11 +1302,8 @@
 
             $(".STX-main-table-wrapp").fadeIn("fast");
 
-
-            $(".btn-disabled")
-                .removeClass("btn-disabled");
-			$(".save-input-text-disabled")
-                .removeClass("save-input-text-disabled");
+            $(".btn-disabled").removeClass("btn-disabled");
+            $(".save-input-text-disabled").removeClass("save-input-text-disabled");
         }
 
         $(".STX-btn-menu").click(function(e) {
@@ -1300,7 +1327,7 @@
 
         $(".STX-form-tab").hide();
         $(".options_slides").show();
-		$('.STX-btn-menu[data-form-name="slides"]')
+        $('.STX-btn-menu[data-form-name="slides"]')
             .parent()
             .addClass("STX-nav-active");
 
@@ -1346,7 +1373,7 @@
                 $slide.find(".STX-image-preview").hide();
             }
 
-            $slide.insertBefore($('.STX-create').parent());
+            $slide.insertBefore($(".STX-create").parent());
 
             $slide.find(".slide-settings").click(function(e) {
                 currentSlide = parseInt(getSlideId($(this)));
@@ -1424,7 +1451,7 @@
         }
 
         $(".STX-btn-copy-shortcode").click(function() {
-            var inputShortcode = document.getElementById('STX-shortcode-left');
+            var inputShortcode = document.getElementById("STX-shortcode-left");
             inputShortcode.select();
             inputShortcode.setSelectionRange(0, 99999);
             document.execCommand("copy");
@@ -1432,7 +1459,7 @@
             $(this).text("COPIED!");
             $(this).addClass("STX-copy-shortcode-highlight");
 
-            setTimeout(function(){
+            setTimeout(function() {
                 $(".STX-btn-copy-shortcode").text("COPY");
                 $(".STX-btn-copy-shortcode").removeClass("STX-copy-shortcode-highlight");
             }, 1000);
@@ -1441,29 +1468,29 @@
 
         var $elementSettings = $editSlideModal.find(".element-settings");
 
-        var elementSettings = {}
-        $elementSettings.find('input').each(function(index,el){
-            elementSettings[el.name] = el
-        })
-        $elementSettings.find('select').each(function(index,el){
-            elementSettings[el.name] = el
-        })
-        $elementSettings.find('textarea').each(function(index,el){
-            elementSettings[el.name] = el
-        })
+        var elementSettings = {};
+        $elementSettings.find("input").each(function(index, el) {
+            elementSettings[el.name] = el;
+        });
+        $elementSettings.find("select").each(function(index, el) {
+            elementSettings[el.name] = el;
+        });
+        $elementSettings.find("textarea").each(function(index, el) {
+            elementSettings[el.name] = el;
+        });
 
         var $elementSettingsHover = $editSlideModal.find(".element-settings-hover");
 
-        var elementSettingsHover = {}
-        $elementSettingsHover.find('input').each(function(index,el){
-            elementSettingsHover[el.name] = el
-        })
-        $elementSettingsHover.find('select').each(function(index,el){
-            elementSettingsHover[el.name] = el
-        })
-        $elementSettingsHover.find('textarea').each(function(index,el){
-            elementSettingsHover[el.name] = el
-        })
+        var elementSettingsHover = {};
+        $elementSettingsHover.find("input").each(function(index, el) {
+            elementSettingsHover[el.name] = el;
+        });
+        $elementSettingsHover.find("select").each(function(index, el) {
+            elementSettingsHover[el.name] = el;
+        });
+        $elementSettingsHover.find("textarea").each(function(index, el) {
+            elementSettingsHover[el.name] = el;
+        });
 
         var $textElementSettings = $editSlideModal.find(".text-el");
         var $headingElementSettings = $editSlideModal.find(".heading-el");
@@ -1473,7 +1500,7 @@
         var $iframeElementSettings = $editSlideModal.find(".iframe-el");
 
         var $addTextButton = $editSlideModal.find(".add-text");
-		var $addHeadingButton = $editSlideModal.find(".add-heading");
+        var $addHeadingButton = $editSlideModal.find(".add-heading");
         var $addImageButton = $editSlideModal.find(".add-image");
         var $addButtonButton = $editSlideModal.find(".add-button");
         var $addVideoButton = $editSlideModal.find(".add-video");
@@ -1641,7 +1668,7 @@
             if (target.name == "mode" || target.name == "position.x" || target.name == "position.y") renderLayers();
         }
 
-        $('textarea[name="customCSS"]').bind("change paste", function(e) {
+        $('textarea[name="customCSS"]').bind("change keyup paste", function(e) {
             var el = getCurrentElement();
             el.customCSS = $(this).val();
             updateCurrentElement("customCSS");
@@ -1696,7 +1723,7 @@
                 type: "text",
                 mode: "content",
                 content: "Text",
-				htmlTag: "p",
+                htmlTag: "p",
                 contentAnimationType: "animating",
                 fontSize: "16",
                 fontFamily: "",
@@ -1739,7 +1766,7 @@
             $(".slide-settings-main-menu-title").text("Element Settings");
         }
 
-		function createHeadingElement() {
+        function createHeadingElement() {
             var obj = {
                 type: "heading",
                 mode: "content",
@@ -1929,33 +1956,7 @@
         }
 
         function createIframeElement() {
-            var obj = {
-                type: "iframe",
-                src: "",
-                position: {
-                    x: "center",
-                    y: "center",
-                    offsetX: 0,
-                    offsetY: 0
-                },
-                startAnimation: {
-                    animation: "fadeInUp",
-                    speed: 500,
-                    delay: 0
-                },
-                endAnimation: {
-                    animation: "fadeOutUp",
-                    speed: 500,
-                    delay: 0
-                }
-            };
-
-            addLayerElement(obj);
-
-
-            $(".element-settings-tabs-wrapper").show();
-            $(".slide-settings-main-menu-title").text("Element Settings");
-        }
+            }
 
         function selectVideoElement(obj) {
             if (file) file.close();
@@ -2001,16 +2002,1464 @@
             selectVideoElement();
         });
 
+        generateNewSelectDropdownElements();
         generateNewColorPickerElements();
 
         function generateNewColorPickerElements() {
-            $('.color-picker').each(function () {
-                var hover = $(this).hasClass('has-hover');
-                var name = $(this).attr('name');
-                var property = hover ? name + '.hover' : name;
+            $(".color-picker").each(function() {
+                var hover = $(this).hasClass("has-hover");
+                var name = $(this).attr("name");
+                var property = hover ? name + ".hover" : name;
 
                 createColorPickerElement($(this), null, property);
             });
+        }
+
+        function generateNewSelectDropdownElements() {
+            var editorElement = document.getElementById("edit-slide-modal");
+            listOfDropdownsInEditor = editorElement.getElementsByTagName("select");
+
+            function formatTransition(state) {
+                var path = window.stx_plugin_url + state.videoURL;
+                var lable = '';
+                if (!state.id && !state.videoURL) {
+                    return state.text;
+                }
+                if(state.disabled) var lable = '<span class="STX-transition-video-pro">PRO</span>';
+                var $state = $('<video width="130" height="74" autoplay loop muted>' + "<source src=" + path + ' type="video/mp4" />' + "</video>" + lable).hover(function(event) {
+                    event.preventDefault();
+                    if (event.type === "mouseenter") {
+                        $(this).removeAttr("controls");
+                    } else if (event.type === "mouseleave") {
+                        $(this).removeAttr("controls");
+                    }
+                });
+
+                return $state;
+            }
+
+            function formatTransitionSelection(state) {
+                var path = window.stx_plugin_url + state.videoURL;
+                if (!state.id && !state.videoURL) {
+                    return state.text;
+                }
+                var $state = $('<video width="280" height="auto" autoplay loop muted>' + "<source src=" + path + ' type="video/mp4" />' + "</video>").hover(function(event) {
+                    event.preventDefault();
+                    if (event.type === "mouseenter") {
+                        $(this).removeAttr("controls");
+                    } else if (event.type === "mouseleave") {
+                        $(this).removeAttr("controls");
+                    }
+                });
+                return $state;
+            }
+
+            function formatAnimationType(state) {
+                if (!state.id) {
+                    return state.text;
+                }
+
+                var animationName = state.id;
+                if (!animationName) animationName = "fade";
+
+                var has = function(val) {
+                    return animationName.includes(val);
+                };
+
+                if (state.animationType === "startAnimation" && animationName.includes("effect")) {
+                    var el;
+                    var textWrapper;
+
+                    var o = {};
+
+                    o.duration = 1000;
+                    o.delay = 500;
+                    o.loop = true;
+
+                    switch (animationName) {
+                        case "effect1":
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml1">' +
+                                '<span class="text-wrapper">' +
+                                    '<span class="line line1"></span>' +
+                                    '<span class="letters">' +
+                                        state.text +
+                                    '</span>' +
+                                    '<span class="line line2"></span>' +
+                                '</span>' +
+                                '</h1>'
+                            );
+                            textWrapper = el.querySelector(".letters");
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll(".ml1 .letter"),
+                                    scale: [0.3, 1],
+                                    opacity: [0, 1],
+                                    translateZ: 0,
+                                    easing: "easeOutExpo",
+                                    duration: o.duration / 2,
+                                    delay: (el, i, l) => ((o.duration / 2) / l) * (i + 1)
+                                })
+                                .add({
+                                    targets: el.querySelectorAll(".ml1 .line"),
+                                    scaleX: [0, 1],
+                                    opacity: [0.5, 1],
+                                    easing: "easeOutExpo",
+                                    duration: o.duration / 2,
+                                    offset: "-=875",
+                                    delay: (el, i, l) => 80 * (l - i)
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+
+                        case "effect2":
+                            el = STX.Utils.htmlToElement('<h1 class="ml2">'+state.text+'</h1>');
+
+                            textWrapper = el;
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll(".ml2 .letter"),
+                                    scale: [4, 1],
+                                    opacity: [0, 1],
+                                    translateZ: 0,
+                                    easing: "easeOutExpo",
+                                    duration: o.duration,
+                                    delay: (el, i, l) => o.duration / l * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect3":
+                            el = STX.Utils.htmlToElement('<h1 class="ml3">'+state.text+'</h1>');
+
+                            textWrapper = el;
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll(".ml3 .letter"),
+                                    opacity: [0,1],
+                                    easing: "easeInOutQuad",
+                                    duration: o.duration,
+                                    delay: (el, i, l) => o.duration / l * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect4":
+                            o.duration = 300;
+
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml4">' +
+                                '<span class="letters letters-1">Eff</span>' +
+                                '<span class="letters letters-2">ect</span>' +
+                                '<span class="letters letters-3">4</span>' +
+                                '</h1>'
+                            );
+
+                            textWrapper = el;
+
+                            var ml4 = {};
+                            ml4.opacityIn = [0,1];
+                            ml4.scaleIn = [0.2, 1];
+                            ml4.scaleOut = 3;
+                            ml4.durationIn = o.duration;
+                            ml4.durationOut = o.duration;
+                            ml4.delay = o.delay;
+
+                            var animation = anime
+                                .timeline({
+                                    loop: o.loop
+                                });
+                            animation
+
+                                .add({
+                                    targets: el.querySelectorAll('.ml4 .letters-1'),
+                                    opacity: ml4.opacityIn,
+                                    scale: ml4.scaleIn,
+                                    duration: ml4.durationIn
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml4 .letters-1'),
+                                    opacity: 0,
+                                    scale: ml4.scaleOut,
+                                    duration: ml4.durationOut,
+                                    easing: "easeInExpo",
+                                    delay: ml4.delay
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml4 .letters-2'),
+                                    opacity: ml4.opacityIn,
+                                    scale: ml4.scaleIn,
+                                    duration: ml4.durationIn
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml4 .letters-2'),
+                                    opacity: 0,
+                                    scale: ml4.scaleOut,
+                                    duration: ml4.durationOut,
+                                    easing: "easeInExpo",
+                                    delay: ml4.delay
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml4 .letters-3'),
+                                    opacity: ml4.opacityIn,
+                                    scale: ml4.scaleIn,
+                                    duration: ml4.durationIn
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml4 .letters-3'),
+                                    opacity: 0,
+                                    scale: ml4.scaleOut,
+                                    duration: ml4.durationOut,
+                                    easing: "easeInExpo",
+                                    delay: ml4.delay
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+
+                            break;
+                        case "effect5":
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml6">' +
+                                '<span class="text-wrapper">' +
+                                '<span class="letters">'+state.text+'</span>' +
+                                '</span>' +
+                                "</h1>"
+                            );
+
+                            textWrapper = el.querySelector(".letters");
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll('.ml6 .letter'),
+                                    translateY: ["1.2em", 0],
+                                    translateZ: 0,
+                                    duration: o.duration,
+                                    delay: (el, i, l) => o.duration / l * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect6":
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml7">' +
+                                '<span class="text-wrapper">' +
+                                '<span class="letters">'+state.text+'</span>' +
+                                '</span>' +
+                                '</h1>'
+                            );
+
+                            textWrapper = el.querySelector(".letters");
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll('.ml7 .letter'),
+                                    translateY: ["1.1em", 0],
+                                    translateX: ["0.55em", 0],
+                                    translateZ: 0,
+                                    rotateZ: [180, 0],
+                                    duration: o.duration,
+                                    easing: "easeOutExpo",
+                                    delay: (el, i, l) => o.duration / l * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect7":
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml9">' +
+                                '<span class="text-wrapper">' +
+                                '<span class="letters">'+state.text+'</span>' +
+                                '</span>' +
+                                '</h1>'
+                            );
+
+                            textWrapper = el.querySelector(".letters");
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll('.ml9 .letter'),
+                                    scale: [0, 1],
+                                    duration: o.duration,
+                                    elasticity: 600,
+                                    delay: (el, i, l) => (o.duration / l) * (i+1)
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect8":
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml10">' +
+                                '<span class="text-wrapper">' +
+                                '<span class="letters">'+state.text+'</span>' +
+                                '</span>' +
+                                '</h1>'
+                            );
+
+                            textWrapper = el.querySelector(".letters");
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll('.ml10 .letter'),
+                                    rotateY: [-90, 0],
+                                    duration: o.duration,
+                                    delay: (el, i, l) => o.duration / l * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect9":
+                            o.duration = 500;
+
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml11">' +
+                                '<span class="text-wrapper">' +
+                                '<span class="line line1"></span>' +
+                                '<span class="letters">'+state.text+'</span>' +
+                                '</span>' +
+                                '</h1>'
+                            );
+
+                            textWrapper = el.querySelector(".letters");
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+                            var textDelay = '-=' + (o.duration * 2);
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll('.ml11 .line'),
+                                    scaleY: [0,1],
+                                    opacity: [0.5,1],
+                                    easing: "easeOutExpo",
+                                    duration: 700
+                                })
+                                .add({
+                                    targets: el.querySelector('.ml11 .line'),
+                                    translateX: [0, 110],
+                                    easing: "easeOutExpo",
+                                    duration: o.duration * 2
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml11 .letter'),
+                                    opacity: [0,1],
+                                    easing: "easeOutExpo",
+                                    duration: 600,
+                                    delay: (el, i, l) => o.duration / l * (i+1)
+                                }, textDelay)
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect10":
+
+                            el = STX.Utils.htmlToElement('<h1 class="ml12">'+state.text+'</h1>');
+
+                            textWrapper = el;
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll(".ml12 .letter"),
+                                    translateX: [40,0],
+                                    translateZ: 0,
+                                    opacity: [0,1],
+                                    easing: "easeOutExpo",
+                                    duration: o.duration,
+                                    delay: (el, i, l) => 500 + (o.duration / l) * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect11":
+
+                            el = STX.Utils.htmlToElement('<h1 class="ml13">'+state.text+'</h1>');
+
+                            textWrapper = el;
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll(".ml13 .letter"),
+                                    translateY: [100,0],
+                                    translateZ: 0,
+                                    opacity: [0,1],
+                                    easing: "easeOutExpo",
+                                    duration: o.duration,
+                                    delay: (el, i, l) => 300 + (o.duration / l) * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect12":
+                            o.duration = 1100;
+
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml14">' +
+                                '<span class="text-wrapper">' +
+                                '<span class="letters">'+state.text+'</span>' +
+                                '<span class="line"></span>' +
+                                '</span>' +
+                                '</span>' +
+                                '</h1>'
+                            );
+
+                            textWrapper = el.querySelector(".letters");
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+                            var textDelay = '-=' + (o.duration / 2);
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelector('.ml14 .line'),
+                                    scaleX: [0,1],
+                                    opacity: [0.5,1],
+                                    easing: "easeInOutExpo",
+                                    duration: o.duration - 200
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml14 .letter'),
+                                    opacity: [0,1],
+                                    translateX: [40,0],
+                                    translateZ: 0,
+                                    scaleX: [0.3, 1],
+                                    easing: "easeOutExpo",
+                                    duration: o.duration - 300,
+                                    delay: (el, i, l) => 150 + (o.duration / l) * i
+                                }, textDelay)
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect13":
+                            o.duration = 500;
+
+                            el = STX.Utils.htmlToElement(
+                                '<h1 class="ml15">' +
+                                '<span class="word">Effect </span>' +
+                                '<span class="word">13</span>' +
+                                '</h1>'
+                            );
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+                                .add({
+                                    targets: el.querySelectorAll('.ml15 .word'),
+                                    scale: [14,1],
+                                    opacity: [0,1],
+                                    easing: "easeOutCirc",
+                                    duration: o.duration,
+                                    delay: (el, i) => o.duration * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                        case "effect14":
+                            o.duration = 1400;
+
+                            el = STX.Utils.htmlToElement('<h1 class="ml16">'+state.text+'</h1>');
+
+                            textWrapper = el;
+                            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                            anime
+                                .timeline({
+                                    loop: o.loop
+                                })
+
+                                .add({
+                                    targets: el.querySelectorAll('.ml16 .letter'),
+                                    translateY: [-100,0],
+                                    easing: "easeOutExpo",
+                                    duration: o.duration,
+                                    delay: (el, i, l) => (o.duration / l) * i
+                                })
+                                .add({
+                                    delay: o.delay
+                                });
+                            break;
+                    }
+                } else {
+                    var el = document.createElement('h2');
+                    el.innerText = state.text;
+                    el.style.transition = "all 0s";
+
+                    var o = { targets: el };
+                    o.easing = "easeOutQuad";
+
+                    var offset = "100%";
+                    var angle = 0;
+                    var opacity = 1;
+
+                    if(animationName === "bounceIn") {
+                        o.easing = "spring(1, 100, 10, 0)";
+                        o.scale = [0.3, 1];
+                        opacity = 0;
+                    } else if (has("bounce")) {
+                        o.easing = "spring(.7, 100, 10, 0)";
+                        offset = "1000px";
+                        opacity = 0;
+                    }
+
+                    if (has("flip")) {
+                        if(has("InX")) {
+                            o.rotateX = ["90deg", 0];
+                        } else if(has("InY")) {
+                            o.rotateY = ["90deg", 0];
+                        }else if(has("OutX")) {
+                            o.rotateX = ["90deg"];
+                        }else if(has("OutY")) {
+                            o.rotateY = ["90deg"];
+                        }
+                        opacity = 0
+                    }
+
+                    if (has("fade") || has("zoom")) opacity = 0;
+
+                    if (has("rotate")) {
+                        if (has("UpLeft")) {
+                            el.style.transformOrigin = "left bottom";
+                            angle = "45deg";
+                        } else if (has("UpRight")) {
+                            el.style.transformOrigin = "right bottom";
+                            angle = "-90deg";
+                        } else if (has("DownLeft")) {
+                            el.style.transformOrigin = "left bottom";
+                            angle = "-45deg";
+                        } else if (has("DownRight")) {
+                            el.style.transformOrigin = "right bottom";
+                            angle = "45deg";
+                        } else {
+                            el.style.transformOrigin = "center";
+                            angle = "-200deg";
+                        }
+                        opacity = 0;
+                    }
+
+                    if (has("lightSpeed")) {
+                        offset = "100%";
+                        angle = "-180deg";
+                    }
+
+                    if (has("Big")) {
+                        offset = "2000px";
+                    }
+
+                    if (state.animationType === "endAnimation") {
+                        o.opacity = [1, opacity];
+
+                        if (has("zoom")) {
+                            o.scale = 0.3;
+                        }
+
+                        if (!has("rotate")) {
+                            if (has("Left")) o.translateX = "-" + offset;
+                            else if (has("Right")) o.translateX = offset;
+                            else if (has("Down")) o.translateY = offset;
+                            else if (has("Up")) o.translateY = "-" + offset;
+                        }
+
+                        if (has("lightSpeed")) {
+                            o.translateX = offset;
+                            o.skewX = angle;
+                            o.easing = "spring(.4, 100, 10, 0)";
+                        }
+
+                        if (has("rotate")) o.rotateZ =  String(Number(angle.replace("deg","")) * -1 ) + "deg"
+
+                        o.duration = 1000;
+                        o.loop = true;
+
+                        o.delay = 600
+
+                        anime(o)
+
+                    } else {
+                        if (opacity != 1) o.opacity = [opacity, 1];
+
+                        if (has("zoom")) {
+                            o.scale = [0.3, 1];
+                        }
+                        if (!has("rotate")) {
+                            if (has("Left")) o.translateX = ["-" + offset, 0];
+                            else if (has("Right")) o.translateX = [offset, 0];
+                            else if (has("Up")) o.translateY = [offset, 0];
+                            else if (has("Down")) o.translateY = ["-" + offset, 0];
+                        }
+
+                        if (has("lightSpeed")) {
+                            o.translateX = [offset, 0];
+                            o.skewX = [angle, 0];
+                            o.easing = "spring(.4, 100, 10, 0)";
+                        }
+
+                        if (has("rotate")) o.rotateZ = [angle, 0];
+
+                        o.duration = 1000;
+                        o.loop = true;
+
+                        o.endDelay = 600
+
+                        anime(o)
+                    }
+                }
+
+                if(state.disabled) {
+                    var lable = '<span class="STX-transition-video-pro">PRO</span>';
+                    $(el).append(lable);
+                }
+
+                var preview = STX.Utils.htmlToElement('<div class="STX-animation-effect-wrapper"></div>');
+                $(preview).append(el);
+                $(preview).append(lable);
+                return $(preview);
+            }
+
+            for (var i = 0; i < listOfDropdownsInEditor.length; i++) {
+                switch (listOfDropdownsInEditor[i].name) {
+                    case "transitionEffect":
+                        $(listOfDropdownsInEditor[i]).select2({
+                            dropdownParent: $("#edit-slide-modal"),
+                            width: "100%",
+                            selectionCssClass: "selection-transition-effect",
+                            dropdownCssClass: "dropdown-transition-effect",
+                            minimumResultsForSearch: Infinity,
+                            templateResult: formatTransition,
+                            templateSelection: formatTransitionSelection,
+                            data: [
+                                {
+                                    text: "Default",
+                                    children: [
+                                        {
+                                            id: "",
+                                            text: "Default",
+                                            videoURL: "assets/video/slide.mp4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Blur",
+                                    children: [
+                                        {
+                                            id: "blur",
+                                            text: "Blur",
+                                            videoURL: "assets/video/blur.mp4"
+                                        },
+                                        {
+                                            id: "blur2",
+                                            text: "Blur 2",
+                                            videoURL: "assets/video/blur2.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "blur3",
+                                            text: "Blur 3",
+                                            videoURL: "assets/video/blur3.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "blur4",
+                                            text: "Blur 4",
+                                            videoURL: "assets/video/blur4.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "blur5",
+                                            text: "Blur ",
+                                            videoURL: "assets/video/blur5.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "blur6",
+                                            text: "Blur 6",
+                                            videoURL: "assets/video/blur6.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "blur7",
+                                            text: "Blur 7",
+                                            videoURL: "assets/video/blur7.mp4",
+                                            disabled: true
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Crossfade",
+                                    children: [
+                                        {
+                                            id: "crossfade1",
+                                            text: "Crossfade 1",
+                                            videoURL: "assets/video/crossfade1.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "crossfade2",
+                                            text: "Crossfade 2",
+                                            videoURL: "assets/video/crossfade2.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "crossfade3",
+                                            text: "Crossfade 3",
+                                            videoURL: "assets/video/crossfade3.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "crossfade4",
+                                            text: "Crossfade 4",
+                                            videoURL: "assets/video/crossfade4.mp4",
+                                            disabled: true
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Fade",
+                                    children: [
+                                        {
+                                            id: "fade",
+                                            text: "Fade 1",
+                                            videoURL: "assets/video/fade.mp4"
+                                        },
+                                        {
+                                            id: "fade2",
+                                            text: "Fade 2",
+                                            videoURL: "assets/video/fade2.mp4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Line",
+                                    children: [
+                                        {
+                                            id: "line",
+                                            text: "Line 1",
+                                            videoURL: "assets/video/line.mp4"
+                                        },
+                                        {
+                                            id: "line2",
+                                            text: "Line 2",
+                                            videoURL: "assets/video/line2.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line3",
+                                            text: "Line 3",
+                                            videoURL: "assets/video/line3.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line3",
+                                            text: "Line 3",
+                                            videoURL: "assets/video/line3.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line4",
+                                            text: "Line 4",
+                                            videoURL: "assets/video/line4.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line5",
+                                            text: "Line 5",
+                                            videoURL: "assets/video/line5.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line6",
+                                            text: "Line 6",
+                                            videoURL: "assets/video/line6.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line7",
+                                            text: "Line 7",
+                                            videoURL: "assets/video/line7.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line8",
+                                            text: "Line 8",
+                                            videoURL: "assets/video/line8.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line9",
+                                            text: "Line 9",
+                                            videoURL: "assets/video/line9.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "line10",
+                                            text: "Line 10",
+                                            videoURL: "assets/video/line10.mp4",
+                                            disabled: true
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Powerzoom",
+                                    children: [
+                                        {
+                                            id: "powerzoom",
+                                            text: "Powerzoom 1",
+                                            videoURL: "assets/video/powerzoom.mp4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Rool",
+                                    children: [
+                                        {
+                                            id: "roll",
+                                            text: "Roll 1",
+                                            videoURL: "assets/video/roll.mp4"
+                                        },
+                                        {
+                                            id: "roll2",
+                                            text: "Roll 2",
+                                            videoURL: "assets/video/roll2.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "roll3",
+                                            text: "Roll 3",
+                                            videoURL: "assets/video/roll3.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "roll4",
+                                            text: "Roll 4",
+                                            videoURL: "assets/video/roll4.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "roll5",
+                                            text: "Roll 5",
+                                            videoURL: "assets/video/roll5.mp4",
+                                            disabled: true
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Slide",
+                                    children: [
+                                        {
+                                            id: "slide",
+                                            text: "Slide 1",
+                                            videoURL: "assets/video/slide.mp4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Stretch",
+                                    children: [
+                                        {
+                                            id: "stretch",
+                                            text: "Stretch 1",
+                                            videoURL: "assets/video/stretch.mp4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Twirl",
+                                    children: [
+                                        {
+                                            id: "twirl",
+                                            text: "Twirl 1",
+                                            videoURL: "assets/video/twirl.mp4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Warp",
+                                    children: [
+                                        {
+                                            id: "warp",
+                                            text: "Warp 1",
+                                            videoURL: "assets/video/warp.mp4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Zoom",
+                                    children: [
+                                        {
+                                            id: "zoom",
+                                            text: "Zoom 1",
+                                            videoURL: "assets/video/zoom.mp4"
+                                        },
+                                        {
+                                            id: "zoom2",
+                                            text: "Zoom 2",
+                                            videoURL: "assets/video/zoom2.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "zoom3",
+                                            text: "Zoom 3",
+                                            videoURL: "assets/video/zoom3.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "zoom3",
+                                            text: "Zoom 3",
+                                            videoURL: "assets/video/zoom3.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "zoom4",
+                                            text: "Zoom 4",
+                                            videoURL: "assets/video/zoom4.mp4",
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "zoom5",
+                                            text: "Zoom 5",
+                                            videoURL: "assets/video/zoom5.mp4",
+                                            disabled: true
+                                        }
+                                    ]
+                                }
+                            ]
+                        });
+                        break;
+                    case "endAnimation.animation":
+                        var animationType = "endAnimation";
+
+                        $(listOfDropdownsInEditor[i]).select2({
+                            dropdownParent: $("#edit-slide-modal"),
+                            width: "100%",
+                            selectionCssClass: "selection-transition-effect",
+                            dropdownCssClass: "dropdown-transition-effect",
+                            minimumResultsForSearch: Infinity,
+                            templateResult: formatAnimationType,
+                            templateSelection: formatAnimationType,
+                            data: [
+                                {
+                                    text: "Fading",
+                                    children: [
+                                        {
+                                            id: "fadeOut",
+                                            text: "Fade",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutDown",
+                                            text: "Fade Down",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutDownBig",
+                                            text: "Fade Down Big",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutLeft",
+                                            text: "Fade Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutLeftBig",
+                                            text: "Fade Left Big",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutRight",
+                                            text: "Fade Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutRightBig",
+                                            text: "Fade Right Big",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutUp",
+                                            text: "Fade Up",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeOutUpBig",
+                                            text: "Fade Up Big",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Flippers",
+                                    children: [
+                                        {
+                                            id: "flipOutX",
+                                            text: "Flip X",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "flipOutY",
+                                            text: "Flip Y",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Sliding",
+                                    children: [
+                                        {
+                                            id: "slideOutDown",
+                                            text: "Slide Down",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "slideOutLeft",
+                                            text: "Slide Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "slideOutRight",
+                                            text: "Slide Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "slideOutUp",
+                                            text: "Slide Up",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+
+                                {
+                                    text: "Rotating",
+                                    children: [
+                                        {
+                                            id: "rotateOut",
+                                            text: "Rotate",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateOutDownLeft",
+                                            text: "Rotate Down Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateOutDownRight",
+                                            text: "Rotate Down Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateOutUpLeft",
+                                            text: "Rotate Up Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateOutUpRight",
+                                            text: "Rotate Up Right",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Zooming",
+                                    children: [
+                                        {
+                                            id: "zoomOut",
+                                            text: "Zoom",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomOutDown",
+                                            text: "Zoom Down",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomOutLeft",
+                                            text: "Zoom Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomOutRight",
+                                            text: "Zoom Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomOutUp",
+                                            text: "Zoom Up",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Attention seekers",
+                                    children: [
+                                        {
+                                            id: "lightSpeedOut",
+                                            text: "Lightspeed",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                }
+                            ]
+                        });
+                        break;
+
+                    case "startAnimation.animation":
+                        var animationType = "startAnimation";
+
+                        $(listOfDropdownsInEditor[i]).select2({
+                            dropdownParent: $("#edit-slide-modal"),
+                            width: "100%",
+                            selectionCssClass: "selection-transition-effect",
+                            dropdownCssClass: "dropdown-transition-effect",
+                            minimumResultsForSearch: Infinity,
+                            templateResult: formatAnimationType,
+                            templateSelection: formatAnimationType,
+                            data: [
+                                {
+                                    text: "Fading",
+                                    children: [
+                                        {
+                                            id: "fadeIn",
+                                            text: "Fade",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInDown",
+                                            text: "Fade Down",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInDownBig",
+                                            text: "Fade Down Big",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInLeft",
+                                            text: "Fade Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInLeftBig",
+                                            text: "Fade Left Big",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInRight",
+                                            text: "Fade Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInRightBig",
+                                            text: "Fade Right Big",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInUp",
+                                            text: "Fade Up",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "fadeInUpBig",
+                                            text: "Fade Up Big",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Flippers",
+                                    children: [
+                                        {
+                                            id: "flipInX",
+                                            text: "Flip X",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "flipInY",
+                                            text: "Flip Y",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Sliding",
+                                    children: [
+                                        {
+                                            id: "slideInDown",
+                                            text: "Slide Down",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "slideInLeft",
+                                            text: "Slide Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "slideInRight",
+                                            text: "Slide Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "slideInUp",
+                                            text: "Slide Up",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Bouncing",
+                                    children: [
+                                        {
+                                            id: "bounceIn",
+                                            text: "Bounce",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "bounceInDown",
+                                            text: "Bounce Down",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "bounceInLeft",
+                                            text: "Bounce Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "bounceInRight",
+                                            text: "Bounce Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "bounceInUp",
+                                            text: "Bounce Up",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Rotating",
+                                    children: [
+                                        {
+                                            id: "rotateIn",
+                                            text: "Rotate",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateInDownLeft",
+                                            text: "Rotate Down Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateInDownRight",
+                                            text: "Rotate Down Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateInUpLeft",
+                                            text: "Rotate Up Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "rotateInUpRight",
+                                            text: "Rotate Up Right",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Zooming",
+                                    children: [
+                                        {
+                                            id: "zoomIn",
+                                            text: "Zoom",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomInDown",
+                                            text: "Zoom Down",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomInLeft",
+                                            text: "Zoom Left",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomInRight",
+                                            text: "Zoom Right",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "zoomInUp",
+                                            text: "Zoom Up",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Attention seekers",
+                                    children: [
+                                        {
+                                            id: "lightSpeedIn",
+                                            text: "Lightspeed",
+                                            animationType: animationType
+                                        }
+                                    ]
+                                },
+                                {
+                                    text: "Special",
+                                    children: [
+                                        {
+                                            id: "effect1",
+                                            text: "Effect1",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect2",
+                                            text: "Effect2",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect3",
+                                            text: "Effect3",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect4",
+                                            text: "Effect4",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect5",
+                                            text: "Effect5",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect6",
+                                            text: "Effect6",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect7",
+                                            text: "Effect7",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect8",
+                                            text: "Effect8",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect9",
+                                            text: "Effect9",
+                                            animationType: animationType
+                                        },
+                                        {
+                                            id: "effect10",
+                                            text: "Effect10",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect11",
+                                            text: "Effect11",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect12",
+                                            text: "Effect12",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect13",
+                                            text: "Effect13",
+                                            animationType: animationType,
+                                            disabled: true
+                                        },
+                                        {
+                                            id: "effect14",
+                                            text: "Effect14",
+                                            animationType: animationType,
+                                            disabled: true
+                                        }
+                                    ]
+                                }
+                            ]
+                        });
+                        break;
+                }
+            }
         }
 
         function clearEditLayerColorPickerElements() {
@@ -2022,7 +3471,7 @@
         }
 
         $addTextButton.click(createTextElement);
-		$addHeadingButton.click(createHeadingElement);
+        $addHeadingButton.click(createHeadingElement);
         $addImageButton.click(createImageElement);
         $addVideoButton.click(createVideoElement);
         $addIframeButton.click(createIframeElement);
@@ -2103,9 +3552,9 @@
         function updateElementSettings(obj, hover) {
             obj = obj || getCurrentElement();
 
-			if((obj.type == "heading") || (obj.type == "button")) {
-                if(tinyMCE.activeEditor) tinyMCE.activeEditor.off('change keyup paste');
-                wp.editor.remove('text-content');
+            if (obj.type != "text") {
+                if (tinyMCE.activeEditor) tinyMCE.activeEditor.off("change keyup paste");
+                wp.editor.remove("text-content");
             }
             if (obj.src) {
                 if (obj.type == "image")
@@ -2123,14 +3572,11 @@
 
             var $container = hover ? $elementSettingsHover : $elementSettings;
 
-            var settings = hover ? elementSettingsHover : elementSettings
+            var settings = hover ? elementSettingsHover : elementSettings;
 
-            for(var key in settings){
-                if(settings[key].type == 'radio')
-                    settings[key].checked = false
-                else if(settings[key])
-                    settings[key].value = ''
-
+            for (var key in settings) {
+                if (settings[key].type == "radio") settings[key].checked = false;
+                else if (settings[key]) settings[key].value = "";
             }
 
             for (var key in obj) {
@@ -2139,16 +3585,20 @@
                 } else {
                     var val = obj[key];
 
-                    if ( typeof val != "object") {
-                        if(settings[key]){
+                    if (typeof val != "object") {
+                        if (settings[key]) {
                             if (settings[key].type == "radio") {
                                 $container.find('input[name="' + key + '"][value="' + val + '"]').prop("checked", "true");
                             } else if (settings[key].type == "checkbox") {
                                 settings[key].checked = val;
                             } else if (settings[key].classList.contains("color-picker")) {
-                                if($(settings[key]).next().hasClass("STX-color-picker")) {
+                                if (
+                                    $(settings[key])
+                                        .next()
+                                        .hasClass("STX-color-picker")
+                                ) {
                                     var pickerColor = val === "" ? null : val;
-                                    if(hover) colorPickerArray[key + '.hover'].pickr.setColor(pickerColor);
+                                    if (hover) colorPickerArray[key + ".hover"].pickr.setColor(pickerColor);
                                     else colorPickerArray[key].pickr.setColor(pickerColor);
                                 }
                             } else if (settings[key].classList.contains("unit")) {
@@ -2163,26 +3613,22 @@
                                     });
                                     $container.find(".unit-" + key).text(unit);
                                 }
-                                settings[key].value = val
+                                settings[key].value = val;
                             } else {
-                                settings[key].value = val
+                                settings[key].value = val;
                             }
                         }
-
                     } else {
                         for (var key2 in val) {
                             var val2 = val[key2];
-                            if(settings[key + '.' + key2]){
-                                if (typeof val2 == "boolean")
-                                    settings[key + '.' + key2].checked = val2
+                            if (settings[key + "." + key2]) {
+                                if (typeof val2 == "boolean") settings[key + "." + key2].checked = val2;
 
-                                if(settings[key + '.' + key2])
-                                    settings[key + '.' + key2].value = val2
+                                if (settings[key + "." + key2]) settings[key + "." + key2].value = val2;
+                                if ($(settings[key + "." + key2]).data('select2')) $(settings[key + "." + key2]).val(val2).trigger("change");
                             }
                         }
                     }
-
-
                 }
             }
             var t = getContentAnimationType();
@@ -2205,9 +3651,9 @@
                 $iframeElementSettings.hide();
                 $headingElementSettings.hide();
                 $textElementSettings.show();
-                if(!tinyMCE.activeEditor) initTextEditor(obj.content);
+                if (!tinyMCE.activeEditor) initTextEditor(obj.content);
                 else if (obj.content && tinyMCE.activeEditor) tinyMCE.activeEditor.setContent(obj.content);
-                $('#text-content').css('display', 'none');
+                $("#text-content").css("display", "none");
             }
             if (obj.type == "button") {
                 $(".slide-settings-main-menu-title").text("Edit Button");
@@ -2245,10 +3691,27 @@
                 $headingElementSettings.hide();
                 $iframeElementSettings.show();
             }
-            $(".accordion").accordion("refresh");
-
             $(".element-settings-tabs-wrapper").show();
 
+            updateAccordion();
+
+        }
+
+        function updateAccordion() {
+            $(".accordion").each(function (index, accordion) {
+                var activeSubcategory = 0;
+                var indexArrayOfVisibleSubcategory = [];
+
+                $(this).accordion("refresh");
+                activeSubcategory = $(this).accordion('option', 'active');
+
+                $($(this).children('h3')).each(function (index, subcategory) {
+                    if($(this).is(':visible')) indexArrayOfVisibleSubcategory.push(index);
+                });
+
+                if(indexArrayOfVisibleSubcategory.includes(activeSubcategory)) $(this).accordion('option', 'active', activeSubcategory);
+                else $(this).accordion('option', 'active', indexArrayOfVisibleSubcategory[0]);
+            });
         }
 
         function getContentAnimationType() {
@@ -2257,8 +3720,8 @@
 
         function updateElementSetting(name, val, hover) {
             onElementSettingChanged(true);
-            var settings = hover ? elementSettingsHover : elementSettings
-            settings[name].value = val
+            var settings = hover ? elementSettingsHover : elementSettings;
+            settings[name].value = val;
         }
 
         function unfocusLayerElement() {
@@ -2325,7 +3788,7 @@
             hideLayerListPopup();
         });
 
-        $(".slider-preview-area").click(function(e) {
+        $slider.click(function(e) {
             if ($(e.target).hasClass("stx-layers") || $(e.target).hasClass("slider-preview-area")) unfocusLayerElement();
         });
 
@@ -2405,7 +3868,7 @@
             menu = $menu[0],
             menuVisible = false;
 
-        $(".menu-option-copy").click(function(e) {
+        var $btnCopy = $(".menu-option-copy").click(function(e) {
             e.preventDefault();
             e.stopPropagation();
             toggleMenu();
@@ -2413,7 +3876,7 @@
             copyLayerElements();
         });
 
-        $(".menu-option-duplicate").click(function(e) {
+        var $btnDuplicate = $(".menu-option-duplicate").click(function(e) {
             e.preventDefault();
             e.stopPropagation();
             toggleMenu();
@@ -2421,7 +3884,7 @@
             duplicateLayerElement();
         });
 
-        $(".menu-option-delete").click(function(e) {
+        var $btnDelate = $(".menu-option-delete").click(function(e) {
             e.preventDefault();
             e.stopPropagation();
             toggleMenu();
@@ -2429,13 +3892,14 @@
             deleteLayerElements();
         });
 
-        $(".menu-option-paste").click(function(e) {
+        var $btnPaste = $(".menu-option-paste").click(function(e) {
             e.preventDefault();
             e.stopPropagation();
             toggleMenu();
 
             pasteLayerElements();
         });
+
         $(".element-template").each(function() {
             var btnTemplate = {
                 fontFamily: jQuery(this).css(["fontFamily"]).fontFamily,
@@ -2558,32 +4022,42 @@
             if ($(e.target.parentNode.parentNode.parentNode).hasClass("stx-layers-content")) {
                 e.preventDefault();
                 var origin = {
-                    left: e.pageX - $(".slider-preview-area").offset().left,
-                    top: e.pageY - $(".slider-preview-area").offset().top
+                    left: e.pageX - $slider.offset().left,
+                    top: e.pageY - $slider.offset().top
                 };
                 setPosition(origin);
 
                 $(".menu-option").addClass("menu-option-disabled");
 
                 if (selectedElements.length) {
-                    $(".menu-option-copy").removeClass("menu-option-disabled");
-                    $(".menu-option-delete").removeClass("menu-option-delete");
+                    $btnCopy.removeClass("menu-option-disabled");
+                    $btnDuplicate.removeClass("menu-option-disabled");
+                    $btnDelate.removeClass("menu-option-disabled");
                 }
 
-                if (layerClipboard.length) $(".menu-option-paste").removeClass("menu-option-disabled");
+                if (layerClipboard.length) $btnPaste.removeClass("menu-option-disabled");
             } else if ($(e.target).hasClass("element")) {
                 e.preventDefault();
                 var origin = {
-                    left: e.pageX - $(".slider-preview-area").offset().left,
-                    top: e.pageY - $(".slider-preview-area").offset().top
+                    left: e.pageX - $slider.offset().left,
+                    top: e.pageY - $slider.offset().top
                 };
                 setPosition(origin);
 
                 $(".menu-option-disabled").removeClass("menu-option-disabled");
 
-                if (layerClipboard.length == 0) $(".menu-option-paste").addClass("menu-option-disabled");
+                if (!layerClipboard.length) $btnPaste.addClass("menu-option-disabled");
+            } else if ($(e.target).parents(".slider-preview-area").length) {
+                e.preventDefault();
+                var origin = {
+                    left: e.pageX - $slider.offset().left,
+                    top: e.pageY - $slider.offset().top
+                };
+                setPosition(origin);
 
-                setCurrentElement(Number(e.target.id));
+                $(".menu-option").addClass("menu-option-disabled");
+
+                if (layerClipboard.length) $btnPaste.removeClass("menu-option-disabled");
             } else {
                 toggleMenu();
             }
@@ -2642,23 +4116,27 @@
             pasteLayerElements();
         });
 
-        $(".STX-has-units").each(function(el){
-            var units = this.dataset.units.split(",")
-            var unit = this.dataset.unit || "px"
-            var $units = $('<div>').addClass('STX-units')
-            var $curr = $('<span>'+unit+'</span>').addClass('STX-current-unit')
-            var $inputs = $(this).parent().find('input').addClass('unit').each(function(){
-                $curr.addClass('unit-' + this.name)
-            })
-            units.forEach(function(unit){
-                var $unit = $('<div>'+unit+'</div>')
-                .addClass('STX-unit')
-                .appendTo($units)
-                .click(function(){
-                    $curr.text($(this).text())
-                    $inputs.trigger('change')
-                })
-            })
+        $(".STX-has-units").each(function(el) {
+            var units = this.dataset.units.split(",");
+            var unit = this.dataset.unit || "px";
+            var $units = $("<div>").addClass("STX-units");
+            var $curr = $("<span>" + unit + "</span>").addClass("STX-current-unit");
+            var $inputs = $(this)
+                .parent()
+                .find("input")
+                .addClass("unit")
+                .each(function() {
+                    $curr.addClass("unit-" + this.name);
+                });
+            units.forEach(function(unit) {
+                var $unit = $("<div>" + unit + "</div>")
+                    .addClass("STX-unit")
+                    .appendTo($units)
+                    .click(function() {
+                        $curr.text($(this).text());
+                        $inputs.trigger("change");
+                    });
+            });
             $(this)
                 .append($units)
                 .append($curr)

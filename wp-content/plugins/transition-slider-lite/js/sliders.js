@@ -24,6 +24,20 @@
         var $body = $("body");
         var _pro = false;
 
+        $("#import-sliders").tipsy({ gravity: "s", opacity: 1, title: function() { return "This feature is available in PRO version!" } });
+        $("#import-sliders").css({
+            'opacity':'0.5',
+            'cursor':'not-allowed'
+        });
+        $(".STX-slider-export-btn").tipsy({ gravity: "s", opacity: 1, title: function() { return "This feature is available in PRO version!" } });
+        $(".STX-slider-export-btn").css({
+            'opacity':'0.5',
+            'cursor':'not-allowed'
+        });
+        $(".STX-slider-export-btn a").css({
+            'cursor':'not-allowed'
+        });
+
         $(".STX-designs").click(function() {
             $templatesModal.show();
             $modalBackdrop.show();
@@ -185,7 +199,8 @@
             var selected = getSelectedSliders();
 
             $(".delete_all_sliders").toggle(selected.length > 0);
-            }
+            $(".STX-slider-export-btn").toggle(selected.length > 0);
+        }
 
         updateHeader();
 
@@ -522,6 +537,9 @@
             var selected = getSelectedSliders();
             deleteSliders(selected);
         });
+        $(".STX-slider-export-btn").click(function(e) {
+            e.preventDefault();
+            });
         $(".bulkactions-apply").click(function() {
             var action = $(this)
                 .parent()
@@ -663,6 +681,8 @@
             });
         }
 
+        var currentSliderOptions
+
         function addListeners() {
             $(".view").click(function(e) {
                 e.preventDefault();
@@ -699,6 +719,8 @@
                         _s.slides[key].urlTarget = _s.slides[key].urlTarget == true || _s.slides[key].urlTarget == "_blank" ? "_blank" : "_self";
                     }
 
+                    currentSliderOptions = _s
+
                     if ($.isEmptyObject($("#slider-preview").data())) $("#slider-preview").transitionSlider(_s, function () {
                         $("#slider-preview").show();
                     });
@@ -729,12 +751,20 @@
             });
         }
 
-        function getSliderTitle(element) {
-            return element
-                .parent()
-                .parent()
-                .attr("data-title");
+        function closeImportModal() {
+            modal.fadeOut("fast", function() {});
         }
+
+        $(".STX-modal-close-preview").click(function(e) {
+            closeModal();
+        });
+
+        $(".STX-modal-close-btn").click(function(e) {
+            closeImportModal();
+        });
+
+        $("#import-sliders").click(function(e) {
+            });
 
         $(".template-buy-pro").click(function(e) {
             window.open("https://codecanyon.net/item/transition-slider-wordpress-plugin/23531533?ref=creativeinteractivemedia", "_blank");

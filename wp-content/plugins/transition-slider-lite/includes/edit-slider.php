@@ -100,7 +100,16 @@
 
 
                                                         <div class="options_size STX-form-tab">
-                                                            <div class="STX-h2 STX-content-box-title-bg"><?php esc_html_e( 'Size', 'stx' ); ?></div>
+                                                            <div class="STX-h2 STX-content-box-title-bg"><?php esc_html_e( 'Size', 'stx' ); ?>
+																<div class="devices">
+
+
+																																																			<div alt="f471" class="pro-version-icon enabled dashicons dashicons-desktop"></div>
+																	<div alt="f471" class="pro-version-icon disabled dashicons dashicons-tablet"></div>
+																	<div alt="f470" class="pro-version-icon disabled dashicons dashicons-smartphone"></div>
+
+																																	</div>
+															</div>
                                                             <div class="table-wrap">
                                                                 <table class="form-table" id="slider-options-size">
                                                                     <tbody/>
@@ -109,7 +118,16 @@
                                                         </div>
 
                                                         <div class="options_layer STX-form-tab">
-                                                            <div class="STX-h2 STX-content-box-title-bg"><?php esc_html_e( 'Layer', 'stx' ); ?></div>
+                                                            <div class="STX-h2 STX-content-box-title-bg"><?php esc_html_e( 'Layer', 'stx' ); ?>
+																<div class="devices">
+
+
+																																																			<div alt="f471" class="pro-version-icon enabled dashicons dashicons-desktop"></div>
+																	<div alt="f471" class="pro-version-icon disabled dashicons dashicons-tablet"></div>
+																	<div alt="f470" class="pro-version-icon disabled dashicons dashicons-smartphone"></div>
+
+																																	</div>
+															</div>
                                                             <div class="table-wrap">
                                                                 <table class="form-table" id="slider-options-layer">
                                                                     <tbody/>
@@ -218,7 +236,9 @@
         <div class="edit-attachment-frame mode-select hide-menu hide-router">
             <div class="edit-media-header">
             </div>
-            <div class="media-frame-title STX-modal-title"><h1>Slider Preview</h1></div>
+            <div class="media-frame-title STX-modal-title"><h1>Slider Preview</h1>
+
+                            </div>
             <div class="media-frame-content STX-modal-frame-content">
                 <div id="slider-preview-container">
                     <div id="slider-preview"></div>
@@ -248,8 +268,12 @@
 						</div>
 					</div>
 				</div>
-
-								<div class="STX-notification-messages">
+                <div class="devices">
+                    <div alt="f472" data-type="desktop" class="device dashicons dashicons-desktop device-desktop"></div>
+                    <div alt="f471" data-type="tablet" class="device dashicons dashicons-tablet device-tablet"></div>
+                    <div alt="f470" data-type="mobile" class="device dashicons dashicons-smartphone device-mobile"></div>
+                </div>
+				<div class="STX-notification-messages">
 					<div class="STX-saved-notification-wrapper">
 						<div class="STX-saved-notification-content"><?php esc_html_e( 'Slider saved', 'stx' ); ?></div>
 					</div>
@@ -375,19 +399,7 @@
                                         <h3 class="slide-settings-accordion-menu">Transition</h3>
                                         <div class="slide-settings-accordion-content">
                                             <div class="STX-element-title STX-fullline-element">Effect<div class="property-description" title='Effect name'></div></div>
-                                            <select class="STX-element-dropdown STX-fullline-element" name="transitionEffect" id="transitionEffect">
-                                                <option value="">Default</option>
-                                                <option value="slide">Slide</option>
-                                                <option value="roll">Roll</option>
-                                                <option value="stretch">Stretch</option>
-                                                <option value="warp">Warp</option>
-                                                <option value="zoom">Zoom</option>
-                                                <option value="powerzoom">Power zoom</option>
-                                                <option value="crossfade">Crossfade</option>
-                                                <option value="flash">Flash</option>
-                                                <option value="fade">Fade</option>
-                                                <option value="twirl">Twirl</option>
-                                                <option value="line">Line</option>
+                                            <select class="STX-element-dropdown STX-fullline-element select2-multi-col" name="transitionEffect" id="transitionEffect">
                                             </select>
 
                                             <div id="setting-direction">
@@ -454,9 +466,9 @@
                                     <button class="STX-elements-item-image add-image" draggable="true">Image</button>
                                     <button class="STX-elements-item-button add-button" draggable="true">Button</button>
                                     <button class="STX-elements-item-video add-video" draggable="true">Video</button>
+                                    <button class="STX-elements-item-iframe add-iframe" draggable="true">iFrame</button>
 
-
-                                                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -586,10 +598,10 @@
 
                                                     <div id="tab-style-font-normal" class="element-settings subtab-style">
 
-                                                        <div class="STX-element-title STX-inline-element-left STX-row-size60">Family</div>
-                                                        <div class="STX-element-title STX-inline-element-right STX-row-size40">Color</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size70">Select a font</div>
+                                                        <div class="STX-element-title STX-inline-element-right STX-row-size30">Color</div>
 
-                                                        <select class="googleFontList STX-element-dropdown STX-inline-element-left STX-row-size60" name="fontFamily"></select>
+														<input id="font" type="text" name="fontFamily" value="Default"/>
                                                         <input type="text" class="color-picker STX-inline-element-right STX-row-size40" data-alpha="true" name="textColor">
 
 
@@ -908,7 +920,6 @@
                                         <div class="element-settings element-settings-accordion-content">
                                             <div class="STX-element-title STX-inline-element-left STX-row-size40">Animation type</div>
                                             <select name="contentAnimationType" class="STX-element-dropdown STX-inline-element-left STX-row-size40 STX-content-animation-type">
-                                                <option>typing</option>
                                                 <option>animating</option>
                                                 <option>none</option>
                                             </select>
@@ -950,93 +961,30 @@
                                             </div>
 
                                             <div class="content-animation-type animating">
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Enter animation</div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size30">Speed</div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size30">Delay</div>
-                                                <select name="startAnimation.animation" class="STX-element-dropdown STX-inline-element-left STX-row-size40 animateCSS">
-                                                    <option value="fadeIn">Fade</option>
-                                                    <option value="fadeInDown">Fade Down</option>
-                                                    <option value="fadeInDownBig">Fade Down Big</option>
-                                                    <option value="fadeInLeft">Fade Beft</option>
-                                                    <option value="fadeInLeftBig">Fade Left Big</option>
-                                                    <option value="fadeInRight">Fade Right</option>
-                                                    <option value="fadeInRightBig">Fade Right Big</option>
-                                                    <option value="fadeInUp">Fade Up</option>
-                                                    <option value="fadeInUpBig">Fade Up Big</option>
-                                                    <option value="flipInX">Flip X</option>
-                                                    <option value="flipInY">Flip Y</option>
-                                                    <option value="lightSpeedIn">Lightspeed</option>
-                                                    <option value="slideInDown">Slide  Down</option>
-                                                    <option value="slideInLeft">Slide  Left</option>
-                                                    <option value="slideInRight">Slide  Right</option>
-                                                    <option value="slideInUp">Slide  Up</option>
-                                                    <option value="bounceIn">Bounce</option>
-                                                    <option value="bounceInDown">Bounce Down</option>
-                                                    <option value="bounceInLeft">Bounce Left</option>
-                                                    <option value="bounceInRight">Bounce Right</option>
-                                                    <option value="bounceInUp">Bounce Up</option>
-                                                    <option value="rotateIn">Rotate</option>
-                                                    <option value="rotateInDownLeft">Rotate Down Left</option>
-                                                    <option value="rotateInDownRight">Rotate Down Right</option>
-                                                    <option value="rotateInUpLeft">Rotate Up Left</option>
-                                                    <option value="rotateInUpRight">Rotate Up Right</option>
-                                                    <option value="zoomIn">Zoom</option>
-                                                    <option value="zoomInDown">Zoom Down</option>
-                                                    <option value="zoomInLeft">Zoom Left</option>
-                                                    <option value="zoomInRight">Zoom Right</option>
-                                                    <option value="zoomInUp">Zoom Up</option>
+                                                <div class="STX-element-title STX-inline-element-left STX-row-size100">Enter animation</div>
+                                                <select name="startAnimation.animation" class="STX-element-dropdown STX-inline-element-left STX-row-size100">
                                                 </select>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size30">
+                                                <div class="STX-element-title STX-inline-element-left STX-row-size50">Speed</div>
+                                                <div class="STX-element-title STX-inline-element-left STX-row-size50">Delay</div>
+                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size50">
                                                     <input type="number" name="startAnimation.speed"class="STX-element-input-label-left">
                                                     <span class="STX-element-input-label-right input-group-text">ms</span>
                                                 </div>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size30">
+                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size50">
                                                     <input type="number" name="startAnimation.delay"class="STX-element-input-label-left">
                                                     <span class="STX-element-input-label-right input-group-text">ms</span>
                                                 </div>
 
-
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Exit animation</div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size30">Speed</div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size30">Delay</div>
-                                                <select name="endAnimation.animation" class="STX-element-dropdown STX-inline-element-left STX-row-size40">
-                                                    <option value="fadeOut">Fade</option>
-                                                    <option value="fadeOutDown">Fade Down</option>
-                                                    <option value="fadeOutDownBig">Fade Down big</option>
-                                                    <option value="fadeOutLeft">Fade Left</option>
-                                                    <option value="fadeOutLeftBig">Fade Left big</option>
-                                                    <option value="fadeOutRight">Fade Right</option>
-                                                    <option value="fadeOutRightBig">Fade Right big</option>
-                                                    <option value="fadeOutUp">Fade Up</option>
-                                                    <option value="fadeOutUpBig">Fade Up big</option>
-                                                    <option value="flipOutX">Flip X</option>
-                                                    <option value="flipOutY">Flip Y</option>
-                                                    <option value="lightSpeedOut">Lightspeed</option>
-                                                    <option value="slideOutDown">Slide Down</option>
-                                                    <option value="slideOutLeft">Slide Left</option>
-                                                    <option value="slideOutRight">Slide Right</option>
-                                                    <option value="slideOutUp">Slide Up</option>
-                                                    <option value="bounceOut">Bounce</option>
-                                                    <option value="bounceOutDown">Bounce Down</option>
-                                                    <option value="bounceOutLeft">Bounce Left</option>
-                                                    <option value="bounceOutRight">Bounce Right</option>
-                                                    <option value="bounceOutUp">Bounce Up</option>
-                                                    <option value="rotateOut">Rotate</option>
-                                                    <option value="rotateOutDownLeft">Rotate Down Left</option>
-                                                    <option value="rotateOutDownRight">Rotate Down Right</option>
-                                                    <option value="rotateOutUpLeft">Rotate Up Left</option>
-                                                    <option value="rotateOutUpRight">Rotate Up Right</option>
-                                                    <option value="zoomOut">Zoom</option>
-                                                    <option value="zoomOutDown">Zoom Down</option>
-                                                    <option value="zoomOutLeft">Zoom left</option>
-                                                    <option value="zoomOutRight">Zoom Right</option>
-                                                    <option value="zoomOutUp">Zoom Up</option>
+                                                <div class="STX-element-title STX-inline-element-left STX-row-size100">Exit animation</div>
+                                                <select name="endAnimation.animation" class="STX-element-dropdown STX-inline-element-left STX-row-size100">
                                                 </select>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size30">
+                                                <div class="STX-element-title STX-inline-element-left STX-row-size50">Speed</div>
+                                                <div class="STX-element-title STX-inline-element-left STX-row-size50">Delay</div>
+                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size50">
                                                     <input type="number" name="endAnimation.speed" class="STX-element-input-label-left">
                                                     <span class="STX-element-input-label-right input-group-text">ms</span>
                                                 </div>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size30">
+                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size50">
                                                     <input type="number" name="endAnimation.delay" class="STX-element-input-label-left">
                                                     <span class="STX-element-input-label-right input-group-text">ms</span>
                                                 </div>
@@ -1098,13 +1046,14 @@
     wp_enqueue_media();
 	wp_enqueue_editor();
 
-	wp_enqueue_script("transitionslider-typeit");
 	wp_enqueue_script("transitionslider-lib-three");
 	wp_enqueue_script("transitionslider-lib-swiper");
 	wp_enqueue_script("transitionslider-lib-color-pickr");
+	wp_enqueue_script("transitionslider-lib-select2");
 	wp_enqueue_script("transitionslider-lib-anime-js");
 	wp_enqueue_script("transitionslider-lib-tipsy");
 	wp_enqueue_script("transitionslider-lib-webfontloader");
+	wp_enqueue_script("transitionslider-lib-fontselect");
 	wp_enqueue_script("transitionslider-build");
 
     wp_enqueue_script('transitionslider-admin');
@@ -1112,6 +1061,8 @@
     wp_enqueue_style( "transitionslider-css");
     wp_enqueue_style( "transitionslider-swiper-css");
     wp_enqueue_style( "transitionslider-pickr-css");
+    wp_enqueue_style( "transitionslider-select2-css");
+	wp_enqueue_style( "transitionslider-fontselect-css");
     wp_enqueue_style( "transitionslider-fontawesome-css");
 
 	wp_enqueue_style('transitionslider-edit-slider-css');
@@ -1120,3 +1071,4 @@
 
     wp_localize_script( 'transitionslider-admin', 'options', json_encode($sliders[$current_id]) );
     wp_localize_script( 'transitionslider-admin', 'stx_nonce', $ajax_nonce );
+    wp_localize_script( 'transitionslider-admin', 'stx_plugin_url', $this->PLUGIN_DIR_URL );

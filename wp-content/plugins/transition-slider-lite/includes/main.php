@@ -27,14 +27,17 @@ class TransitionSlider {
 		wp_register_style( "transitionslider-css", $this->PLUGIN_DIR_URL."css/style.min.css" , array(), $this->PLUGIN_VERSION);
 		wp_register_style( "transitionslider-swiper-css", $this->PLUGIN_DIR_URL."css/swiper.min.css" , array(), $this->PLUGIN_VERSION);
 		wp_register_style( "transitionslider-pickr-css", $this->PLUGIN_DIR_URL."css/monolith.min.css" , array(), $this->PLUGIN_VERSION);
+		wp_register_style( "transitionslider-select2-css", $this->PLUGIN_DIR_URL."css/select2.min.css" , array(), $this->PLUGIN_VERSION);
+		wp_register_style( "transitionslider-fontselect-css", $this->PLUGIN_DIR_URL."css/fontselect.min.css" , array(), $this->PLUGIN_VERSION);
 		wp_register_style( "transitionslider-fontawesome-css", "https://use.fontawesome.com/releases/v5.8.2/css/all.css" , array(), $this->PLUGIN_VERSION);
 
-		wp_register_script("transitionslider-typeit", $this->PLUGIN_DIR_URL."js/lib/typeit.min.js", array('jquery'), $this->PLUGIN_VERSION);
         wp_register_script("transitionslider-lib-three", $this->PLUGIN_DIR_URL."js/lib/three.min.js", array('jquery'), $this->PLUGIN_VERSION);
         wp_register_script("transitionslider-lib-swiper", $this->PLUGIN_DIR_URL."js/lib/swiper.min.js", array('jquery'), $this->PLUGIN_VERSION);
         wp_register_script('transitionslider-lib-color-pickr', $this->PLUGIN_DIR_URL.'js/lib/pickr.es5.min.js', array( 'jquery' ), $this->PLUGIN_VERSION, true);
         wp_register_script("transitionslider-lib-anime-js", $this->PLUGIN_DIR_URL."js/lib/anime.min.js", array('jquery'), $this->PLUGIN_VERSION);
         wp_register_script("transitionslider-lib-tipsy", $this->PLUGIN_DIR_URL."js/lib/jquery.tipsy.min.js", array('jquery'), $this->PLUGIN_VERSION);
+        wp_register_script("transitionslider-lib-select2", $this->PLUGIN_DIR_URL."js/lib/select2.min.js", array('jquery'), $this->PLUGIN_VERSION);
+		wp_register_script("transitionslider-lib-fontselect", $this->PLUGIN_DIR_URL."js/lib/jquery.fontselect.min.js", array('jquery'), $this->PLUGIN_VERSION);
         wp_register_script("transitionslider-lib-webfontloader", $this->PLUGIN_DIR_URL."js/lib/webfontloader.js", array('jquery'), $this->PLUGIN_VERSION);
 
 		wp_register_script("transitionslider-embed", $this->PLUGIN_DIR_URL."js/embed.js", array('jquery'), $this->PLUGIN_VERSION);
@@ -321,7 +324,6 @@ class TransitionSlider {
 
         $cssMode = isset($slider["transitionType"]) && $slider["transitionType"] == "css";
 
-        wp_enqueue_script("transitionslider-typeit");
         if(!$cssMode)
         	wp_enqueue_script("transitionslider-lib-three");
 		wp_enqueue_script("transitionslider-lib-swiper");

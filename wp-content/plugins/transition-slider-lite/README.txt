@@ -5,9 +5,9 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: slide anything, master slider, wordpress slider, smart slider, meta slider, slider, slide anything, layer slider, video slider, touch slider, content slider, SEO, vertical slider, HTML5 slider, hardware accelerate, animation, mobile slider, iOS, android, youtube slider, horizontal slider, responsive slider, fullscreen slider, post slider, image slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery, lightweight slider, carousel, lightbox, slideshow
 Requires PHP: 5.4
-Requires at least: 4.6
+Requires at least: 4.8
 Tested up to: 5.6
-Stable tag: 2.10.0
+Stable tag: 2.15.0
 
 
 Easy to use WordPress video slider and image slider plugin with seamless transitions, responsive animated layers and templates included. Build any slider without coding! Create beautiful responsive slideshow, image slider, video slider, layer slider with animated layers and transition effects Slide, Fade, Zoom, Warp, Crossfade, Flash, Twirl, Roll, Stretch.
@@ -15,7 +15,7 @@ Easy to use WordPress video slider and image slider plugin with seamless transit
 
 == Description ==
 
->[Demo](https://transitionslider.com/ "Live Transition Slider demo") | [Example Sliders](hhttps://transitionslider.com/templates "Example Sliders") | [Features](hhttps://transitionslider.com#features "All features") | [Documentation](https://transitionslider.com/documentation/wordpress/ "Transition Slider documentation") | [Support](https://wordpress.org/support/plugin/transition-slider-lite "Free support")
+>[Demo](https://transitionslider.com/ "Live Transition Slider demo") | [Example Sliders](hhttps://transitionslider.com/templates "Example Sliders") | [Features](https://transitionslider.com "All features") | [Documentation](https://transitionslider.com/documentation/wordpress/ "Transition Slider documentation") | [Support](https://wordpress.org/support/plugin/transition-slider-lite "Free support")
 
 
 = Overview =
@@ -110,7 +110,7 @@ With mobile and tablet settings you can create fully responsive slider that will
 
 = Lightbox mode - PRO =
 
-You can have your Slider in Lightbox mode. Lightbox mode can be engaged through any custom text, which you can customize to fit your website layout, like changing font family, font size, color, etc. This feature is available in PRO version only. 
+You can have your Slider in Lightbox mode. Lightbox mode can be engaged through any custom text, which you can customize to fit your website layout, like changing font family, font size, color, etc. This feature is available in PRO version only.
 [View Lightbox example](https://transitionslider.com/templates/clothing-collection)
 
 = iFrame Element - PRO =
@@ -203,7 +203,7 @@ Get benefit from timer driven autoplaying slides so your users get visual repres
 • Draggable slides - transition progress on touch move or click and drag
 • Deep linking
 • Slide link - entire slide is link
-• Switch slides with mouse scroll 
+• Switch slides with mouse scroll
 • CSS Styles - customize anything with custom css
 • 4 Preloader styles
 • Parallax
@@ -300,6 +300,31 @@ If you have any question about working with "Transition Slider", you can take a 
 
 == Changelog ==
 
+= Version 2.15.1 / (10.02.2021) =
+[BUG]
+*   Fixed issue for users who had Media generation turned off (Settings -> Media) the plugin crashed when changing the background image of the slider.
+
+= Version 2.15.0 / (02.02.2021) =
+* [FEATURE]   A new option that allows a true responsive and fullscreen slider regardless of the width and height of the container of the template in which it is located. The options are forceFullscreen and forceResponsive.
+* [FEATURE]   Added new transition SpinEffect + RadialBlurShader.
+* [FEATURE]   From now on slider options can also be specially tuned for mobile, tablet and desktop.
+* [FEATURE]   We added device buttons (mobile, tablet and desktop) to Preview Slider.
+* [FEATURE]   Due to the expansion of text effects, we were forced to rearrange the typing effect that you can currently find under Effect 9. You can also find an additional 14 new effects that are perfect for text elements.
+* [FEATURE]   Start and End animations, Transition animation selectors are now visual with live examples.
+* [FEATURE]   Video background autoplay can now be turned on and off.
+* [IMPROVEMENT]   Font menu in Layer Editor improved, from now on you can visually see what the font you want to choose looks like.
+* [IMPROVEMENT]   Fixed and adjusted templates to look good on mobile and tablet.
+* [IMPROVEMENT]   From now on, Custom CSS options are also changed live within the Layer Editor.
+* [IMPROVEMENT]   You no longer need to worry about which protocol the slider assemblies are on (http / https) and which protocol the slider is displayed on, CORS policy is fixed in this version.
+* [BUG]   We fixed the Duplicate button in the Layer Editor in the menu when the user right-clicks the mouse.
+* [BUG]   Text element font size issues, sometimes to change the font size, the font is not well displayed on the slider.
+* [BUG]   Text element margin issue while using external WP themes like Astra.
+* [BUG]   Firefox issue could not delete already entered values.
+* [BUG]   Layer editor - The heading element had additional margins for larger font sizes.
+* [BUG]   Elements that had an absolute position could not move the position with arrows or drag.
+* [BUG]   In the Layer editor, the left menu sometimes had wrong categories displayed for certain items.
+* [BUG]   Sometimes the button on the last layer took over the click events on all the previous buttons.
+
 = Version 2.14.1 / (10.12.2020) =
 * [IMPROVEMENT]   Huge improvements in renderer, transitions now are much faster and optimized
 * [BUG]   Fixed WordPress 5.6 update border grid over slider
@@ -308,7 +333,6 @@ If you have any question about working with "Transition Slider", you can take a 
 * [BUG]   Fixed issue where some WordPress themes added extra margin to slide elements
 
 = Version 2.14.0 / (25.11.2020) =
-[FEATURE]
 * [FEATURE]   Very big change for the elements on the layer, we made a completely different and fast implementation that will soon bring something very big!
 * [FEATURE]   We've visually changed the Dashboard to have even more visibility and space to create your sliders
 * [FEATURE]   Slide settings and All elements are switched to heading in the left menu inside the Layer editor. To be always easily accessible

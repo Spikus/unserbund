@@ -41,8 +41,11 @@
                         <a class="delete_all_sliders" title="Delete sliders">
                             <div class="STX-slider-trash-btn-large btns-dashboard-nav"></div>
                         </a>
-
-                                                <div class="dropdown btns-dashboard-nav" style="margin-right: 10px;">
+                        <div class="STX-slider-export-btn btns-dashboard-nav" title="Export sliders">
+                            <a href='<?php echo admin_url( "admin.php?page=transition_slider_admin&action=download_json" ); ?>'><?php esc_html_e( 'EXPORT', 'stx' ); ?></a>
+                        </div>
+                        <div id="import-sliders" class="STX-slider-import-btn btns-dashboard-nav" title="Import sliders"><?php esc_html_e( 'IMPORT', 'stx' ); ?></div>
+                        <div class="dropdown btns-dashboard-nav" style="margin-right: 10px;">
                             <div class="select">
                                 <span><?php esc_html_e( 'Select', 'stx' ); ?></span>
                                 <i aria-hidden="true" class="fa fa-chevron-down"></i>
@@ -150,7 +153,9 @@
     <div class="edit-attachment-frame mode-select hide-menu hide-router">
             <div class="edit-media-header">
             </div>
-            <div class="media-frame-title STX-modal-title"><h1>Slider Preview</h1></div>
+            <div class="media-frame-title STX-modal-title"><h1>Slider Preview</h1>
+
+                            </div>
             <div class="media-frame-content STX-modal-frame-content">
                 <div id="slider-preview-container">
                     <div id="slider-preview"></div>
@@ -169,12 +174,13 @@
 <?php
     wp_enqueue_media();
 
-	wp_enqueue_script("transitionslider-typeit");
     wp_enqueue_script("transitionslider-lib-three");
     wp_enqueue_script("transitionslider-lib-swiper");
     wp_enqueue_script("transitionslider-lib-color-pickr");
+    wp_enqueue_script("transitionslider-lib-select2");
     wp_enqueue_script("transitionslider-lib-anime-js");
     wp_enqueue_script("transitionslider-lib-tipsy");
+	wp_enqueue_script("transitionslider-lib-fontselect");
     wp_enqueue_script("transitionslider-lib-webfontloader");
     wp_enqueue_script("transitionslider-build");
 
@@ -184,6 +190,8 @@
     wp_enqueue_style( "transitionslider-css");
     wp_enqueue_style( "transitionslider-swiper-css");
     wp_enqueue_style( "transitionslider-pickr-css");
+    wp_enqueue_style( "transitionslider-select2-css");
+	wp_enqueue_style( "transitionslider-fontselect-css");
     wp_enqueue_style( "transitionslider-fontawesome-css");
 
     wp_enqueue_style('transitionslider-edit-slider-css');
