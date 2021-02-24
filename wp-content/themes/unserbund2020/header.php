@@ -14,8 +14,12 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width">
     <title>
-        <?php wp_title('|', true, 'right'); ?>
+        <?php wp_get_document_title(); ?>
     </title>
+    <meta property="og:title" content="<?php wp_get_document_title(); ?>"/>
+    <meta property="og:site_name" content="<?php get_bloginfo( 'description', 'display' ) ?>"/>
+    <meta property="og:image" content="<?php echo get_stylesheet_directory_uri() ?>/images/logo-red.png"/>
+
     <link rel="icon" href="<?php bloginfo('siteurl'); ?>/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="<?php bloginfo('siteurl'); ?>/favicon.ico" type="image/x-icon" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
