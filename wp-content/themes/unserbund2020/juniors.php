@@ -11,7 +11,7 @@ get_header(); ?>
 
         <div class="col-md-8">
             <div class="node">
-                <h1 class="avansome">Юниоры Ротвейлеры</h1>
+                <h1 class="avansome">Юниоры Ротвейлеры (Возможна продажа - Дорого)</h1>
                 <?php
         $args = array(
 			'numberposts' => -1,
