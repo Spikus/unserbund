@@ -40,6 +40,13 @@ get_header(); ?>
                 <h2 class="avansome"><?php the_title() ?></h2>
                 <div class="col-md-12">
                     <?php the_content() ?>
+                    <?php 
+                        $var_gallery=get_field('photos');
+                        if ($var_gallery) {
+                        foreach($var_gallery as $img){
+                                                echo '<a rel="lightbox[roadtrip]" href="'.$img["sizes"]["large"].'" data-link="#" title="'.get_the_title().'" ><img class="img-thumbnail" src="'.$img["sizes"]["thumbnail"].'"></a>';
+                                            }		}		
+                        ?>
                 </div>
             <?php endwhile; ?>
             </div>
