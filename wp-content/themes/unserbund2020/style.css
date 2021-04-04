@@ -82,6 +82,9 @@ table {
   -------------------------------------------------------
 */
 
+  .tab-pane {
+    overflow: scroll;
+  }
   
   .info {
     line-height: 1.3em;
