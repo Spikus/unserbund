@@ -37,6 +37,13 @@ get_header(); ?>
 
                     <div class="entry-content">
                         <?php the_content(); ?>
+                        <?php 
+                        $var_gallery=get_field('photos');
+                        if ($var_gallery) {
+                        foreach($var_gallery as $img){
+                                                echo '<a rel="lightbox[roadtrip]" href="'.$img["sizes"]["large"].'" data-link="#" title="'.get_the_title().'" ><img class="img-thumbnail" src="'.$img["sizes"]["thumbnail"].'"></a>';
+                                            }		}		
+                        ?>
                     </div><!-- .entry-content -->
 
 
