@@ -14,7 +14,7 @@ get_header();
                 <div class="node">
                     <h2 class="avansome">Новости Питомника</h2>
                     <?php $new_query = new WP_Query(); ?>
-                    <?php $new_query->query('post_type=post&showposts=5'.'&paged='.$paged); ?>
+                    <?php $new_query->query('post_type=post&showposts=25'.'&paged='.$paged); ?>
                     <?php while ($new_query->have_posts()) : ?>
                         <?php $new_query->the_post();  ?>
                             <article class="rotNew">
