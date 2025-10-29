@@ -1,0 +1,7 @@
+���h<?php exit; ?>a:1:{s:7:"content";O:8:"stdClass":24:{s:2:"ID";i:1237;s:11:"post_author";s:1:"1";s:9:"post_date";s:19:"2023-08-02 21:18:12";s:13:"post_date_gmt";s:19:"2023-08-02 21:18:12";s:12:"post_content";s:559:"<!-- wp:paragraph -->
+<p>⭐️𝐈𝐌𝐀𝐆𝐄 𝐔𝐍𝐒𝐄𝐑𝐁𝐔𝐍𝐃 ⭐️𝟐.𝐲.𝐨.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>🏆𝐕𝟏,𝐂𝐐<br>🏆𝐂𝐀𝐂<br>🏆𝐁𝐄𝐒𝐓 𝐌𝐀𝐋𝐄-𝟐 29.07.2023 . Liepāja NDS,<br>Judge : Serafino Bueti ( IT)<br>🎉🇱🇻𝐋𝐀𝐓𝐕𝐈𝐀𝐍 𝐀𝐃𝐔𝐋𝐓 𝐂𝐇𝐀𝐌𝐏𝐈𝐎𝐍 🇱🇻<br>🇱🇹𝐋𝐈𝐓𝐇𝐔𝐀𝐍𝐈𝐀𝐍 𝐀𝐃𝐔𝐋𝐓 𝐂𝐇𝐀𝐌𝐏𝐈𝐎𝐍 🇱🇹</p>
+<!-- /wp:paragraph -->";s:10:"post_title";s:67:"𝐈𝐌𝐀𝐆𝐄 𝐔𝐍𝐒𝐄𝐑𝐁𝐔𝐍  Liepāja NDS";s:12:"post_excerpt";s:0:"";s:11:"post_status";s:7:"publish";s:14:"comment_status";s:4:"open";s:11:"ping_status";s:4:"open";s:13:"post_password";s:0:"";s:9:"post_name";s:169:"%f0%9d%90%88%f0%9d%90%8c%f0%9d%90%80%f0%9d%90%86%f0%9d%90%84-%f0%9d%90%94%f0%9d%90%8d%f0%9d%90%92%f0%9d%90%84%f0%9d%90%91%f0%9d%90%81%f0%9d%90%94%f0%9d%90%8d-liepaja-nds";s:7:"to_ping";s:0:"";s:6:"pinged";s:0:"";s:13:"post_modified";s:19:"2023-08-02 21:18:12";s:17:"post_modified_gmt";s:19:"2023-08-02 21:18:12";s:21:"post_content_filtered";s:0:"";s:11:"post_parent";i:0;s:4:"guid";s:29:"https://unserbund.com/?p=1237";s:10:"menu_order";i:0;s:9:"post_type";s:4:"post";s:14:"post_mime_type";s:0:"";s:13:"comment_count";s:1:"0";s:6:"filter";s:3:"raw";}}
