@@ -17,15 +17,28 @@ STX.LayerRenderer = function(params) {
     this.$canvas = jQuery(".slider-preview-area .stx-layers-canvas");
     this.$content = jQuery(".slider-preview-area .stx-layers-content");
 
-    this.$wrapper.bind("mousedown", function(e) {
+    this.$wrapperStatic = jQuery(".slider-preview-area .stx-layers-static");
+    this.$canvasStatic = jQuery(".slider-preview-area .stx-layers-canvas-static");
+    this.$contentStatic = jQuery(".slider-preview-area .stx-layers-content-static");
+
+    this.$preview = jQuery('.slider-preview-area')
+
+    this.$preview.bind("mousedown", function(e) {
+        if(e.button === 2) return;
+
         self.dragging = true;
         self.dragOriginX = e.clientX;
         self.dragOriginY = e.clientY;
     });
 
+    this.$preview.bind("mouseup", function(e) {
+        self.dragging = false;
+    });
+
+
     this.styles = {};
 
-    this.$wrapper.bind("mousemove", function(e) {
+    this.$preview.bind("mousemove", function(e) {
         if (self.dragging) {
             self.dragChangeX = e.clientX - self.dragOriginX;
             self.dragChangeY = e.clientY - self.dragOriginY;
@@ -75,7 +88,7 @@ STX.LayerRenderer = function(params) {
         var sliderWrapperWidth = this.$sliderPreviewArea.width();
         var sliderWrapperHeight = this.$sliderPreviewArea.height();
 
-        this.$wrapper.css({
+        var css = {
             width: layerWidth,
             height: layerHeight,
             minWidth: layerWidthMin,
@@ -84,9 +97,14 @@ STX.LayerRenderer = function(params) {
             maxHeight: layerHeightMax,
             "-webkit-transform": "translateX(-50%) translateY(-50%)",
             left: "50%",
-            top: "50%",
-            backgroundColor: o.layerBackground
-        });
+            top: "50%"
+        }
+
+        this.$wrapperStatic.css(css);
+
+        css.backgroundColor = o.layerBackground
+
+        this.$wrapper.css(css);
 
         var lw = this.$wrapper.width();
         var lh = this.$wrapper.height();
@@ -97,24 +115,24 @@ STX.LayerRenderer = function(params) {
         layerScale = scaleX > scaleY ? scaleY : scaleX;
         this.layerScale = layerScale;
 
-        this.$wrapper.css({
-            "-webkit-transform": "scale(" + layerScale + ") translateX(-50%) translateY(-50%)"
-        });
+        css = {"-webkit-transform": "scale(" + layerScale + ") translateX(-50%) translateY(-50%)"}
+
+        this.$wrapper.css(css);
+        this.$wrapperStatic.css(css);
+
         this.updateElementPositios();
     };
 
     this.updateElementPositios = function() {
-        var index = 0;
         this.elements.forEach(function(element) {
-            self.updateElementPosition(index);
-            index++;
+            self.updateElementPosition(element);
         });
     };
 
     this.renderAddedElement = function(elements) {
         this.elements = elements;
-        this.addNodeElement(elements.length - 1);
-        this.updateElementProperties(elements.length - 1);
+        this.addNodeElement(elements[elements.length - 1]);
+        this.updateElementProperties(elements[elements.length - 1]);
     };
 
     this.updateElement = function(index, settingName, hover) {
@@ -134,20 +152,22 @@ STX.LayerRenderer = function(params) {
     this.clear = function() {
         this.$wrapper.find("td").empty();
         this.$canvas.empty();
+
+        this.$wrapperStatic.find("td").empty();
+        this.$canvasStatic.empty();
     };
 
-    this.loadFont = function(val) {
-        var self = this;
-        var element, fontFamily, fontWeight;
+    this.loadElementFont = function(el) {
+        var self = this
+        this.loadFont({fontFamily: el.fontFamily, fontWeight: el.fontWeight}, function(){self.updateElementPosition(el)})
+    };
 
-        if (typeof val === "object") {
-            fontFamily = val.fontFamily;
-            fontWeight = val.fontWeight;
-        } else {
-            element = this.elements[val];
-            fontFamily = element.fontFamily;
-            fontWeight = element.fontWeight;
-        }
+    this.loadFont = function(font, callback){
+        var self = this;
+        var fontFamily, fontWeight;
+
+        fontFamily = font.fontFamily;
+        fontWeight = font.fontWeight;
 
         var fontVariationsToLoad = 2;
 
@@ -160,20 +180,19 @@ STX.LayerRenderer = function(params) {
                 },
                 fontactive: function() {
                     --fontVariationsToLoad;
-                    if (fontVariationsToLoad <= 0 && !typeof val === "object") self.updateElementPosition(val);
+                    if (fontVariationsToLoad <= 0 ) if(callback) callback();
                 },
                 fontinactive: function() {
                     --fontVariationsToLoad;
-                    if (fontVariationsToLoad <= 0 && !typeof val === "object") self.updateElementPosition(val);
+                    if (fontVariationsToLoad <= 0 ) if(callback) callback();
                 }
             });
         } else {
-            this.updateElementPosition(val);
+            if(callback) callback();
         }
-    };
+    }
 
-    this.updateElementProperties = function(index, settingName, hover) {
-        var el = this.elements[index];
+    this.updateElementProperties = function(el, settingName, hover) {
         var node = el.node,
             $node = jQuery(node),
             self = this;
@@ -190,7 +209,7 @@ STX.LayerRenderer = function(params) {
         var id = "s" + el.id;
 
         function cssValue(name, val) {
-            return isNaN(val) || name === "fontWeight" || val == "" ? val : val + "px";
+            return isNaN(val) || name === "fontWeight" || val === "" ? val : val + "px";
         }
 
         function clearCustomCSS() {
@@ -201,15 +220,54 @@ STX.LayerRenderer = function(params) {
             document.getElementById(id).sheet.cssRules[styleIndex].style[settingName] = cssValue(settingName, settingVal);
         }
 
+        if (settingName === undefined || settingName === 'boxShadowHorizontal' || settingName === 'boxShadowVertical' || settingName === 'boxShadowBlur' || settingName === 'boxShadowColor' || settingName === 'boxShadowSpread' || settingName === 'boxShadowPosition') {
+            changeShadowCSSProperty(el);
+            if(el.hover) changeShadowCSSProperty(el.hover);
+            if(settingName !== undefined) settingName = "boxShadow";
+        }
+
+        if (settingName === undefined || settingName === 'textShadowHorizontal' || settingName === 'textShadowVertical' || settingName === 'textShadowBlur' || settingName === 'textShadowColor') {
+            changeTextShadowCSSProperty(el);
+            if(el.hover) changeTextShadowCSSProperty(el.hover);
+            if(settingName !== undefined) settingName = "textShadow";
+        }
+
+        function changeShadowCSSProperty(cssObject) {
+            if (cssObject.boxShadowHorizontal || cssObject.boxShadowVertical || cssObject.boxShadowBlur || cssObject.boxShadowSpread || cssObject.boxShadowColor || cssObject.boxShadowPosition) {
+                cssObject.boxShadowHorizontal = cssObject.boxShadowHorizontal || '0px';
+                cssObject.boxShadowVertical = cssObject.boxShadowVertical || '0px';
+                cssObject.boxShadowBlur = cssObject.boxShadowBlur || '0px';
+                cssObject.boxShadowSpread = cssObject.boxShadowSpread || '0px';
+                cssObject.boxShadowColor = cssObject.boxShadowColor || 'rgba(0, 0, 0, 0.5)';
+                cssObject.boxShadowPosition = cssObject.boxShadowPosition || '';
+                cssObject['boxShadow'] = cssObject.boxShadowPosition + ' ' + cssObject.boxShadowHorizontal + ' ' + cssObject.boxShadowVertical + ' ' + cssObject.boxShadowBlur + ' ' + cssObject.boxShadowSpread + ' ' + cssObject.boxShadowColor;
+            }
+        }
+
+        function changeTextShadowCSSProperty(cssObject) {
+            if (cssObject.textShadowHorizontal || cssObject.textShadowVertical || cssObject.textShadowBlur || cssObject.textShadowColor) {
+                cssObject.textShadowHorizontal = cssObject.textShadowHorizontal || '0px';
+                cssObject.textShadowVertical = cssObject.textShadowVertical || '0px';
+                cssObject.textShadowBlur = cssObject.textShadowBlur || '0px';
+                cssObject.textShadowColor = cssObject.textShadowColor || 'rgba(0, 0, 0, 0.5)';
+                cssObject['textShadow'] = cssObject.textShadowHorizontal + ' ' + cssObject.textShadowVertical + ' ' + cssObject.textShadowBlur + ' ' + cssObject.textShadowColor;
+            }
+        }
+
         var settingVal;
 
         if ((view == "mobile" || view == "tablet") && el[view]) settingVal = el[view][settingName];
         else settingVal = el[settingName];
 
-        if (settingName == "textColor") settingName = "color";
-        el.color = el.textColor;
+        if (settingName === "textColor")  {
+            settingName = "color";
+            el.color = el.textColor;
+            if(el.hover)
+                el.hover.color = el.hover.textColor;
+        }
 
-        if (hover) settingVal = el.hover[settingName];
+        if (hover && el.hover)
+			settingVal = el.hover[settingName];
 
         switch (settingName) {
             case "src":
@@ -217,24 +275,24 @@ STX.LayerRenderer = function(params) {
                 break;
             case "content":
                 if (typeof el.content == "string") node.innerHTML = el.content;
-                this.updateElementPosition(index);
-                break;
+                this.updateElementPosition(el);
+				break;
 
             case "position":
             case "position.offsetX":
             case "position.offsetY":
             case "position.x":
             case "position.y":
-                this.updateElementPosition(index);
+                this.updateElementPosition(el);
                 break;
 
             case "fontFamily":
-                this.loadFont(index);
+                this.loadElementFont(el);
                 document.getElementById(id).sheet.cssRules[styleIndex].style[settingName] = settingVal;
                 break;
 
             case "fontWeight":
-                this.loadFont(index);
+                this.loadElementFont(el);
                 setStyleFromEditor(id, styleIndex, settingName, settingVal);
                 break;
 
@@ -266,6 +324,7 @@ STX.LayerRenderer = function(params) {
             case "minHeight":
             case "maxHeight":
             case "textShadow":
+            case "boxShadow":
                 setStyleFromEditor(id, styleIndex, settingName, settingVal);
                 break;
 
@@ -279,19 +338,18 @@ STX.LayerRenderer = function(params) {
             default:
                 switch (el.type) {
                     case "text":
-                        this.loadFont(index);
+                        this.loadElementFont(el);
                         break;
 
                     case "button":
-                        this.loadFont(index);
+                        this.loadElementFont(el);
                         break;
                 }
 
                 if (el.content) node.innerHTML = el.content;
+				clearCustomCSS();
 
-                clearCustomCSS();
-
-                this.updateElementPosition(index);
+                this.updateElementPosition(el);
 
                 break;
         }
@@ -299,8 +357,9 @@ STX.LayerRenderer = function(params) {
         if (el.customCSS && el.customCSS != "") $node.attr("style", $node.attr("style") + "; " + el.customCSS);
     };
 
-    this.updateElementPosition = function(index) {
-        var el = this.elements[index];
+    this.updateElementPosition = function(el) {
+        if(!el || !el.position)
+            debugger
         var view = this.deviceType;
 
         var node = el.node,
@@ -330,11 +389,13 @@ STX.LayerRenderer = function(params) {
         }
     };
 
-    this.updateElementMode = function(index) {
-        var el = this.elements[index];
+    this.updateElementMode = function(el) {
         var view = this.deviceType;
         var pos = el.position;
         var mode = el.mode;
+        var $wrapper = el.static ? this.$wrapperStatic : this.$wrapper
+        var $content = el.static ? this.$contentStatic : this.$content
+        var $canvas = el.static ? this.$canvasStatic : this.$canvas
 
         if (el[view] && el[view].mode) mode = el[view].mode;
         if (el[view] && el[view].position) pos = el[view].position;
@@ -345,13 +406,13 @@ STX.LayerRenderer = function(params) {
         pos.offsetY = pos.offsetY || 0;
 
         if (mode == "content") {
-            var $container = this.$wrapper.find(".row-" + pos.y).find(".col-" + pos.x);
+            var $container = $wrapper.find(".row-" + pos.y).find(".col-" + pos.x);
 
             el.$node.addClass("el-" + pos.x);
             el.$node.removeClass("element-canvas").addClass("element-content");
 
             if (el.parent) {
-                this.$wrapper.find("#" + el.parent).append(el.$node);
+                $wrapper.find("#" + el.parent).append(el.$node);
             } else if (el.node.wrapper) {
                 el.node.wrapper.append(el.$node);
                 $container.append(el.node.wrapper);
@@ -359,21 +420,20 @@ STX.LayerRenderer = function(params) {
                 $container.append(el.$node);
             }
 
-            if (jQuery(".el-center").length && (jQuery(".el-left").length || jQuery(".el-right").length)) this.$content.find("td").css("width", "33.33%");
-            else this.$content.find("td").css("width", "auto");
+            if (jQuery(".el-center").length && (jQuery(".el-left").length || jQuery(".el-right").length)) $content.find("td").css("width", "33.33%");
+            else $content.find("td").css("width", "auto");
         } else {
             el.$node.removeClass("element-content").addClass("element-canvas");
             el.$node.removeClass("el-" + pos.x);
 
-            this.$canvas.append(el.node.wrapper);
+            $canvas.append(el.node.wrapper);
         }
 
         if (el.display) el.node.wrapper.css("display", el.display);
     };
 
-    this.addNodeElement = function(index) {
+    this.addNodeElement = function(el) {
         var self = this;
-        var el = this.elements[index];
         var view = this.deviceType;
 
         switch (el.type) {
@@ -396,7 +456,7 @@ STX.LayerRenderer = function(params) {
                 }
 
                 el.node.onload = function() {
-                    self.updateElementPosition(index);
+                    self.updateElementPosition(el);
                 };
                 break;
 
@@ -411,7 +471,7 @@ STX.LayerRenderer = function(params) {
                     node.play();
                     node.pause();
                     node.play();
-                    self.updateElementPosition(index);
+                    self.updateElementPosition(el);
                 };
 
                 el.node.draggable = false;
@@ -428,6 +488,9 @@ STX.LayerRenderer = function(params) {
                 iframe.width = "100%";
                 iframe.height = "100%";
                 jQuery(iframe).css("pointer-events", "none");
+				jQuery(iframe).css("border", "1px dashed #dbdbdb5c");
+				jQuery(iframe).css("background-size", "19px 19px");
+				jQuery(iframe).css("background-image", "radial-gradient(circle, rgba(219, 219, 219, 0.36) 1px, rgb(0 0 0 / 10%) 1px)");
 
                 var $node = jQuery("<div>" + iframe.outerHTML + "</div>");
                 var node = $node[0];
@@ -463,31 +526,30 @@ STX.LayerRenderer = function(params) {
         el.node.classList.add("element");
 
         el.node.dataset.id = self.nodes;
-        el.index = self.nodes;
 
         self.nodes++;
 
         el.node.onmousedown = function(e) {
-            self.onLayerMouseDown(Number(this.dataset.id), e.shiftKey);
+            if(e.button !== 2) self.onLayerMouseDown(this.id, e.shiftKey);
         };
 
-        this.createStyle(el.index);
+        this.createStyle(el);
 
-        this.updateElementMode(index);
+        this.updateElementMode(el);
 
-        this.updateElementProperties(el.index);
+        this.updateElementProperties(el);
 
     };
 
     this.addNodeElements = function(elements) {
-        for (var i = 0; i < elements.length; i++) {
-            this.addNodeElement(i);
-            this.updateClasses(i);
-        }
+        var self = this
+        elements.forEach(function(el){
+            self.addNodeElement(el)
+            self.updateClasses(el)
+        })
     };
 
-    this.createStyle = function(index) {
-        var el = this.elements[index];
+    this.createStyle = function(el) {
 
         el.id = el.id || String(Date.now()) + parseInt(Math.random() * 100);
 
@@ -526,6 +588,7 @@ STX.LayerRenderer = function(params) {
 
             textColor: "color",
             textShadow: "text-shadow",
+            boxShadow: "box-shadow",
 
             minWidth: "min-width",
             maxWidth: "max-width"
@@ -552,7 +615,7 @@ STX.LayerRenderer = function(params) {
             Object.keys(properties).forEach(function(property) {
                 cssPropertyName = STX.Utils.camelToDash(property);
                 if ("textColor" === property) cssPropertyName = "color";
-                if (properties[property] != "") style += cssPropertyName + ":" + properties[property] + ";";
+                if (properties[property] !== "") style += cssPropertyName + ":" + properties[property] + ";";
                 else {
                     jQuery.each(arr, function(index, value) {
                         if (cssPropertyName == arr[index]) {
@@ -606,7 +669,7 @@ STX.LayerRenderer = function(params) {
         }
 
         function cssValue(name, val) {
-            return isNaN(val) || name === "fontWeight" || val == "" ? val : val + "px";
+            return isNaN(val) || name === "fontWeight" || val === "" ? val : val + "px";
         }
 
         var style = {};
@@ -617,7 +680,10 @@ STX.LayerRenderer = function(params) {
         var styleHover = {};
 
         for (var prop in cssProperties) {
-            if (el[prop] != "") style[cssProperties[prop]] = cssValue(prop, el[prop] || "");
+            if (el[prop] !== "") {
+				if(el[prop] === 0) el[prop] = el[prop].toString();
+				style[cssProperties[prop]] = cssValue(prop, el[prop] || "");
+			}
             if (el["mobile"] && el["mobile"][prop] != "") styleMobile[cssProperties[prop]] = cssValue(prop, el["mobile"][prop] || "");
             if (el["tablet"] && el["tablet"][prop] != "") styleTablet[cssProperties[prop]] = cssValue(prop, el["tablet"][prop] || "");
             if (el["hover"] && el["hover"][prop] != "") styleHover[cssProperties[prop]] = cssValue(prop, el["hover"][prop] || "");
@@ -635,15 +701,15 @@ STX.LayerRenderer = function(params) {
 
         if (!this.elements || !this.elements.length) return;
 
-        for (var i = 0; i < this.elements.length; i++) {
-            this.updateClasses(i);
-            this.updateElementMode(i);
-            this.updateElementPosition(i);
-        }
+        var self = this
+        this.elements.forEach(function(el){
+            self.updateClasses(el);
+            self.updateElementMode(el);
+            self.updateElementPosition(el);
+        })
     };
 
-    this.updateClasses = function(index) {
-        var el = this.elements[index];
+    this.updateClasses = function(el) {
         el.$node.removeClass("mobile tablet desktop").addClass(this.deviceType);
     };
 };

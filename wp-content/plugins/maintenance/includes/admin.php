@@ -4,7 +4,7 @@ add_action('admin_menu', 'mtnc_admin_setup');
 function mtnc_admin_setup()
 {
   global  $mtnc_variable;
-  $mtnc_variable->options_page = add_menu_page(__('Maintenance', 'maintenance'), __('Maintenance', 'maintenance'), 'manage_options', 'maintenance', 'mtnc_manage_options', MTNC_URI . 'images/icon-small.png');
+  $mtnc_variable->options_page = add_menu_page(__('Maintenance', 'maintenance'), __('Maintenance', 'maintenance'), 'manage_options', 'maintenance', 'mtnc_manage_options', MTNC_URI . 'images/icon-small.png?v2');
 
   add_action('admin_init', 'mtnc_register_settings');
   add_action("admin_head-{$mtnc_variable->options_page}", 'mtnc_metaboxes_scripts');
@@ -31,6 +31,26 @@ function mtnc_plugin_dismiss_dialog() {
 	die();
 }
 add_action("wp_ajax_mtnc_dismiss_dialog", "mtnc_plugin_dismiss_dialog");
+add_action('wp_ajax_mtnc_dismiss_notice', 'mtnc_ajax_dismiss_notice');
+
+function mtnc_ajax_dismiss_notice()  {
+  check_ajax_referer('maintenance_dismiss_notice');
+
+  if (!current_user_can('administrator')) {
+    wp_send_json_error('You are not allowed to run this action.');
+  }
+
+  $notice_name = trim(sanitize_text_field(@$_GET['notice_name']));
+  $meta = get_option('maintenance_meta', array());
+
+  if ($notice_name != 'welcome') {
+    wp_send_json_error('Unknown notice');
+  } else {
+    $meta['hide_welcome_pointer'] = true;
+		update_option('maintenance_meta', $meta);
+    wp_send_json_success();
+  }
+} // ajax_dismiss_notice
 
 function mtnc_plugin_information() {
   if (empty($_GET['fix-install-button']) || empty($_GET['tab']) || $_GET['tab'] != 'plugin-information') {
@@ -111,14 +131,14 @@ function mtnc_admin_print_custom_styles()
     'mtnc',
                 array(
                         'path' => MTNC_URI,
-                        'accessibe_install_url' => add_query_arg(
-                                array(
-                                        'action' => 'mtnc_install_accessibe',
-                                        'rnd' => rand()
-                                ),
-                                admin_url('admin.php')
-                        ),
-                        'accessibe_dialog_upsell_title' => '<img style="max-height: 26px; vertical-align: text-bottom;" alt="accessiBe" title="accessiBe" src="' . MTNC_URI . 'images/accessibe-logo.png' . '">',
+                        'wpfssl_install_url' => add_query_arg(
+                          array(
+                                  'action' => 'mtnc_install_wpfssl',
+                                  '_wpnonce' => wp_create_nonce('install_wpfssl'),
+                                  'rnd' => rand()
+                          ),
+                          admin_url('admin.php')
+                  ),
                         'cm_settings' =>  $cm_settings,
                         'site_url' => home_url(),
                         'first_install_date' => $firstInstallDateTimeTimeStamp,
@@ -128,7 +148,7 @@ function mtnc_admin_print_custom_styles()
   );
 
   wp_enqueue_script('mtnc');
-  wp_enqueue_style('mtnc', MTNC_URI . 'css/admin.css', '', filemtime(MTNC_DIR . 'css/admin.css'));
+  wp_enqueue_style('maintenance', MTNC_URI . 'css/admin.css', '', filemtime(MTNC_DIR . 'css/admin.css'));
 
   wp_enqueue_style('wp-jquery-ui-dialog');
   wp_enqueue_script('jquery-ui-dialog');
@@ -163,13 +183,39 @@ function mtnc_codemirror_enqueue_scripts($hook)
   wp_enqueue_style('wp-codemirror');
 }
 
+function mtnc_is_plugin_page() {
+  $current_screen = get_current_screen();
+  if ($current_screen->id === 'toplevel_page_maintenance') {
+    return true;
+  } else {
+    return false;
+  }
+} // mtnc_is_plugin_page
+
 function mtnc_load_later_scripts($hook)
 {
+  $meta = get_option('maintenance_meta', array());
+  if (empty($meta['hide_welcome_pointer']) && !mtnc_is_plugin_page() && current_user_can('administrator')) {
+    $pointers['_nonce_dismiss_pointer'] = wp_create_nonce('maintenance_dismiss_notice');
+    $pointers['welcome'] = array('target' => '#toplevel_page_maintenance', 'edge' => 'left', 'align' => 'right', 'content' => 'Thank you for installing the <b style="font-weight: 800;">Maintenance</b> plugin!<br>Open <a href="' . admin_url('admin.php?page=maintenance') . '">Maintenance</a> to access settings.');
+
+    wp_enqueue_style('wp-pointer');
+
+    wp_enqueue_script('wp-maintenance-pointers', MTNC_URI . 'js/pointers.js', array('jquery'), MTNC_VERSION, true);
+    wp_enqueue_script('wp-pointer');
+    wp_localize_script('wp-pointer', 'mtnc_pointers', $pointers);
+  }
+
   if ($hook !== 'toplevel_page_maintenance') {
     return;
   }
 
-  // fix a bug with WooCommerce 3.2.2 .
+  wp_enqueue_style('wp-jquery-ui-dialog');
+  wp_enqueue_script('jquery-ui-core');
+  wp_enqueue_script('jquery-ui-position');
+  wp_enqueue_script('jquery-ui-dialog');
+
+  // fix a bug with WooCommerce 3.2.2
   wp_deregister_script('select2');
   wp_deregister_style('select2');
   wp_dequeue_script('select2');
@@ -243,7 +289,7 @@ function mtnc_generate_plugin_page()
       <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
       <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
       <div class="postbox-container header-container column-1 normal">
-        <h1><?php esc_html_e('Maintenance', 'maintenance'); ?><input type="checkbox" id="state" name="lib_options[state]" <?php checked($mt_option['state'], 1); ?> /> <p class="submit"><a href="<?php echo home_url( '?maintenance-preview'); ?>" target="_blank" class="button">Preview</a> &nbsp;&nbsp; <input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p></h1>
+        <h1><img src="<?php echo esc_url(MTNC_URI); ?>images/wp-maintenance-logo.png" class="logo-image" title="Maintenance" alt="Maintenance"><p class="submit"><input type="checkbox" id="state" name="lib_options[state]" <?php checked($mt_option['state'], 1); ?> /> <a href="<?php echo esc_url(home_url( '?maintenance-preview')); ?>" target="_blank" class="button">Preview</a> &nbsp;&nbsp; <input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p></h1>
 
       </div>
       <div class="clear"></div>
@@ -265,20 +311,6 @@ function mtnc_generate_plugin_page()
     </form>
   </div>
 <?php
-// accessibe install dialog
-echo '<div id="accessibe-upsell-dialog" style="display: none;" title="accessiBe"><span class="ui-helper-hidden-accessible"><input type="text"/></span>';
-echo '<div style="padding: 0 20px; font-size: 15px;">';
-echo '<ul class="mtnc-list">';
-echo '<li>Make your site user-friendly for people with disabilities</li>';
-echo '<li>Fully automated WordPress accessibility service</li>';
-echo '<li>Protect your site from lawsuits and increase the audience</li>';
-echo '<li>The free accessiBe plugin sets up in 5 minutes. No coding required</li>';
-echo '<li>Compatible with all WordPress themes and plugins</li>';
-echo '<li>AI-powered</li>';
-echo '<li>7-day free trial available</li>';
-echo '</ul>';
-echo '<p class="textcenter upsell-footer"><br><a class="button button-primary" id="install-accessibe">Install &amp; activate accessiBe to make your website more user-friendly</a></p>';
-echo '</div>';
-echo '</div>';
-// accessibe install dialog
+global $mtnc;
+  mtnc_wp_kses($mtnc->pro_dialog());
 }

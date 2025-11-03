@@ -17,10 +17,12 @@ class TransitionSlider {
 
 	protected function __construct() {
 		$this->add_actions();
-		register_activation_hook($this->my_plugin_basename(), array( $this, 'activation_hook' ) );
+		register_activation_hook(TRANSITION_SLIDER_FILE, array( $this, 'activation_hook' ) );
 	}
 
 	public function activation_hook($network_wide) {
+		delete_option( 'transitionslider_getting_started_dont_show' );
+		add_option( 'transitionslider_activating', true );
 	}
 
 	public function enqueue_scripts() {
@@ -39,10 +41,11 @@ class TransitionSlider {
         wp_register_script("transitionslider-lib-select2", $this->PLUGIN_DIR_URL."js/lib/select2.min.js", array('jquery'), $this->PLUGIN_VERSION);
 		wp_register_script("transitionslider-lib-fontselect", $this->PLUGIN_DIR_URL."js/lib/jquery.fontselect.min.js", array('jquery'), $this->PLUGIN_VERSION);
         wp_register_script("transitionslider-lib-webfontloader", $this->PLUGIN_DIR_URL."js/lib/webfontloader.js", array('jquery'), $this->PLUGIN_VERSION);
+		wp_register_script("transitionslider-lib-iconify", $this->PLUGIN_DIR_URL."js/lib/iconify.min.js", array('jquery'), $this->PLUGIN_VERSION);
 
 		wp_register_script("transitionslider-embed", $this->PLUGIN_DIR_URL."js/embed.js", array('jquery'), $this->PLUGIN_VERSION);
         wp_register_script("transitionslider-build", $this->PLUGIN_DIR_URL."js/build/transitionSlider.min.js", array('jquery'), $this->PLUGIN_VERSION);
-        wp_register_script("transitionslider-build-lite", $this->PLUGIN_DIR_URL."js/build/transitionSliderLite.js", array('jquery'), $this->PLUGIN_VERSION);
+        wp_register_script("transitionslider-build-webgl", $this->PLUGIN_DIR_URL."js/build/transitionSlider.webgl.min.js", array('jquery'), $this->PLUGIN_VERSION);
 
 	}
 
@@ -103,12 +106,11 @@ class TransitionSlider {
 		add_submenu_page(
 			'transition_slider_admin',
 			esc_html__("Go Pro", "stx"),
-			esc_html__("Go Pro", "stx"),
+			'<span style="font-weight: 700; color: #00ff55"><span class="dashicons dashicons-unlock" style="font-size: 17px"></span>' . esc_html__("Go Pro", "stx") . '</span>', 
 		    'publish_posts',
 		    'transitionslider_go_pro',
 		    array($this,'transitionslider_go_pro')
 		);
-
 
 		if (function_exists('register_block_type')) {
 
@@ -159,8 +161,10 @@ class TransitionSlider {
 				array_push($slider_names, $_s["instanceName"]);
 			}
 
-		wp_localize_script( 'transitionslider-blocks-js','slider_ids', json_encode($slider_ids) );
-		wp_localize_script( 'transitionslider-blocks-js','slider_names', json_encode($slider_names) );
+		wp_localize_script( 'transitionslider-blocks-js', 'data', array(
+                'slider_ids' => json_encode($slider_ids),
+                'slider_names' => json_encode($slider_names)
+            ) );
 
 	}
 
@@ -176,6 +180,15 @@ class TransitionSlider {
     }
 	public function init() {
 		add_shortcode( 'transitionslider', array($this, 'on_shortcode') );
+
+		if(get_option("transitionslider_activating")){
+
+			delete_option("transitionslider_activating");
+
+			wp_redirect( admin_url( 'admin.php?page=transition_slider_admin') );
+			exit;
+
+		}
 
 	}
 
@@ -193,7 +206,6 @@ class TransitionSlider {
 
 		if (is_admin()) {
 			add_action('admin_menu', array($this, 'admin_menu'));
-	        add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'admin_link'));
 
             add_action( 'wp_ajax_transitionslider_save', array($this, 'save_slider') );
             add_action( 'wp_ajax_nopriv_transitionslider_save', array($this, 'save_slider') );
@@ -214,7 +226,21 @@ class TransitionSlider {
             add_action( 'wp_ajax_nopriv_transitionslider_get_slider', array($this, 'get_slider') );
 
             add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts') );
+
+            add_filter( 'plugin_action_links', array($this, 'add_plugin_link'), 10, 2);
+
 		}
+	}
+
+
+	public function add_plugin_link( $plugin_actions, $plugin_file ) {
+
+	    $new_actions = array();
+	    if ( 'transition-slider/transition-slider.php' === $plugin_file ) {
+	        $new_actions['stx_go_pro'] = sprintf( __( '<a href="%s" style="color:#04c018;font-weight:bold;" target="_blank">Go Pro</a>', 'comment-limiter' ), esc_url( admin_url( 'admin.php?page=transitionslider_go_pro' ) ) );
+	    }
+
+	 	    return array_merge( $plugin_actions, $new_actions );
 	}
 
 	public function on_shortcode($atts, $content=null) {
@@ -320,19 +346,103 @@ class TransitionSlider {
 
         $slider['rootFolder'] = $this->PLUGIN_DIR_URL."";
 
-        $output = '<div class="slider_instance" data-options="'.htmlentities(wp_json_encode($slider)).'"></div>';
+        ?>
+    <?php
 
-        $cssMode = isset($slider["transitionType"]) && $slider["transitionType"] == "css";
+    	$slider_id = uniqid('slider_');
+
+        $output = '<div id="'. $slider_id .'" class="slider_instance" style="position: relative;" data-options="'.htmlentities(wp_json_encode($slider)).'">';
+
+        $firstSlideSrc = $slider['slides'][0]['src'];
+
+        if(isset($slider['preloadFirstSlide']) && $slider['preloadFirstSlide'] && (strpos($firstSlideSrc, 'jpg') !== false || strpos($firstSlideSrc, 'jpeg') !== false || strpos($firstSlideSrc, 'png') !== false )){
+        	?>
+		    <script>
+		        function STXsliderPreloader(wrapper){
+		        	var options = JSON.parse(wrapper.dataset.options);
+		        	var preloaderDiv = document.createElement('div')
+		        	wrapper.appendChild(preloaderDiv)
+		        	preloaderDiv.classList.add("stx_remove")
+		        	preloaderDiv.style.position = "absolute"
+		        	preloaderDiv.style.backgroundImage = 'url("'+options.slides[0].src+'")';
+		        	preloaderDiv.style.zIndex = 2
+		        	preloaderDiv.style.backgroundSize = "cover";
+		        	preloaderDiv.style.backgroundPosition = "center";
+
+		        	var wrapperWidth = wrapper.clientWidth;
+		        	var fullscreen = options.fullscreen
+		        	var forceResponsive = options.forceResponsive
+		        	var windowWidth = document.documentElement.clientWidth
+		        	if(wrapperWidth < options.mobileSize) {
+		        		options.ratio = options.ratioMobile || options.ratioTablet || options.ratio;
+		        		options.responsive = options.responsiveMobile;
+		        		options.width = options.widthMobile || options.widthTablet || options.width;
+		        		options.height = options.heightMobile || options.heightTablet || options.height;
+		        		fullscreen = options.fullscreenMobile
+		        		forceResponsive = options.forceResponsiveMobile
+		        	}else if(wrapperWidth < options.tabletSize){
+		        		options.ratio = options.ratioTablet || options.ratio;
+		        		options.responsive = options.responsiveTablet;
+		        		options.width = options.widthTablet || options.width;
+		        		options.height = options.heightTablet || options.height;
+		        		fullscreen = options.fullscreenTablet
+		        		forceResponsive = options.forceResponsiveTablet
+		        	}
+
+
+		        	if(options.responsive){
+		        		if(options.forceResponsive){
+		        			preloaderDiv.style.width = windowWidth + "px"		        			
+		        			preloaderDiv.style.marginLeft = "-" + wrapper.offsetLeft + "px"
+		        			preloaderDiv.style.height = windowWidth / options.ratio + "px";
+		        			wrapper.style.height = windowWidth / options.ratio + "px";
+		        		}else{
+		        			preloaderDiv.style.width = "100%";
+		        			preloaderDiv.style.left = "50%"
+		        			preloaderDiv.style.transform = "translateX(-50%)"
+		        			preloaderDiv.style.webkitTransform = "translateX(-50%)"
+		        			preloaderDiv.style.height = wrapper.clientWidth / options.ratio + "px";
+		        			wrapper.style.height = wrapper.clientWidth / options.ratio + "px";
+		        		}
+
+		        				        	}else{
+		        		preloaderDiv.style.width = options.width + "px";
+		        		preloaderDiv.style.height = options.height + "px";
+		        		wrapper.style.height = options.height + "px";
+		        	}
+
+		        	if(fullscreen){
+		        		var rect = wrapper.getBoundingClientRect();
+						var offset = { 
+			                top: rect.top + window.scrollY, 
+			                left: rect.left + window.scrollX, 
+			            };
+		        		options.height = window.innerHeight - offset.top;
+		        		preloaderDiv.style.height = options.height + "px";
+		        		wrapper.style.height = options.height + "px";
+		        	}
+		        }
+		    </script>
+		    <?php
+
+	    	$output .= '<script class="stx_remove">STXsliderPreloader(document.getElementById("'.$slider_id.'"))</script>';
+
+   		}
+
+        $output .= '</div>';
+
+        $cssMode = isset($slider["mode"]) && $slider["mode"] == "css";
 
         if(!$cssMode)
         	wp_enqueue_script("transitionslider-lib-three");
 		wp_enqueue_script("transitionslider-lib-swiper");
 		wp_enqueue_script("transitionslider-lib-anime-js");
 		wp_enqueue_script("transitionslider-lib-webfontloader");
-		if($cssMode)
-			wp_enqueue_script("transitionslider-build-lite");
-		else
-			wp_enqueue_script("transitionslider-build");
+		wp_enqueue_script("transitionslider-lib-iconify");
+
+				wp_enqueue_script("transitionslider-build");
+		if(!$cssMode)
+			wp_enqueue_script("transitionslider-build-webgl");
 
 	    wp_enqueue_style( "transitionslider-css");
 	    wp_enqueue_style( "transitionslider-swiper-css");
@@ -539,9 +649,11 @@ class TransitionSlider {
         $upload_dir = wp_upload_dir();
 		$slidersFolder = $upload_dir['basedir'] . '/transition-slider/';
 		$sliderFolder = $slidersFolder . 'slider_' . $new_id . '/';
+		$thumbnailsFolder = $sliderFolder . 'thumbnails/';
 
 		$slidersUrl = $upload_dir['baseurl'] . '/transition-slider/';
 		$sliderUrl = $slidersUrl. 'slider_' . $new_id . '/';
+		$thumbnailsUrl = $sliderUrl . 'thumbnails/';
 
 		if (!file_exists($slidersFolder)) {
 			mkdir($slidersFolder, 0777, true);
@@ -551,13 +663,23 @@ class TransitionSlider {
 			mkdir($sliderFolder, 0777, true);
 		}
 
+		if (!file_exists($thumbnailsFolder)) {
+            mkdir($thumbnailsFolder, 0777, true);
+        }
+
         foreach ($slider["slides"] as $key => $slide) {
         	$src = $slide['src'];
+        	$thumbSrc = $slide['thumbSrc'];
 
         	$info = pathinfo($slide['src']);
         	$fileName = $info['basename'];
 
 			$newPath = $sliderFolder . $fileName ;
+
+			$thumbInfo = pathinfo($slide['thumbSrc']);
+			$thumbFileName = $thumbInfo['basename'];
+
+			$newThumbPath = $thumbnailsFolder . $thumbFileName ;
 
 			if ( copy($src, $newPath) ) {
 			    echo "Copy success!";
@@ -565,7 +687,14 @@ class TransitionSlider {
 			    echo "Copy failed.";
 			}
 
+            if ( copy($thumbSrc, $newThumbPath) ) {
+                echo "Copy success!";
+            }else{
+                echo "Copy failed.";
+            }
+
 			$slider['slides'][$key]['src'] = $sliderUrl . $fileName ;
+			$slider['slides'][$key]['thumbSrc'] = $thumbnailsUrl . $thumbFileName ;
 
         }
 

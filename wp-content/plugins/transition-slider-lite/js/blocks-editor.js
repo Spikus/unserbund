@@ -15,13 +15,13 @@ var __ = wp.i18n.__,
     SelectControl = wp.components.SelectControl,
     RadioControl = wp.components.RadioControl;
 
-slider_ids = jQuery.parseJSON(slider_ids);
-slider_names = jQuery.parseJSON(slider_names);
+data.slider_ids = jQuery.parseJSON(data.slider_ids);
+data.slider_names = jQuery.parseJSON(data.slider_names);
 
 var available_sliders = [{ label: "", value: "" }];
 
-for (var key in slider_ids) {
-    available_sliders.push({ label: slider_names[key], value: slider_ids[key] });
+for (var key in data.slider_ids) {
+    available_sliders.push({ label: data.slider_names[key], value: data.slider_ids[key] });
 }
 
 var make_title_from_url = function(url) {

@@ -96,7 +96,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "color":"#ffffff",
                   "letterSpacing":3,
                   "fontWeight":700
@@ -123,7 +122,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "marginTop":20,
                   "marginBottom":30,
                   "color":"#ffffff",
@@ -154,7 +152,6 @@
                   "padding":"10px 30px",
                   "fontSize":21,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "textColor":"#e5e5e5",
                   "color":"#e5e5e5",
                   "urlTargetBlank":true,
@@ -209,7 +206,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "color":"#ffffff",
                   "letterSpacing":3,
                   "fontWeight":700
@@ -236,7 +232,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "marginTop":20,
                   "marginBottom":30,
                   "color":"#ffffff",
@@ -267,7 +262,6 @@
                   "padding":"10px 30px",
                   "fontSize":21,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "textColor":"#ffffff",
                   "color":"#ffffff",
                   "url":"https://transitionslider.com/",
@@ -326,7 +320,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "color":"#ffffff",
                   "letterSpacing":3,
                   "fontWeight":700
@@ -353,7 +346,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "marginTop":20,
                   "marginBottom":30,
                   "color":"#ffffff",
@@ -384,7 +376,6 @@
                   "padding":"10px 30px",
                   "fontSize":21,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "textColor":"#ffffff",
                   "color":"#ffffff",
                   "url":"https://transitionslider.com/",
@@ -437,7 +428,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "color":"#ffffff",
                   "letterSpacing":3,
                   "fontWeight":700
@@ -464,7 +454,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "marginTop":20,
                   "marginBottom":30,
                   "color":"#ffffff",
@@ -495,7 +484,6 @@
                   "padding":"10px 30px",
                   "fontSize":21,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "textColor":"#ffffff",
                   "color":"#ffffff",
                   "url":"https://transitionslider.com/",
@@ -549,7 +537,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "color":"#ffffff",
                   "letterSpacing":3,
                   "fontWeight":700
@@ -576,7 +563,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "marginTop":20,
                   "marginBottom":30,
                   "color":"#ffffff",
@@ -607,7 +593,6 @@
                   "padding":"10px 30px",
                   "fontSize":21,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "textColor":"#ffffff",
                   "color":"#ffffff",
                   "url":"https://transitionslider.com/",
@@ -664,7 +649,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "color":"#ffffff",
                   "letterSpacing":3,
                   "fontWeight":700
@@ -691,7 +675,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "marginTop":20,
                   "marginBottom":30,
                   "color":"#ffffff",
@@ -722,7 +705,6 @@
                   "padding":"10px 30px",
                   "fontSize":21,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "textColor":"#ffffff",
                   "color":"#ffffff",
                   "url":"https://transitionslider.com/",

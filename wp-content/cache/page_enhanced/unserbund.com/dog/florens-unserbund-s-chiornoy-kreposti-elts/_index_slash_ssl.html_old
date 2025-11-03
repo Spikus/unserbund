@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+
+<head><style>img.lazy{min-height:1px}</style><link rel="preload" href="https://unserbund.com/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js" as="script">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=cyrillic" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+            </title>
+    <meta property="og:title" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:image" content="https://unserbund.com/wp-content/themes/unserbund/images/logo-red.png"/>
+
+    <link rel="icon" href="https://unserbund.com/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://unserbund.com/favicon.ico" type="image/x-icon" />
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="https://unserbund.com/xmlrpc.php">
+    <meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='stylesheet' id='gtranslate-style-css'  href='https://unserbund.com/wp-content/plugins/gtranslate/gtranslate-style32.css?ver=6.0.11' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://unserbund.com/wp-includes/css/dist/block-library/style.min.css?ver=6.0.11' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='https://unserbund.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='responsive-lightbox-magnific-css'  href='https://unserbund.com/wp-content/plugins/responsive-lightbox/assets/magnific/magnific-popup.min.css?ver=2.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='unserbund-style-css'  href='https://unserbund.com/wp-content/themes/unserbund/style.css?ver=Wed,%2022%20Oct%2025%2015:45:07%20+0000' type='text/css' media='all' />
+<link rel='stylesheet' id='bootsrap-style-css'  href='https://unserbund.com/wp-content/themes/unserbund/bootstrap/css/bootstrap.min.css?ver=2013-04-18' type='text/css' media='all' />
+<link rel='stylesheet' id='flaticon-style-css'  href='https://unserbund.com/wp-content/themes/unserbund/flat-icon/flaticon.css?ver=2013-04-18' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='unserbund-ie-css'  href='https://unserbund.com/wp-content/themes/unserbund/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript' src='https://unserbund.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-content/plugins/responsive-lightbox/assets/magnific/jquery.magnific-popup.min.js?ver=2.4.1' id='responsive-lightbox-magnific-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-includes/js/underscore.min.js?ver=1.13.3' id='underscore-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-content/plugins/responsive-lightbox/assets/infinitescroll/infinite-scroll.pkgd.min.js?ver=6.0.11' id='responsive-lightbox-infinite-scroll-js'></script>
+<script type='text/javascript' id='responsive-lightbox-js-extra'>
+/* <![CDATA[ */
+var rlArgs = {"script":"magnific","selector":"lightbox","customEvents":"","activeGalleries":"1","disableOn":"0","midClick":"1","preloader":"1","closeOnContentClick":"1","closeOnBgClick":"1","closeBtnInside":"1","showCloseBtn":"1","enableEscapeKey":"1","alignTop":"","fixedContentPos":"auto","fixedBgPos":"auto","autoFocusLast":"1","woocommerce_gallery":"0","ajaxurl":"https:\/\/unserbund.com\/wp-admin\/admin-ajax.php","nonce":"ea2620917b","preview":"false","postId":"271","scriptExtension":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://unserbund.com/wp-content/plugins/responsive-lightbox/js/front.js?ver=2.4.1' id='responsive-lightbox-js'></script>
+<link rel="https://api.w.org/" href="https://unserbund.com/wp-json/" /><link rel="alternate" type="application/json" href="https://unserbund.com/wp-json/wp/v2/dog/271" /><link rel="canonical" href="https://unserbund.com/dog/florens-unserbund-s-chiornoy-kreposti-elts/" />
+<link rel='shortlink' href='https://unserbund.com/?p=271' />
+<link rel="alternate" type="application/json+oembed" href="https://unserbund.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Funserbund.com%2Fdog%2Fflorens-unserbund-s-chiornoy-kreposti-elts%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://unserbund.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Funserbund.com%2Fdog%2Fflorens-unserbund-s-chiornoy-kreposti-elts%2F&#038;format=xml" />
+<link rel="icon" href="https://unserbund.com/wp-content/uploads/2021/02/cropped-logo-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://unserbund.com/wp-content/uploads/2021/02/cropped-logo-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://unserbund.com/wp-content/uploads/2021/02/cropped-logo-180x180.png" />
+<meta name="msapplication-TileImage" content="https://unserbund.com/wp-content/uploads/2021/02/cropped-logo-270x270.png" />
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+</head>
+<body class="dog-template-default single single-dog postid-271 single-author">
+    <div id="page">
+        <header id="masthead" class="navbar-static-top" role="banner">
+            <nav class="navbar navbar-fixed-top sticky-header" id="main-bot-menu" role="navigation">
+                <div class="container uns_navbar">
+                    <div class="uns_menu">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-1"> 
+                            <span class="sr-only">Toggle navigation</span> 
+                            <span class="icon-bar"></span> 
+                            <span class="icon-bar"></span> 
+                            <span class="icon-bar"></span> 
+                        </button>
+                    <div id="collapse-1" class="collapse navbar-collapse">
+                        <ul id="menu-mainmenu" class="nav navbar-nav mainmenu">
+                        <li id="menu-item-3568" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-3568 active">
+                            <a title="Главная" href="/">Главная</a>
+                        </li>
+                        <li id="menu-item-4068" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4068">
+                            <a title="Наш питомник" href="kennel/">Наш питомник</a>
+                        </li>
+                        <li id="menu-item-3572" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3572 dropdown">
+                            <a title="Собаки" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Собаки <span class="caret"></span></a>
+                                <ul role="menu" class=" dropdown-menu">
+                                    <li id="menu-item-4086" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4086">
+                                        <a title="Суки Ротвейлеров" href="/females/">Самки Ротвейлеров</a>
+                                    </li>
+                                    <li id="menu-item-4072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4072">
+                                        <a title="Кобели Ротвейлеров" href="/males/">Кобели Ротвейлеров</a>
+                                    </li>
+                                    <li id="menu-item-4072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4072">
+                                        <a title="Юниоры Ротвейлеров" href="/juniors/">Юниоры Ротвейлеров</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-4175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4175">
+                                <a title="Продажа" href="/rottweilers-for-sale/">Продажа</a>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="logo__info">
+                            <h1 class="logo__h1">Unserbund</h1>
+                            <h2 class="hidden-xs logo__h2">Сайт Питомника Ротвейлеров</h2>
+                            <span class="hidden-lg hidden-md hidden-sm  logo__h1">+380504785508</span>
+                            <img class="uns_logo lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201%201'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/themes/unserbund/images/logo.png" alt="Unserbund">
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- #masthead -->
+        <div id="main" class="site-main"><div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=362931457130685&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<div id="primary" class="content-area">
+    <div id="content" class="site-content container" role="main">
+        <div class="node">
+            									            <article id="post-271" class="post-271 dog type-dog status-publish has-post-thumbnail hentry">
+                <div class="entry-header clearfix">
+                    <h1 class="avansome">Ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS						<div class="fb-like pull-right" 
+								data-href="https://unserbund.com/florens-unserbund-s-chiornoy-kreposti-elts/" 
+								data-layout="button"
+								data-action="like" 
+								data-show-faces="false" 
+								data-share="false" />
+                    </h1>
+                    <div class="col-md-3 text-center">
+                        <div class="dogThumbnail">
+                            <img width="606" height="558" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20606%20558'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15726769_744443939042048_2387495896471454585_n.jpg" class="attachment-dog-show size-dog-show wp-post-image lazy" alt="" data-srcset="https://unserbund.com/wp-content/uploads/2021/01/15726769_744443939042048_2387495896471454585_n.jpg 606w, https://unserbund.com/wp-content/uploads/2021/01/15726769_744443939042048_2387495896471454585_n-300x276.jpg 300w" data-sizes="(max-width: 606px) 100vw, 606px" />                        </div>
+                    </div>
+                    <div class="col-md-9">
+						
+<div class="col-md-5">
+  <ul class="mainInform">
+    <li>Отец: <i>YUMBO TOP BLACK</i></li>
+    <li>Мать: <i>HARLETTA s berega Turi</i></li>
+    <li>Дата Рождения: <i>22/12/14</i></li>
+    <li>Пол: <i>Сука</i></li>
+    <li>Страна: <i>Россия</i></li>
+    <li>HD: <i></i></li>
+    <li>ED: <i></i></li>
+  </ul>
+  <small class="desc"></small>
+</div>
+                    </div>
+				</div><!-- .entry-header -->
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-justified" id="mediaTabs">
+                    <li class="active"><a href="#pedigree" data-toggle="tab">Родословная</a></li>
+                    <li><a href="#photo" data-toggle="tab">Фото</a></li>
+                    					<li><a href="#shows" data-toggle="tab">Выставки</a></li>
+										                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane" id="photo">
+                        													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15675590_744443779042064_3574781529776124599_o-730x1024.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20214%20300'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15675590_744443779042064_3574781529776124599_o-214x300.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15697405_744443929042049_8878889213211266712_n.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20258'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15697405_744443929042049_8878889213211266712_n-300x258.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15697506_744443859042056_4695412367372236475_n.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20204'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15697506_744443859042056_4695412367372236475_n-300x204.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15723689_744443885708720_8302185001734060660_o-1024x804.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20236'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15723689_744443885708720_8302185001734060660_o-300x236.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15726606_744443935708715_4721619492379371471_n.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20291%20300'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15726606_744443935708715_4721619492379371471_n-291x300.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15726769_744443939042048_2387495896471454585_n.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20276'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15726769_744443939042048_2387495896471454585_n-300x276.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15726894_744443872375388_5752850621171397994_n.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20203'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15726894_744443872375388_5752850621171397994_n-300x203.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/15732581_744443782375397_8957075657736264653_o-816x1024.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20239%20300'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/15732581_744443782375397_8957075657736264653_o-239x300.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/30052485_1007405716079201_6353740950340564457_o-947x1024.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20277%20300'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/30052485_1007405716079201_6353740950340564457_o-277x300.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/30072741_1007405806079192_2223792548597649500_o-882x1024.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20258%20300'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/30072741_1007405806079192_2223792548597649500_o-258x300.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/30424884_1007405666079206_7270890846420769845_o-849x1024.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20249%20300'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/30424884_1007405666079206_7270890846420769845_o-249x300.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/30425525_1007405689412537_532442196417570186_o-1024x899.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20263'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/30425525_1007405689412537_532442196417570186_o-300x263.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/31919364_1016441601842279_3460050190805762048_o-703x1024.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20206%20300'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/31919364_1016441601842279_3460050190805762048_o-206x300.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/31944453_1016441581842281_7629474553361596416_o-1024x822.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20241'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/31944453_1016441581842281_7629474553361596416_o-300x241.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/31946184_1016441448508961_831124198100303872_o-1024x811.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20237'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/31946184_1016441448508961_831124198100303872_o-300x237.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  													<a rel="lightbox[roadtrip]" href="https://unserbund.com/wp-content/uploads/2021/01/31947562_1016441518508954_5810112525441695744_o-1024x564.jpg" rel="lightbox" data-link="#" title="FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS" >
+								<img class="img-thumbnail lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20165'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/uploads/2021/01/31947562_1016441518508954_5810112525441695744_o-300x165.jpg" alt="ротвейлер FLORENS UNSERBUND S CHIORNOY KREPOSTI ELTS">
+							</a>
+  						                    </div>
+                    <div class="tab-pane  active" id="pedigree">
+						<div class="pedigree">
+							<div class="pedigree">
+  <div class="pedr column">
+    <div class="pednode male" style="height: 250px; width: 50%">
+      <span class="wrper"
+        > YUMBO TOP BLACK 
+      </span>
+    </div>
+    <div class="pednode" style="height: 250px; width: 50%">
+      <span class="wrper"
+        > HARLETTA s berega Turi
+        </span
+      >
+    </div>
+  </div>
+  <div class="pedr column">
+    <div class="pednode male" style="height: 125px; width: 25%">
+      <span class="wrper">
+        <span data-link="4396" class="js-red pedbut male btn btn-warning btn-xs"
+          >ROTFART DELAVAR</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 125px; width: 25%">
+      <span class="wrper"
+        ><span data-link="4301" class="js-red pedbut btn btn-warning btn-xs"
+          >MARSHA TOP BLACK
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 125px; width: 25%">
+      <span class="wrper">
+        <span data-link="5839" class="js-red pedbut male btn btn-warning btn-xs"
+          >Edward s Berega Turi</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 125px; width: 25%">
+      <span class="wrper"
+        ><span data-link="5852" class="js-red pedbut btn btn-warning btn-xs"
+          >SUZANNA s berega Turi
+        </span></span
+      >
+    </div>
+  </div>
+  <div class="pedr column">
+    <div class="pednode male" style="height: 62.5px; width: 12.5%">
+      <span class="wrper">
+        <span data-link="4400" class="js-red pedbut male btn btn-warning btn-xs"
+          >PRINCE HAUS OF LAZIC</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 62.5px; width: 12.5%">
+      <span class="wrper"
+        ><span data-link="4404" class="js-red pedbut btn btn-warning btn-xs"
+          >SCHIMBA FROM HOUSE ROTVIS
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 62.5px; width: 12.5%">
+      <span class="wrper">
+        <span data-link="2368" class="js-red pedbut male btn btn-warning btn-xs"
+          >TARAS S BEREGA TURI</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 62.5px; width: 12.5%">
+      <span class="wrper"
+        ><span data-link="4367" class="js-red pedbut btn btn-warning btn-xs"
+          >KINA TOP BLACK
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 62.5px; width: 12.5%">
+      <span class="wrper">
+        <span data-link="4408" class="js-red pedbut male btn btn-warning btn-xs"
+          >FLEGEL VOM TEGLER FLIESS</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 62.5px; width: 12.5%">
+      <span class="wrper"
+        ><span data-link="5834" class="js-red pedbut btn btn-warning btn-xs"
+          >Choisiya s Berega Turi
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 62.5px; width: 12.5%">
+      <span class="wrper">
+        <span data-link="5844" class="js-red pedbut male btn btn-warning btn-xs"
+          >ROTTI'S ALLYANS AMIGO</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 62.5px; width: 12.5%">
+      <span class="wrper"
+        ><span data-link="5848" class="js-red pedbut btn btn-warning btn-xs"
+          >ZEFFIRA s berega Turi
+        </span></span
+      >
+    </div>
+  </div>
+  <div class="pedr column">
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="2813" class="js-red pedbut male btn btn-warning btn-xs"
+          >DACK FLASH ROUSE</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="2487" class="js-red pedbut btn btn-warning btn-xs"
+          >ARA
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="4408" class="js-red pedbut male btn btn-warning btn-xs"
+          >FLEGEL VOM TEGLER FLIESS</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="4411" class="js-red pedbut btn btn-warning btn-xs"
+          >OLGA FROM HOUSE ROTVIS
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="2363" class="js-red pedbut male btn btn-warning btn-xs"
+          >INDIO VOM KUMMELSEE</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="2360" class="js-red pedbut btn btn-warning btn-xs"
+          >PIATA S BEREGA TURI
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="1720" class="js-red pedbut male btn btn-warning btn-xs"
+          >CHAIKOVSKIY IZ TVERSKOGO DOMA</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="455" class="js-red pedbut btn btn-warning btn-xs"
+          >BINA TOP BLACK
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="4415" class="js-red pedbut male btn btn-warning btn-xs"
+          >AMBASSADOR VON SHAMBALA</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="4418" class="js-red pedbut btn btn-warning btn-xs"
+          >VETZI VOM WOLFERT TURM
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="6613" class="js-red pedbut male btn btn-warning btn-xs"
+          >GERMAN IS KURGAN GRADA</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="6610" class="js-red pedbut btn btn-warning btn-xs"
+          >Nemka S Brega TURI
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="2198" class="js-red pedbut male btn btn-warning btn-xs"
+          >MORRO VON DER SCHERAU</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="21" class="js-red pedbut btn btn-warning btn-xs"
+          >Нет Данных
+        </span></span
+      >
+    </div>
+    <div class="pednode male" style="height: 31.25px; width: 6.25%">
+      <span class="wrper">
+        <span data-link="92" class="js-red pedbut male btn btn-warning btn-xs"
+          >Ivan Genesis II</span
+        >
+      </span>
+    </div>
+    <div class="pednode" style="height: 31.25px; width: 6.25%">
+      <span class="wrper"
+        ><span data-link="6606" class="js-red pedbut btn btn-warning btn-xs"
+          >HANNA S BEREGA TURI
+        </span></span
+      >
+    </div>
+  </div>
+</div>
+						</div>
+                    </div>
+											<div class="tab-pane" id="shows">
+							<table class="table table-striped"><thead><tr><th class="hidden-xs">Дата</th><th>Выставка</th><th class="hidden-xs">Класс</th><th>Оценка</th><th>Судья</th></tr></thead><tbody><tr><td class="hidden-xs">28.01.17</td><td>Зимний кубок Харькова 2017 CAC-UA</td><td class="hidden-xs">Open Class</td><td>CAC, Best female, BOS</td><td>Olga Kojevnikova (BY)</td></tr><tr><td class="hidden-xs">29.01.17</td><td>Созвездие Снежных Псов 2017 CAC-U</td><td class="hidden-xs">Open Class</td><td>CAC, Best female, BOB.</td><td>Vitaly Khizhnyak (Ukraine)</td></tr><tr><td class="hidden-xs">4.02.2017</td><td>Кубок Лева 2017</td><td class="hidden-xs">Open Class</td><td>V1, Best Female, BOS</td><td>Игорь Матюк (Украина)</td></tr><tr><td class="hidden-xs">5.02.2017</td><td>Казковий Львів</td><td class="hidden-xs">Open Class</td><td>V1, CAC</td><td>Евгения Толпина</td></tr><tr><td class="hidden-xs">15.04.2017</td><td>Volgograd (Stalingrad) Rottweiler Club Show</td><td class="hidden-xs">Open Class</td><td>V1, CW, CANDIDATE CHAMPION OF THE CLUB</td><td>Татьяна Попова (Tatyana Popova) RKF</td></tr><tr><td class="hidden-xs">23.04.2017</td><td>Monobreed Dog Show "Rostov Main - Cup of Yunda."</td><td class="hidden-xs">Open Class</td><td>BEST FEMALE, BOS</td><td>Stojadinovic Radisa (Serbia)</td></tr><tr><td class="hidden-xs">14.04.2018</td><td>Volgograd (Russia) Rottweiler Club Show</td><td class="hidden-xs">Open Class</td><td>V2</td><td>Erika Stepanauskiene</td></tr><tr><td class="hidden-xs">2.05.2018</td><td>Big speciality Rottweiler Show</td><td class="hidden-xs">Open Class</td><td>V1, BEST FEMALE, THE WINNER OF THE CLUB</td><td>Anton Toni Spindler(ADRK)</td></tr></tbody></table>						</div>
+										                </div>
+
+
+            </article><!-- #post -->
+
+                    </div>
+    </div>
+</div><!-- #primary -->
+<!-- Button trigger modal -->
+<button id="errorBut" class="btn btn-warning btn-lg hidden-xs" data-toggle="modal" data-target="#myModal">
+    Нашли ошибку?
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Закрыть</span></button>
+                <h4 class="modal-title" id="myModalLabel"> Нашли ошибку? Укажите её и мы не медленно исправим.</h4>
+            </div>
+            <div class="modal-body">
+                [contact-form-7 404 "Not Found"]            </div>
+        </div>
+    </div>
+</div>
+
+
+</div><!-- #main -->
+<footer id="colophon" class="site-footer black" role="contentinfo">
+    <div class="container">
+        <div class="col-md-6">
+            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20350'%3E%3C/svg%3E" data-src="https://unserbund.com/wp-content/themes/unserbund/images/logo-red.png" width="350px">
+            <h3 class="red"> Племзавод ротвейлеров UNSERBUND</h3>
+			<span class="glyphicon glyphicon-earphone red"></span> 
+			Телефон (Украина): <a href="tell:+380504785508">+380504785508</a> <br> 
+			<span class="glyphicon glyphicon-earphone red"></span> 
+			WhatsUp (Украина): <a href="https://api.whatsapp.com/send?phone=380504785508">+380504785508</a><br> 
+			<span class="glyphicon glyphicon-earphone red"></span> Viber (Украина): <a href="viber://chat/?number=+380504785508">+380504785508</a> <br> 
+		        <br> <br> 
+			<span class="glyphicon glyphicon-envelope red"></span> E-mail: vadim@unserbund.com
+        </div>
+        <div class="col-md-6">
+            <h3 class="red"> Написать нам</h3>
+            <div role="form" class="wpcf7" id="wpcf7-f9-o1" lang="en-US" dir="ltr">
+<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+<form action="/dog/florens-unserbund-s-chiornoy-kreposti-elts/#wpcf7-f9-o1" method="post" class="wpcf7-form init" novalidate="novalidate" data-status="init">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="9" />
+<input type="hidden" name="_wpcf7_version" value="5.6.1" />
+<input type="hidden" name="_wpcf7_locale" value="en_US" />
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f9-o1" />
+<input type="hidden" name="_wpcf7_container_post" value="0" />
+<input type="hidden" name="_wpcf7_posted_data_hash" value="" />
+</div>
+<p><label> Your name<br />
+    <span class="wpcf7-form-control-wrap" data-name="your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span> </label></p>
+<p><label> Your email<br />
+    <span class="wpcf7-form-control-wrap" data-name="your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" /></span> </label></p>
+<p><label> Subject<br />
+    <span class="wpcf7-form-control-wrap" data-name="your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span> </label></p>
+<p><label> Your message (optional)<br />
+    <span class="wpcf7-form-control-wrap" data-name="your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span> </label></p>
+<p><input type="submit" value="Submit" class="wpcf7-form-control has-spinner wpcf7-submit" /></p>
+<p style="display: none !important;"><label>&#916;<textarea name="_wpcf7_ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="_wpcf7_ak_js" value="93"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p><div class="wpcf7-response-output" aria-hidden="true"></div></form></div>        </div>
+    </div><!-- .site-info -->
+</footer><!-- #colophon -->
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-6 text-left">
+            При использовании материалов сайта, ссылка на наш сайт обязательна © 2016
+        </div>
+        <div class="col-md-6 text-right">
+            Племзавод FCI No391/06 "UNSERBUND"
+        </div>
+    </div>
+</div>
+</div>
+</div><!-- #page -->
+
+<div style="position:fixed;bottom:0px;right:8%;z-index:999999;" id="gtranslate_wrapper"><!-- GTranslate: https://gtranslate.io/ -->
+<style>
+.switcher {font-family:Arial;font-size:14pt;text-align:left;cursor:pointer;overflow:hidden;width:193px;line-height:17px;}
+.switcher a {text-decoration:none;display:block;font-size:14pt;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;}
+.switcher a img {vertical-align:middle;display:inline;border:0;padding:0;margin:0;opacity:0.8;}
+.switcher a:hover img {opacity:1;}
+.switcher .selected {background:#303030 linear-gradient(180deg, #474747 0%, #303030 70%);position:relative;z-index:9999;}
+.switcher .selected a {border:1px solid #161616;color:#f7f7f7;padding:3px 5px;width:181px;}
+.switcher .selected a:after {height:32px;display:inline-block;position:absolute;right:10px;width:15px;background-position:50%;background-size:12px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 285 285'><path d='M282 76.5l-14.2-14.3a9 9 0 0 0-13.1 0L142.5 174.4 30.3 62.2a9 9 0 0 0-13.2 0L3 76.5a9 9 0 0 0 0 13.1l133 133a9 9 0 0 0 13.1 0l133-133a9 9 0 0 0 0-13z' style='fill:%23f2f2f2'/></svg>");background-repeat:no-repeat;content:""!important;transition:all .2s;}
+.switcher .selected a.open:after {-webkit-transform: rotate(-180deg);transform:rotate(-180deg);}
+.switcher .selected a:hover {background:#3a3a3a}
+.switcher .option {position:relative;z-index:9998;border-left:1px solid #161616;border-right:1px solid #161616;border-bottom:1px solid #161616;background-color:#474747;display:none;width:191px;max-height:198px;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;overflow-y:auto;overflow-x:hidden;}
+.switcher .option a {color:#eaeaea;padding:3px 5px;}
+.switcher .option a:hover {background:#748393;}
+.switcher .option a.selected {background:#748393;}
+#selected_lang_name {float: none;}
+.l_name {float: none !important;margin: 0;}
+.switcher .option::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 3px rgba(0,0,0,0.3);border-radius:5px;background-color:#f5f5f5;}
+.switcher .option::-webkit-scrollbar {width:5px;}
+.switcher .option::-webkit-scrollbar-thumb {border-radius:5px;-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);background-color:#888;}
+</style>
+<div class="switcher notranslate">
+<div class="selected">
+<a href="#" onclick="return false;"><img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3C/svg%3E" data-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/ru.png" height="32" width="32" alt="ru" /> Russian</a>
+</div>
+<div class="option">
+<a href="#" onclick="doGTranslate('ru|ar');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Arabic" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/ar.png" height="32" width="32" alt="ar" /> Arabic</a><a href="#" onclick="doGTranslate('ru|zh-CN');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Chinese (Simplified)" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/zh-CN.png" height="32" width="32" alt="zh-CN" /> Chinese (Simplified)</a><a href="#" onclick="doGTranslate('ru|nl');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Dutch" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/nl.png" height="32" width="32" alt="nl" /> Dutch</a><a href="#" onclick="doGTranslate('ru|en');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="English" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/en.png" height="32" width="32" alt="en" /> English</a><a href="#" onclick="doGTranslate('ru|fr');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="French" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/fr.png" height="32" width="32" alt="fr" /> French</a><a href="#" onclick="doGTranslate('ru|de');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="German" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/de.png" height="32" width="32" alt="de" /> German</a><a href="#" onclick="doGTranslate('ru|it');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Italian" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/it.png" height="32" width="32" alt="it" /> Italian</a><a href="#" onclick="doGTranslate('ru|pt');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Portuguese" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/pt.png" height="32" width="32" alt="pt" /> Portuguese</a><a href="#" onclick="doGTranslate('ru|ru');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Russian" class="nturl selected"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/ru.png" height="32" width="32" alt="ru" /> Russian</a><a href="#" onclick="doGTranslate('ru|es');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Spanish" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/es.png" height="32" width="32" alt="es" /> Spanish</a><a href="#" onclick="doGTranslate('ru|uk');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;" title="Ukrainian" class="nturl"><img data-gt-lazy-src="//unserbund.com/wp-content/plugins/gtranslate/flags/32/uk.png" height="32" width="32" alt="uk" /> Ukrainian</a></div>
+</div>
+<script>
+(function gt_jquery_ready() {
+    if(!window.jQuery||!jQuery.fn.click) return setTimeout(gt_jquery_ready, 20);
+    jQuery('.switcher .selected').click(function() {jQuery('.switcher .option a img').each(function() {if(!jQuery(this)[0].hasAttribute('src'))jQuery(this).attr('src', jQuery(this).attr('data-gt-lazy-src'))});if(!(jQuery('.switcher .option').is(':visible'))) {jQuery('.switcher .option').stop(true,true).delay(100).slideDown(500);jQuery('.switcher .selected a').toggleClass('open')}});
+    jQuery('.switcher .option').bind('mousewheel', function(e) {var options = jQuery('.switcher .option');if(options.is(':visible'))options.scrollTop(options.scrollTop() - e.originalEvent.wheelDelta/10);return false;});
+    jQuery('body').not('.switcher').click(function(e) {if(jQuery('.switcher .option').is(':visible') && e.target != jQuery('.switcher .option').get(0)) {jQuery('.switcher .option').stop(true,true).delay(100).slideUp(500);jQuery('.switcher .selected a').toggleClass('open')}});
+})();
+</script>
+<style>#goog-gt-tt{display:none!important;}.goog-te-banner-frame{display:none!important;}.goog-te-menu-value:hover{text-decoration:none!important;}.goog-text-highlight{background-color:transparent!important;box-shadow:none!important;}body{top:0!important;}#google_translate_element2{display:none!important;}</style>
+<div id="google_translate_element2"></div>
+<script>function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'ru',autoDisplay: false}, 'google_translate_element2');}if(!window.gt_translate_script){window.gt_translate_script=document.createElement('script');gt_translate_script.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';document.body.appendChild(gt_translate_script);}</script>
+
+<script>
+function GTranslateGetCurrentLang() {var keyValue = document['cookie'].match('(^|;) ?googtrans=([^;]*)(;|$)');return keyValue ? keyValue[2].split('/')[2] : null;}
+function GTranslateFireEvent(element,event){try{if(document.createEventObject){var evt=document.createEventObject();element.fireEvent('on'+event,evt)}else{var evt=document.createEvent('HTMLEvents');evt.initEvent(event,true,true);element.dispatchEvent(evt)}}catch(e){}}
+function doGTranslate(lang_pair){if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];if(GTranslateGetCurrentLang() == null && lang == lang_pair.split('|')[0])return;if(typeof ga=='function'){ga('send', 'event', 'GTranslate', lang, location.hostname+location.pathname+location.search);}var teCombo;var sel=document.getElementsByTagName('select');for(var i=0;i<sel.length;i++)if(sel[i].className.indexOf('goog-te-combo')!=-1){teCombo=sel[i];break;}if(document.getElementById('google_translate_element2')==null||document.getElementById('google_translate_element2').innerHTML.length==0||teCombo.length==0||teCombo.innerHTML.length==0){setTimeout(function(){doGTranslate(lang_pair)},500)}else{teCombo.value=lang;GTranslateFireEvent(teCombo,'change');GTranslateFireEvent(teCombo,'change')}}
+(function gt_jquery_ready() {
+    if(!window.jQuery||!jQuery.fn.click) return setTimeout(gt_jquery_ready, 20);
+    if(GTranslateGetCurrentLang() != null)jQuery(document).ready(function() {var lang_html = jQuery('div.switcher div.option').find('img[alt="'+GTranslateGetCurrentLang()+'"]').parent().html();if(typeof lang_html != 'undefined')jQuery('div.switcher div.selected a').html(lang_html.replace('data-gt-lazy-', ''));});
+})();
+</script>
+</div><script type='text/javascript' src='https://unserbund.com/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.9' id='regenerator-runtime-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/unserbund.com\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://unserbund.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.6.1' id='contact-form-7-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-content/themes/unserbund/bootstrap/js/bootstrap.min.js?ver=2014-04-18' id='bootstrap-script-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-content/themes/unserbund/bootstrap/js/jquery-hoverdirection.min.js?ver=2014-01-18' id='hoverdirection-script-js'></script>
+<script type='text/javascript' src='https://unserbund.com/wp-content/themes/unserbund/js/unserbund.js?ver=2014-04-18' id='unserbund-add-functions-js'></script>
+<script>window.w3tc_lazyload=1,window.lazyLoadOptions={elements_selector:".lazy",callback_loaded:function(t){var e;try{e=new CustomEvent("w3tc_lazyload_loaded",{detail:{e:t}})}catch(a){(e=document.createEvent("CustomEvent")).initCustomEvent("w3tc_lazyload_loaded",!1,!1,{e:t})}window.dispatchEvent(e)}}</script><script async src="https://unserbund.com/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js"></script></body>
+
+</html>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Object Caching 24/137 objects using disk
+Page Caching using disk: enhanced 
+Lazy Loading
+
+Served from: unserbund.com @ 2025-10-22 15:45:07 by W3 Total Cache
+-->

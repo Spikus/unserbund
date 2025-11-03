@@ -9,6 +9,7 @@
             if (!optionsString) return;
             var o = JSON.parse(optionsString);
 
+
             convertStrings(o);
 
             if (o.navigation && !o.navigation.enable) o.navigation = false;
@@ -51,8 +52,25 @@
                 o.pagination.active[key] = o.pagination[key + "Active"];
                 o.pagination.hover[key] = o.pagination[key + "Hover"];
             }
-
             var slider = $(this).transitionSlider(o);
+            var slider_container = this
+
+            if(o.preloadFirstSlide){
+
+                var sliderLoading = true
+
+                $(slider_container).find(".stx-loading").hide()
+
+                $(slider.data("transitionSlider")).on("hideLoading", function(){
+                    if(sliderLoading){
+                        $(slider_container).find(".stx_remove").remove()
+                        slider_container.style.height = "initial"
+                        $(slider_container).find(".stx-loading").show()
+
+                    }
+                    sliderLoading = false
+                })
+            }
         });
 
         function convertStrings(obj) {

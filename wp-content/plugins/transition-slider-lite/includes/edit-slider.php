@@ -9,10 +9,13 @@
                             <div class="STX-nav">
                                 <div class="STX-header-admin-nav STX-header-right">
                                     <div class="STX-nav-logo"></div>
-                                    <a href="admin.php?page=transition_slider_admin" class="STX-h4 STX-btn-topbar-edit STX-btn-dashboard-edit" data-form-name="dashboard"><?php esc_html_e( 'Dashboard', 'stx' ); ?></a>
+                                    <a href="admin.php?page=transition_slider_admin&action=dashboard" class="STX-h4 STX-btn-topbar-edit STX-btn-dashboard-edit" data-form-name="dashboard"><?php esc_html_e( 'Dashboard', 'stx' ); ?></a>
 									<div class="STX-breadcrumb">
 										<span class="STX-breadcrumb-icon dashicons dashicons-arrow-right-alt2"></span>
-										<a class="STX-h4 STX-active STX-btn-topbar-edit btn-slider-name" data-form-name="slider-name"></a>
+										<span class="btn-slider-name-container">
+											<a class="STX-h4 STX-active STX-btn-topbar-edit btn-slider-name" data-form-name="slider-name"></a>
+										</span>
+
 									</div>
                                 </div>
 								<div class="STX-notification-messages">
@@ -44,7 +47,18 @@
 
                                                             </div>
 
-                                                        <div style="font-size: 14px;background-color: #f8bf3a;border-radius: 4px;padding: 4px;margin: 20px 0px 0px 0px;text-align: center;color: #fff;"><div>This is Transition Slider Lite. Get PRO version to enable more features - premium templates, import &amp; export sliders, more options for slider responsive size.</div></div>
+                                                        <div class="STX-pro-banner">
+                                <div style="font-size: 26px;">Why upgrade to Transition Slider Pro?</div>
+                                <div class="STX-pro-banner-thumbs-wrapper">
+                                    <a class="STX-pro-banner-thumb STX-banner-1" href="https://transitionslider.com/templates" target="_blank">High quality templates</a>
+                                    <a class="STX-pro-banner-thumb STX-banner-2" href="https://transitionslider.com/templates/urban-shop" target="_blank">Quality text animations</a>
+                                    <a class="STX-pro-banner-thumb STX-banner-3" href="https://transitionslider.com/templates" target="_blank">iFrame element and more...</a>
+                                    <a class="STX-pro-banner-thumb STX-banner-4" href="https://transitionslider.com/templates" target="_blank">Adjust slider and layer settings on all devices</a>
+                                    <a class="STX-pro-banner-thumb STX-banner-5" href="https://transitionslider.com/templates" target="_blank">Import / Export sliders</a>
+                                    <a class="STX-pro-banner-thumb STX-banner-6" href="https://transitionslider.com/templates" target="_blank">Slide transitions: Line advanced, Crossfade gradient...</a>
+                                    <a class="STX-pro-banner-thumb STX-banner-7" href="https://codecanyon.net/item/transition-slider-wordpress-plugin/23531533/support" target="_blank">6 months support from purchase with options to extend</a>
+                                </div>
+                            </div>
 
                                                         <div class="STX-admin-content STX-table STX-table-fixed STX-content">
                                 <div class="STX-tr">
@@ -208,7 +222,16 @@
                                                         </div>
 
                                                         <div class="options_lightbox STX-form-tab">
-                                                            <div class="STX-h2 STX-content-box-title-bg"><?php esc_html_e( 'Lightbox', 'stx' ); ?></div>
+                                                            <div class="STX-h2 STX-content-box-title-bg"><?php esc_html_e( 'Lightbox', 'stx' ); ?>
+																<div class="devices">
+
+
+																																																			<div alt="f471" class="pro-version-icon enabled dashicons dashicons-desktop"></div>
+																	<div alt="f471" class="pro-version-icon disabled dashicons dashicons-tablet"></div>
+																	<div alt="f470" class="pro-version-icon disabled dashicons dashicons-smartphone"></div>
+
+																																	</div>
+															</div>
                                                             <div class="table-wrap">
                                                                 <table class="form-table" id="slider-options-lightbox">
                                                                     <tbody/>
@@ -237,8 +260,15 @@
             <div class="edit-media-header">
             </div>
             <div class="media-frame-title STX-modal-title"><h1>Slider Preview</h1>
+                <div class="devices">
 
-                            </div>
+
+                				                    <div alt="f472" data-type="desktop" class="pro-version-icon device dashicons enabled dashicons-desktop device-desktop"></div>
+                    <div alt="f471" data-type="tablet" class="pro-version-icon device dashicons disabled dashicons-tablet device-tablet"></div>
+                    <div alt="f470" data-type="mobile" class="pro-version-icon device dashicons disabled dashicons-smartphone device-mobile"></div>
+
+								</div>
+            </div>
             <div class="media-frame-content STX-modal-frame-content">
                 <div id="slider-preview-container">
                     <div id="slider-preview"></div>
@@ -259,7 +289,9 @@
 							<a href="admin.php?page=transition_slider_admin" class="STX-h4 STX-btn-topbar-edit STX-btn-dashboard-edit" data-form-name="dashboard"><?php esc_html_e( 'Dashboard', 'stx' ); ?></a>
 							<div class="STX-breadcrumb">
 								<span class="STX-breadcrumb-icon dashicons dashicons-arrow-right-alt2"></span>
-								<a class="STX-h4 STX-active STX-btn-topbar-edit btn-slider-name" data-form-name="slider-name"></a>
+								<span class="btn-slider-name-container">
+									<a class="STX-h4 STX-active STX-btn-topbar-edit btn-slider-name" data-form-name="slider-name"></a>
+								</span>
 							</div>
 							<div class="STX-breadcrumb">
 								<span class="STX-breadcrumb-icon dashicons dashicons-arrow-right-alt2"></span>
@@ -269,10 +301,13 @@
 					</div>
 				</div>
                 <div class="devices">
-                    <div alt="f472" data-type="desktop" class="device dashicons dashicons-desktop device-desktop"></div>
-                    <div alt="f471" data-type="tablet" class="device dashicons dashicons-tablet device-tablet"></div>
-                    <div alt="f470" data-type="mobile" class="device dashicons dashicons-smartphone device-mobile"></div>
-                </div>
+
+
+                                                            <div alt="f472" data-type="desktop" class="pro-version-icon device dashicons enabled dashicons-desktop device-desktop"></div>
+                    <div alt="f471" data-type="tablet" class="pro-version-icon device dashicons disabled dashicons-tablet device-tablet"></div>
+                    <div alt="f470" data-type="mobile" class="pro-version-icon device dashicons disabled dashicons-smartphone device-mobile"></div>
+
+                                    </div>
 				<div class="STX-notification-messages">
 					<div class="STX-saved-notification-wrapper">
 						<div class="STX-saved-notification-content"><?php esc_html_e( 'Slider saved', 'stx' ); ?></div>
@@ -346,6 +381,30 @@
                                         </tr>
                                     </table>
                                 </div>
+
+
+                                <div class="stx-layers-static">
+
+                                    <div class="stx-layers-canvas-static"></div>
+
+                                    <table class="stx-layers-content-static">
+                                        <tr class="row-top">
+                                            <td align="left" class="col-left"></td>
+                                            <td align="center" class="col-center"></td>
+                                            <td align="right" class="col-right"></td>
+                                        </tr>
+                                        <tr class="row-center">
+                                            <td align="left" class="col-left"></td>
+                                            <td align="center" class="col-center"></td>
+                                            <td align="right" class="col-right"></td>
+                                        </tr>
+                                        <tr class="row-bottom">
+                                            <td align="left" class="col-left"></td>
+                                            <td align="center" class="col-center"></td>
+                                            <td align="right" class="col-right"></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
 
 
@@ -381,12 +440,16 @@
                                     <div class="accordion">
                                         <h3 class="slide-settings-accordion-menu">Background</h3>
                                         <div class="slide-settings-accordion-content">
+
                                             <div class="STX-element-title">Choose Image or Video</div>
                                             <input type="hidden" class="STX-element-input-button-left" placeholder="Media path..." id="src" name="src">
                                             <div class="STX-slide-image-preview STX-fullline-element STX-slide-src">
                                                 <img class="STX-slide-src-preview">
                                                 <video class="STX-slide-src-preview-video" preload="metadata">
                                             </div>
+
+                                            <div class="STX-element-title STX-inline-element-left STX-row-size100">Background color</div>
+                                            <input type="text" class="color-picker slide-option STX-inline-element-left STX-row-size100" data-alpha="true" name="backgroundColor" id="backgroundColor" >
                                         </div>
 
                                         <h3 class="slide-settings-accordion-menu">Thumbnail</h3>
@@ -398,9 +461,11 @@
 
                                         <h3 class="slide-settings-accordion-menu">Transition</h3>
                                         <div class="slide-settings-accordion-content">
-                                            <div class="STX-element-title STX-fullline-element">Effect<div class="property-description" title='Effect name'></div></div>
-                                            <select class="STX-element-dropdown STX-fullline-element select2-multi-col" name="transitionEffect" id="transitionEffect">
-                                            </select>
+                                            <div id="setting-effect">
+                                                <div class="STX-element-title STX-fullline-element">Effect<div class="property-description" title='Effect name'></div></div>
+                                                <select class="STX-element-dropdown STX-fullline-element select2-multi-col" name="transitionEffect" id="transitionEffect">
+                                                </select>
+                                            </div>
 
                                             <div id="setting-direction">
                                                 <div class="STX-element-title STX-inline-element-left STX-row-size40">Effect Direction<div class="property-description" title='Transition animation direction'></div></div>
@@ -414,10 +479,12 @@
                                                 </select>
                                             </div>
 
-                                            <div class="STX-element-title STX-inline-element-left STX-row-size70">Effect Duration<div class="property-description" title='Transition duration in ms'></div></div>
-                                            <div class="STX-element-input-label-wrapper STX-inline-element-right STX-row-size30">
-                                                <input class="STX-element-input-label-left" type="text" id="transitionDuration" name="transitionDuration">
-                                                <span class="STX-element-input-label-right input-group-text">ms</span>
+                                            <div id="setting-duration" >
+                                                <div class="STX-element-title STX-inline-element-left STX-row-size70">Effect Duration<div class="property-description" title='Transition duration in ms'></div></div>
+                                                <div class="STX-element-input-label-wrapper STX-inline-element-right STX-row-size30">
+                                                    <input class="STX-element-input-label-left" type="text" id="transitionDuration" name="transitionDuration">
+                                                    <span class="STX-element-input-label-right input-group-text">ms</span>
+                                                </div>
                                             </div>
 
                                             <div id="setting-brightness" >
@@ -441,9 +508,26 @@
                                                     <input class="STX-element-input-label-left" type="number" min="0" max="10" id="blur" name="blur">
                                                 </div>
                                             </div>
+
+
+
+
+                                                                                    </div>
+
+
+                                                                                <h3 class="slide-settings-accordion-menu">Autoplay</h3>
+                                        <div class="slide-settings-accordion-content">
+                                            <div class="STX-element-title STX-inline-element-left STX-row-size100">Duration<div class="property-description" title='PRO FEATURE - with this option you can set each slide to have a different autoplay timer'></div></div>
+
+                                            <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size30">
+                                                <input disabled class="STX-element-input-label-left" type="number" id="autoplay" name="autoplay">
+                                                <span class="STX-element-input-label-right input-group-text">ms</span>
+                                            </div>
                                         </div>
 
-                                        <h3 class="slide-settings-accordion-menu">Advanced</h3>
+
+
+                                                                                <h3 class="slide-settings-accordion-menu">Advanced</h3>
                                         <div class="slide-settings-accordion-content">
                                             <div class="STX-element-title STX-inline-element-left STX-row-size40">Full Slide Link</div>
                                             <input type="text" name="url" id="url" class="STX-element-input STX-inline-element-right STX-row-size60">
@@ -493,7 +577,8 @@
                                             <div class="STX-element-title btn-el">Label</div>
                                             <div class="STX-element-title iframe-el">URL</div>
                                             <textarea id="text-content" name="content" class="STX-element-textarea STX-fullline-element heading-el btn-el text-el">Add text</textarea>
-                                            <input type="text" id="src" name="src" class="STX-fullline-element iframe-el">
+
+											                                            <input type="text" id="src" name="src" class="STX-fullline-element iframe-el">
                                             <div class="STX-element-title STX-inline-element-left btn-el">Link</div>
                                             <input type="text" class="STX-element-input STX-inline-element-left btn-el" name="url">
                                             <input type="checkbox" class="STX-element-input STX-inline-element-left STX-row-size10 STX-element-checkbox btn-el" name="urlTargetBlank">
@@ -658,11 +743,65 @@
                                                             <label class="STX-element-select-label STX-text-justify" for="STX-element-text-font-normal-textAlign-justify"></label>
                                                         </div>
 
+                                                        <div class="STX-element-title STX-inline-element-left" style="margin-bottom: 0px; margin-top: 30px; font-weight: bold;">Text shadow</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size30">Horizontal</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size30">Vertical</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size30">Blur</div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="textShadowHorizontal">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="textShadowVertical">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="textShadowBlur">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-title STX-inline-element-left">Color</div>
+
+                                                        <input type="text" class="color-picker STX-inline-element-right STX-row-size40" data-alpha="true" name="textShadowColor">
+
                                                     </div>
 
                                                     <div id="tab-style-font-hover" class="element-settings-hover subtab-style">
                                                         <div class="STX-element-title STX-inline-element-left">Color</div>
                                                         <input type="text" class="color-picker STX-inline-element-left STX-row-size40 has-hover" data-alpha="true" name="textColor">
+
+                                                        <div class="STX-element-title STX-inline-element-left" style="margin-bottom: 0px; margin-top: 30px; font-weight: bold;">Text shadow</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size30">Horizontal</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size30">Vertical</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size30">Blur</div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="textShadowHorizontal">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="textShadowVertical">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="textShadowBlur">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-title STX-inline-element-left">Color</div>
+
+                                                        <input type="text" class="color-picker STX-inline-element-right STX-row-size40 has-hover" data-alpha="true" name="textShadowColor">
                                                     </div>
                                                 </div>
                                             </div>
@@ -731,6 +870,46 @@
                                                             <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,%">
                                                             </div>
                                                         </div>
+
+                                                        <div class="STX-element-title STX-inline-element-left" style="margin-bottom: 0px; margin-top: 30px; font-weight: bold;">Box shadow</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Horizontal</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Vertical</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Blur</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Spread</div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowHorizontal">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowVertical">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowBlur">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowSpread">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size40">Position</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size40">Color</div>
+
+                                                        <select class="STX-element-dropdown STX-inline-element-right STX-row-size40" name="boxShadowPosition">
+                                                            <option value="" selected>Outside</option>
+                                                            <option value="inset">Inside</option>
+                                                        </select>
+
+                                                        <input type="text" class="color-picker STX-inline-element-right STX-row-size40" data-alpha="true" name="boxShadowColor">
                                                     </div>
 
                                                     <div id="tab-style-style-hover" class="element-settings-hover subtab-style ">
@@ -765,7 +944,46 @@
                                                             <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,%">
                                                             </div>
                                                         </div>
-                                                    </div>
+
+                                                        <div class="STX-element-title STX-inline-element-left" style="margin-bottom: 0px; margin-top: 30px; font-weight: bold;">Box shadow</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Horizontal</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Vertical</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Blur</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size25">Spread</div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowHorizontal">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowVertical">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowBlur">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size25">
+                                                            <input type="number" class="STX-element-input-label-left" name="boxShadowSpread">
+                                                            <div class="STX-element-dimension STX-element-dimension-placeholder STX-has-units" data-units="px,em">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size40">Position</div>
+                                                        <div class="STX-element-title STX-inline-element-left STX-row-size40">Color</div>
+
+                                                        <select class="STX-element-dropdown STX-inline-element-right STX-row-size40" name="boxShadowPosition">
+                                                            <option value="" selected>Outside</option>
+                                                            <option value="inset">Inside</option>
+                                                        </select>
+
+                                                        <input type="text" class="color-picker STX-inline-element-right STX-row-size40 has-hover" data-alpha="true" name="boxShadowColor">                                                                             </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -856,6 +1074,15 @@
                                                 <input name="position.offsetY" type="number" class="STX-element-input-label-left">
                                                 <span class="STX-element-input-label-right input-group-text">px</span>
                                             </div>
+
+
+                                             <div class="STX-element-title STX-inline-element-left STX-row-size60">Static ( show on all slides )<div class="property-description" title='Display element on a separate layer over all slides'></div></div>
+                                            <div class="STX-inline-element-left STX-row-size40">
+                                                <input type="checkbox" name="static" aria-label="Static" class="STX-element-input STX-inline-element-left STX-row-size10 STX-element-checkbox" value="">
+                                            </div>
+
+
+
                                         </div>
 
                                         <h3 class="element-settings-accordion-menu">Size</h3>
@@ -918,47 +1145,6 @@
                                         <h3 class="element-settings-accordion-menu">Animation</h3>
 
                                         <div class="element-settings element-settings-accordion-content">
-                                            <div class="STX-element-title STX-inline-element-left STX-row-size40">Animation type</div>
-                                            <select name="contentAnimationType" class="STX-element-dropdown STX-inline-element-left STX-row-size40 STX-content-animation-type">
-                                                <option>animating</option>
-                                                <option>none</option>
-                                            </select>
-
-                                            <div class="content-animation-type typing">
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Speed</div>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size40">
-                                                    <input type="number" name="typingAnimation.speed" class="STX-element-input-label-left">
-                                                    <span class="STX-element-input-label-right input-group-text">ms</span>
-                                                </div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Loop</div>
-                                                <div class="STX-inline-element-left STX-row-size40">
-                                                    <input type="checkbox" name="typingAnimation.loop" id="typingAnimation-loop" aria-label="Loop" class="STX-element-input STX-inline-element-left STX-row-size10 STX-element-checkbox" value="">
-                                                </div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Loop delay</div>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size40">
-                                                    <input type="number" name="typingAnimation.loopDelay" class="STX-element-input-label-left">
-                                                    <span class="STX-element-input-label-right input-group-text">ms</span>
-                                                </div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Cursor</div>
-                                                <div class="STX-inline-element-left STX-row-size40">
-                                                    <input type="checkbox" name="typingAnimation.cursor" id="typingAnimation-cursor" aria-label="Cursor" class="STX-element-input STX-inline-element-left STX-row-size10 STX-element-checkbox" value="">
-                                                </div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Start delay</div>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size40">
-                                                    <input type="number" name="typingAnimation.startDelay" class="STX-element-input-label-left">
-                                                    <span class="STX-element-input-label-right input-group-text">ms</span>
-                                                </div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Freeze at</div>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size40">
-                                                    <input type="number" name="typingAnimation.freezeAt" class="STX-element-input-label-left">
-                                                    <span class="STX-element-input-label-right input-group-text">ms</span>
-                                                </div>
-                                                <div class="STX-element-title STX-inline-element-left STX-row-size40">Unfreeze after</div>
-                                                <div class="STX-element-input-label-wrapper STX-inline-element-left STX-row-size40">
-                                                    <input type="number" name="typingAnimation.unfreezeAfter" class="STX-element-input-label-left">
-                                                    <span class="STX-element-input-label-right input-group-text">ms</span>
-                                                </div>
-                                            </div>
 
                                             <div class="content-animation-type animating">
                                                 <div class="STX-element-title STX-inline-element-left STX-row-size100">Enter animation</div>
@@ -1008,13 +1194,37 @@
                                             <textarea name="customCSS" class="STX-element-textarea STX-fullline-element"></textarea>
                                         </div>
 
-                                        <h3 class="element-settings-accordion-menu img-el video-el">On click</h3>
-                                        <div class="element-settings element-settings-accordion-content img-el video-el">
+                                        <h3 class="element-settings-accordion-menu">CSS Classes</h3>
+
+
+                                                                                    <div class="element-settings element-settings-accordion-content">
+                                             <div class="STX-element-title STX-inline-element-left STX-row-size40">CSS Classes<div class="property-description" title='PRO FEATURE    Add your custom CSS class WITHOUT the dot, e.g: my-class. Add multiple classes separated with space, e.g: my-class my-class-2. Classes for slide navigation: slide-next, slide-prev. Classes for go to slide: slide-1, slide-2, ...'></div></div>
+                                            <input type="text" name="" id="" disabled class="STX-element-input STX-inline-element-right STX-row-size60 btn-disabled">
+                                        </div>
+
+
+
+                                                                                <h3 class="element-settings-accordion-menu img-el video-el btn-el">On click</h3>
+                                        <div class="element-settings element-settings-accordion-content img-el video-el btn-el">
                                             <div class="STX-element-title STX-inline-element-left STX-row-size30">Action</div>
                                             <select name="onClick.type" class="STX-element-dropdown STX-inline-element-left STX-row-size70 STX-content-animation-type">
                                                 <option>none</option>
-                                                <option value="lightbox">Open in lightbox</option>
+                                                <option value="lightbox">Open Lightbox</option>
+                                                <option value="url">Go to URL</option>
                                             </select>
+                                            <div class="on-click-type url">
+                                                <div class="STX-element-title STX-inline-element-left">URL</div>
+                                                <div class="STX-element-input-label-wrapper STX-inline-element-left">
+                                                    <input type="text" name="onClick.url" class="STX-element-input STX-inline-element-left">
+                                                </div>
+                                            </div>
+											<div class="on-click-type lightbox">
+                                                <div class="STX-element-title STX-inline-element-left">Lightbox src</div>
+                                                <div class="STX-element-input-label-wrapper STX-inline-element-left">
+                                                    <input type="text" name="onClick.lightbox" class="STX-element-input STX-inline-element-left">
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                     </div>
@@ -1053,8 +1263,10 @@
 	wp_enqueue_script("transitionslider-lib-anime-js");
 	wp_enqueue_script("transitionslider-lib-tipsy");
 	wp_enqueue_script("transitionslider-lib-webfontloader");
+	wp_enqueue_script("transitionslider-lib-iconify");
 	wp_enqueue_script("transitionslider-lib-fontselect");
 	wp_enqueue_script("transitionslider-build");
+    wp_enqueue_script("transitionslider-build-webgl");
 
     wp_enqueue_script('transitionslider-admin');
 
@@ -1069,6 +1281,9 @@
 
     $ajax_nonce = wp_create_nonce( "stx_nonce");
 
-    wp_localize_script( 'transitionslider-admin', 'options', json_encode($sliders[$current_id]) );
-    wp_localize_script( 'transitionslider-admin', 'stx_nonce', $ajax_nonce );
-    wp_localize_script( 'transitionslider-admin', 'stx_plugin_url', $this->PLUGIN_DIR_URL );
+    wp_localize_script( 'transitionslider-admin', 'data', array(
+        'options' => json_encode($sliders[$current_id]),
+        'stx_nonce' => $ajax_nonce,
+        'stx_plugin_url' => $this->PLUGIN_DIR_URL
+    ) );
+

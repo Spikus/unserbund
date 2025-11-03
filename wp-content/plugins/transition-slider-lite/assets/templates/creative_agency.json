@@ -78,7 +78,6 @@
                      "delay":1000
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "fontWeight":700,
                   "fontFamily":"Montserrat",
                   "color":"#ffffff",
@@ -115,7 +114,6 @@
                   },
                   "customCSS":"text-shadow: 0 2px 4px rgba(0,0,0,0.50);",
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "fontWeight":400,
                   "fontFamily":"Montserrat",
                   "color":"#ffffff",
@@ -131,7 +129,6 @@
                   "type":"button",
                   "mode":"content",
                   "content":"LEARN MORE",
-                  "contentAnimationType":"animating",
                   "fontSize":16,
                   "fontWeight":500,
                   "textColor":"#ffffff",
@@ -141,15 +138,6 @@
                      "y":"center",
                      "offsetX":0,
                      "offsetY":0
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeInUp",
@@ -167,8 +155,7 @@
                   "paddingTop":20,
                   "paddingBottom":20,
                   "tablet":{
-                     "contentAnimationType":"animating",
-                     "startAnimation":{
+                        "startAnimation":{
                         "animation":"fadeInUp",
                         "speed":1250,
                         "delay":1500
@@ -216,7 +203,6 @@
                      "delay":1000
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "fontWeight":700,
                   "fontFamily":"Montserrat",
                   "color":"#ffffff",
@@ -253,7 +239,6 @@
                   },
                   "customCSS":"text-shadow: 0 2px 4px rgba(0,0,0,0.50);",
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "fontWeight":400,
                   "fontFamily":"Montserrat",
                   "color":"#ffffff",
@@ -269,7 +254,6 @@
                   "type":"button",
                   "mode":"content",
                   "content":"MEET OUR TEAM",
-                  "contentAnimationType":"animating",
                   "fontSize":16,
                   "fontWeight":500,
                   "textColor":"#ffffff",
@@ -279,15 +263,6 @@
                      "y":"center",
                      "offsetX":0,
                      "offsetY":0
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeInUp",
@@ -305,8 +280,7 @@
                   "paddingTop":20,
                   "paddingBottom":20,
                   "tablet":{
-                     "contentAnimationType":"animating",
-                     "startAnimation":{
+                        "startAnimation":{
                         "animation":"fadeInUp",
                         "speed":1250,
                         "delay":1500
@@ -354,7 +328,6 @@
                      "delay":1000
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "fontWeight":700,
                   "fontFamily":"Montserrat",
                   "color":"#ffffff",
@@ -390,7 +363,6 @@
                      "delay":1000
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "fontWeight":400,
                   "fontFamily":"Montserrat",
                   "color":"#787878",
@@ -406,7 +378,6 @@
                   "type":"button",
                   "mode":"content",
                   "content":"CONTACT US",
-                  "contentAnimationType":"animating",
                   "fontSize":16,
                   "fontWeight":500,
                   "textColor":"#ffffff",
@@ -416,15 +387,6 @@
                      "y":"center",
                      "offsetX":0,
                      "offsetY":0
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeInUp",
@@ -441,8 +403,7 @@
                   "paddingTop":20,
                   "paddingBottom":20,
                   "tablet":{
-                     "contentAnimationType":"animating",
-                     "startAnimation":{
+                        "startAnimation":{
                         "animation":"fadeInUp",
                         "speed":1250,
                         "delay":1500

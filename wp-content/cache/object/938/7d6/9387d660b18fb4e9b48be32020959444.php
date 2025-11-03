@@ -1,0 +1,4 @@
+r§úh<?php exit; ?>a:1:{s:7:"content";a:8:{s:10:"_edit_lock";a:1:{i:0;s:12:"1751790101:1";}s:13:"_thumbnail_id";a:1:{i:0;s:4:"1575";}s:10:"_edit_last";a:1:{i:0;s:1:"1";}s:4:"dogs";a:1:{i:0;s:0:"";}s:5:"_dogs";a:1:{i:0;s:19:"field_600d580ddce65";}s:6:"photos";a:1:{i:0;s:0:"";}s:7:"_photos";a:1:{i:0;s:19:"field_600d5f2c330ae";}s:9:"enclosure";a:1:{i:0;s:86:"https://unserbund.com/wp-content/uploads/2025/07/IMG_1510.mov
+3147845
+video/quicktime
+";}}}

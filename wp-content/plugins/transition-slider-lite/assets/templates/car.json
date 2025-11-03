@@ -69,7 +69,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":100,
                   "fontFamily":"Raleway",
@@ -102,7 +101,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":15,
                   "marginBottom":20,
@@ -118,7 +116,6 @@
                   "type":"button",
                   "mode":"content",
                   "content":"Explore models",
-                  "contentAnimationType":"animating",
                   "fontSize":15,
                   "fontFamily":"Poppins",
                   "fontWeight":"normal",
@@ -130,15 +127,6 @@
                      "y":"top",
                      "offsetX":0,
                      "offsetY":0
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeInLeft",
@@ -174,7 +162,6 @@
                {
                   "type":"text",
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "fontWeight":"unset",
                   "textColor":"#ffffff",
                   "backgroundColor":"rgba(0,0,0,0.55)",
@@ -184,15 +171,6 @@
                      "y":"center",
                      "offsetX":1,
                      "offsetY":-1
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeIn",
@@ -243,7 +221,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":100,
                   "lineHeight":78,
@@ -275,7 +252,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":15,
                   "marginBottom":20,
@@ -310,7 +286,6 @@
                   "urlTargetBlank":true,
                   "url":"https://transitionslider.com/",
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "paddingTop":20,
                   "paddingBottom":20,
                   "paddingRight":45,
@@ -334,7 +309,6 @@
                {
                   "type":"text",
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "fontWeight":"unset",
                   "textColor":"#ffffff",
                   "backgroundColor":"rgba(0,0,0,0.55)",
@@ -344,15 +318,6 @@
                      "y":"center",
                      "offsetX":1,
                      "offsetY":-1
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeIn",
@@ -401,7 +366,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":100,
                   "fontWeight":"bold",
@@ -413,7 +377,7 @@
                },
                {
                   "type":"text",
-                  "content":"There’s a perfect saloon for every situation.",
+                  "content":"Thereï¿½s a perfect saloon for every situation.",
                   "fontSize":20,
                   "textColor":"#ffffff",
                   "position":{
@@ -433,7 +397,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":15,
                   "marginBottom":20,
@@ -467,7 +430,6 @@
                   "urlTargetBlank":true,
                   "url":"https://transitionslider.com/",
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "paddingTop":20,
                   "paddingBottom":20,
@@ -491,7 +453,6 @@
                {
                   "type":"text",
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "fontWeight":"unset",
                   "textColor":"#ffffff",
                   "backgroundColor":"rgba(0,0,0,0.55)",
@@ -501,15 +462,6 @@
                      "y":"center",
                      "offsetX":1,
                      "offsetY":-1
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeIn",
@@ -559,7 +511,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":100,
                   "fontFamily":"Raleway",
@@ -591,7 +542,6 @@
                      "delay":0
                   },
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":15,
                   "marginBottom":20,
@@ -626,7 +576,6 @@
                   "urlTargetBlank":true,
                   "url":"https://transitionslider.com/",
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "paddingTop":20,
                   "paddingBottom":20,
@@ -650,7 +599,6 @@
                {
                   "type":"text",
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "fontWeight":"unset",
                   "textColor":"#ffffff",
                   "backgroundColor":"rgba(0,0,0,0.55)",
@@ -660,15 +608,6 @@
                      "y":"center",
                      "offsetX":1,
                      "offsetY":-1
-                  },
-                  "typingAnimation":{
-                     "speed":50,
-                     "loop":false,
-                     "loopDelay":750,
-                     "cursor":true,
-                     "startDelay":0,
-                     "freezeAt":0,
-                     "unfreezeAfter":0
                   },
                   "startAnimation":{
                      "animation":"fadeIn",

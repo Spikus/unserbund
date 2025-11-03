@@ -4,7 +4,7 @@
         var $loader = $(".STX-loader-container").hide();
         $(".wrap").show();
 
-        var json_str = options.replace(/&quot;/g, '"');
+        var json_str = data.options.replace(/&quot;/g, '"');
         var content = $(".STX-saved-notification-content");
         var notificationContentEditSlide = $(".STX-edit-slide-notification-content");
         var btnDeleteAll = $(".STX-delete-btn-wrapper");
@@ -12,6 +12,7 @@
         var msgNoSlides = "Slider has no slides!";
         var msgError = "Error saving slider." + "</br>" + "Please refresh page!";
         var msgDeletedSlides = "All slides deleted.";
+		var previewModal = false;
         var counterForSlides = 0,
             slidesWrapper,
             slider,
@@ -31,7 +32,7 @@
             animateCSSName,
             previewSlilderInstance,
             sliderOptionsChanged = false,
-            colorPickerArray = {},
+            colorPickers = [],
             listOfDropdownsInEditor;
 
         $(".slide-settings-tabs-wrapper").tabs();
@@ -75,7 +76,7 @@
                 quicktags: true
             });
         }
-        options = jQuery.parseJSON(json_str);
+        window.options = jQuery.parseJSON(json_str);
 
         function showLoader() {
             $loader.show();
@@ -111,6 +112,42 @@
         options.layerWidth = options.layerWidth || "100%";
         options.layerHeight = options.layerHeight || "100%";
         options.shadow = options.shadow || "off";
+
+		if(options.fullscreenTablet == undefined) options.fullscreenTablet = options.fullscreen;
+		if(options.fullscreenMobile == undefined) options.fullscreenMobile = options.fullscreen;
+		if(options.forceFullscreenMobile == undefined) options.forceFullscreenMobile = options.forceFullscreen;
+		if(options.forceFullscreenTablet == undefined) options.forceFullscreenTablet = options.forceFullscreen;
+		if(options.widthMobile == undefined) options.widthMobile = options.width;
+		if(options.widthTablet == undefined) options.widthTablet = options.width;
+		if(options.heightMobile == undefined) options.heightMobile = options.height;
+		if(options.heightTablet == undefined) options.heightTablet = options.height;
+		if(options.responsiveMobile == undefined) options.responsiveMobile = options.responsive;
+		if(options.responsiveTablet == undefined) options.responsiveTablet = options.responsive;
+		if(options.forceResponsiveMobile == undefined) options.forceResponsiveMobile = options.forceResponsive;
+		if(options.forceResponsiveTablet == undefined) options.forceResponsiveTablet = options.forceResponsive;
+
+        options.lightboxMode = options.lightboxMode || {};
+
+        if(typeof options.lightboxModeMobile == "undefined") {
+			options.lightboxModeMobile = {
+				enable: options.lightboxMode.enable,
+				text: options.lightboxMode.text,
+				fontColor: options.lightboxMode.fontColor,
+				hoverColor: options.lightboxMode.hoverColor,
+				fontFamily: options.lightboxMode.fontFamily,
+				fontSize: options.lightboxMode.fontSize
+			}
+		}
+		if(typeof options.lightboxModeTablet == "undefined") {
+			options.lightboxModeTablet = {
+				enable: options.lightboxMode.enable,
+				text: options.lightboxMode.text,
+				fontColor: options.lightboxMode.fontColor,
+				hoverColor: options.lightboxMode.hoverColor,
+				fontFamily: options.lightboxMode.fontFamily,
+				fontSize: options.lightboxMode.fontSize
+			}
+		}
 
         $form = $("#slider-options-form");
 
@@ -173,7 +210,7 @@
                     id: options.id,
                     status: options.status,
                     slider: slider,
-                    security: window.stx_nonce,
+                    security: window.data.stx_nonce,
                     action: "transitionslider_save"
                 },
                 success: function(data, textStatus, jqXHR) {
@@ -206,6 +243,7 @@
         $(".STX-preview-btn-wrapper").click(function(e) {
             if ($(this).hasClass("btn-disabled")) return;
             $("#preview-slider-modal").show();
+			previewModal = true;
 
             $("body").css("overflow", "hidden");
 
@@ -220,9 +258,11 @@
             if (o.keyboard && !o.keyboard.enable) o.keyboard = false;
             if (o.autoplay && !o.autoplay.enable) o.autoplay = false;
             if (o.shadow && o.shadow == "off") o.shadow = null;
-            o.initialSlide = 0;
+            if (o.initialSlide) o.initialSlide = parseInt(o.initialSlide);
             o.hashNavigation = false;
 			o.forceResponsive = false;
+            o.forceResponsiveMobile = false;
+            o.forceResponsiveTablet = false;
 			o.forceFullscreen = false;
 
             for (var key in o.slides) {
@@ -256,25 +296,24 @@
         addOption("publish", "", "publishArea");
 
         addOption("general-settings", "instanceName", "text", "Slider name", "", "");
-        addOption("transition", "transitionType", "dropdown", "Transition type", "webgl", ["webgl", "css"], "");
+        addOption("general-settings", "mode", "dropdown", "Transition type", "webgl", ["webgl", "css"], "");
         addOption("general-settings", "initialSlide", "text", "Initial slide", "0", "");
         addOption("general-settings", "shadow", "radio", "Slider shadow", "off", ["off", "effect1", "effect2", "effect3", "effect4", "effect5", "effect6"], "", "");
         addOption("general-settings", "grabCursor", "checkbox", "Grab cursor", true, "", "", "");
         addOption("general-settings", "stopOnLastSlide", "checkbox", "Stop on last slide", false, "", "");
+        addOption("general-settings", "showSlidesRandomOrder", "checkbox", "Display slides in random order", false, "", "");
         addOption("general-settings", "overlay", "color", "Overlay color (between layer and background)", "", "", "");
         addOption("general-settings", "parallax", "text", "Parallax factor (between 0 and 1)", "", "", "");
         addOption("general-settings", "invertColorSelectors", "text", "CSS selector for Menu (used to change menu colors on slide change)", "", "", "");
+        addOption("general-settings", "preloadFirstSlide", "checkbox", "Preload first slide", false, "", "", "");
 
-        addOption("size", "responsive", "checkbox", "Responsive mode", true, "", "hasSubitem");
-        addOption("size", "ratio", "text", "Responsive ratio (width / height)", "2", "", "isSubitem", "", "desktop");
-        addOption("size", "forceResponsive", "checkbox", "Force responsive mode", false, "", "isSubitem");
 
-        addOption("size", "fullscreen", "checkbox", "Fullscreen mode", false, "", "hasSubitem");
-		addOption("size", "forceFullscreen", "checkbox", "Force fullscreen mode", false, "", "isSubitem");
-        addOption("size", "sliderSize", "textOnly", "Fixed mode", "", "", "hasSubitem", "");
-        addOption("size", "width", "textWithUnit", "Width", "1000", "px", "isSubitem", "", "");
-        addOption("size", "height", "textWithUnit", "Height", "550", "px", "isSubitem", "", "desktop");
-        addOption("layer", "layerBackground", "color", "Background Color", "", "", "");
+        addOption("size", "width", "textWithUnit", "Width", "1000", "px", "", "", "desktop");
+        addOption("size", "height", "textWithUnit", "Height", "550", "px", "", "", "desktop");
+        addOption("size", "responsive", "checkbox", "Responsive height", true, "", "hasSubitem", "", "desktop");
+		addOption("size", "ratio", "text", "Aspect ratio (width / height)", "2", "", "isSubitem", "", "desktop");
+        addOption("size", "forceResponsive", "checkbox", "Full width", false, "", "", "", "desktop");
+		addOption("size", "fullscreen", "checkbox", "Fullscreen", false, "", "", "", "desktop");
         addOption("layer", "layerStarOnTransitionStart", "checkbox", "Layer start on transition start", false, "", "");
 
         addOption("layer", "layerWidth", "textWithUnit", "Width", "", ["px", "%"], "", "", "desktop");
@@ -285,7 +324,8 @@
         addOption("layer", "layerHeightMax", "textWithUnit", "Max Height", "", ["px", "%"], "", "", "desktop");
         addOption("autoplay", "autoplay.enable", "checkbox", "Enable", false, "", "");
         addOption("autoplay", "autoplay.delay", "textWithUnit", "Delay between transitions", 3000, "ms", "");
-        addOption("autoplay", "autoplay.disableOnInteraction", "checkbox", "Disable on user interaction", true, "", "");
+		addOption("autoplay", "autoplay.progress", "checkbox", "Show autoplay progress", false, "");
+        addOption("autoplay", "autoplay.pauseOnHover", "checkbox", "Pause on mouse hover", false, "", "");
         addOption("autoplay", "autoplay.reverseDirection", "checkbox", "Reverse direction", false, "");
 
         addOption("buttons", "buttons.pauseVisible", "checkbox", "Pause button", false, "", "", "");
@@ -580,11 +620,13 @@
                     jQueryInputElement.val("");
                     jQueryInputElement.trigger("change");
                 });
-            if (name)
-                colorPickerArray[name] = {
+            if (name){
+                colorPickers.push({
+                    name: name,
                     pickr: pickr,
                     el: colorElement
-                };
+                })
+            }
         }
 
         $(".STX-edit-dropdown").click(function() {
@@ -623,8 +665,9 @@
                 .val();
         });
 
-        $('select[name="contentAnimationType"]').on("change keyup", function() {
-            updateContentAnimationType($(this).val());
+
+        $('select[name="onClick.type"]').on("change keyup", function() {
+            updateOnClickActionType($(this).val());
         });
 
         $("body").click(function(e) {
@@ -684,8 +727,8 @@
             });
         }
 
-        function updateContentAnimationType(val) {
-            $(".content-animation-type").hide();
+        function updateOnClickActionType(val) {
+            $(".on-click-type").hide();
             $("." + val).show();
         }
 
@@ -760,7 +803,7 @@
         $("#tabs-slide")
             .find("input")
             .change(function() {
-                if (this.name) {
+                if (this.name && currentSlide > -1) {
                     var arr = this.name.split(".");
                     var val = this.type == "checkbox" ? this.checked : this.value;
                     if (arr.length == 2) {
@@ -773,7 +816,7 @@
         $("#tabs-slide")
             .find("select")
             .change(function() {
-                if (this.name) {
+                if (this.name && currentSlide > -1) {
                     var arr = this.name.split(".");
                     if (arr.length == 2) {
                         if (typeof options.slides[currentSlide][arr[0]] != "object") options.slides[currentSlide][arr[0]] = {};
@@ -781,6 +824,26 @@
                     } else options.slides[currentSlide][this.name] = this.value;
                 }
             });
+
+        var webglTransitionSetttings = [
+            $("#setting-effect"),
+            $("#setting-direction"),
+            $("#setting-distance"),
+            $("#setting-brightness"),
+            $("#setting-blur")
+        ]
+
+        function handleModeChange(){
+            webglTransitionSetttings.forEach(function(element){
+                options.mode == "css" ? element.hide() : element.show()
+            })
+        }
+
+        handleModeChange()
+
+        $('input[name="mode"]').on("change", function(){
+            handleModeChange()
+        })
 
         function resetTextarea() {
             $(".element-settings textarea").val("");
@@ -936,7 +999,8 @@
                     }
                     options.slides[currentSlide][key] = dropdownOptions[0].value;
                 }
-            });
+
+                });
 
             $("#direction").change(function(e) {
                 onElementSettingChanged(true);
@@ -1031,7 +1095,7 @@
                     var thumbSrc;
 
                     var img, video, type, ext;
-                    if (/\.(jpg|jpeg|gif|png)$/i.test(src)) {
+                    if (/\.(jpg|jpeg|gif|png|webp)$/i.test(src)) {
                         (type = img), (ext = "img");
                         thumbSrc = "medium" in attachment.sizes ? attachment.sizes.medium.url : attachment.url;
                     } else if (/\.(mp4|ogg|ogv|webm)$/i.test(src)) {
@@ -1070,7 +1134,7 @@
                     var attachmentUrl = attachment.url;
 
                     var img, type, ext;
-                    if (/\.(jpg|jpeg|gif|png)$/i.test(attachmentUrl)) {
+                    if (/\.(jpg|jpeg|gif|png|webp)$/i.test(attachmentUrl)) {
                         (type = img), (ext = "img");
                     }
 
@@ -1094,7 +1158,7 @@
         function setSlideThumbSrc(index, src) {
             options.slides[index].thumbSrc = src;
 
-            if (/\.(jpg|jpeg|gif|png)$/i.test(src)) {
+            if (/\.(jpg|jpeg|gif|png|webp)$/i.test(src)) {
                 $(".STX-slide-thumbnail-preview").css({
                     "background-image": 'url("' + src + '")',
                     "background-size": "cover"
@@ -1107,7 +1171,7 @@
 
             if (thumbSrc) options.slides[index].thumbSrc = thumbSrc;
 
-            if (/\.(jpg|jpeg|gif|png)$/i.test(src)) {
+            if (/\.(jpg|jpeg|gif|png|webp)$/i.test(src)) {
                 $(".STX-video-preview")
                     .eq(currentSlide)
                     .hide();
@@ -1132,7 +1196,7 @@
                 type;
             var thumbSrc = slide.thumbSrc;
 
-            if (/\.(jpg|jpeg|gif|png)$/i.test(src)) {
+            if (/\.(jpg|jpeg|gif|png|webp)$/i.test(src)) {
                 type = "img";
             } else if (/\.(mp4|ogg|ogv|webm)$/i.test(src)) {
                 type = "video";
@@ -1214,24 +1278,28 @@
                 .prop("checked", false);
             $("#tabs-slide select").val("");
 
+            if(!slideOptions.backgroundColor)
+                setColorPicker("backgroundColor.slide", null)
+            else
+                setColorPicker("backgroundColor.slide", slideOptions.backgroundColor)
+
             for (var key in slideOptions) {
                 var $el = $("#tabs-slide").find("#" + key);
                 var val = slideOptions[key];
                 typeof val == "boolean" ? $el.prop("checked", val) : $el.val(val);
             }
 
+            var transitionEffect = slideOptions.transitionEffect || options.transitionEffect || "slide"
+            $("#transitionEffect").val(transitionEffect).trigger("change")
+
             clearSlideElements();
             unfocusLayerElement();
 
-            if (slide.elements) {
-                slide.elements.forEach(function(element) {
-                    addNavigatorElement(element);
-                });
-                renderLayers();
-                resizeLayers();
-            } else {
-                clearLayers();
-            }
+            slide.elements = slide.elements || []
+            slide.elements.forEach(function(element) {
+                addNavigatorElement(element);
+            });
+            renderLayers();
 
             resizeLayers();
         }
@@ -1259,6 +1327,7 @@
 
         function closeModal() {
             $("#preview-slider-modal").fadeOut("fast", function() {});
+			previewModal = false;
 
             if (!$.isEmptyObject($(".sp").data())) {
                 slider = $(".sp").data("transitionSlider");
@@ -1365,7 +1434,7 @@
                     "</div>"
             );
 
-            if (/\.(jpg|jpeg|gif|png)$/i.test(url)) {
+            if (/\.(jpg|jpeg|gif|png|webp)$/i.test(url)) {
                 $slide.find(".STX-video-preview").hide();
                 $slide.find(".STX-image-preview").show();
             } else if (/\.(mp4|ogg|ogv|webm)$/i.test(url)) {
@@ -1511,7 +1580,36 @@
         function renderLayers() {
             if (renderLayersDisabled) return;
 
-            layerRenderer.render(options.slides[currentSlide].elements, deviceType);
+            var all = []
+            var cur = []
+
+            options.slides[currentSlide].elements.forEach(function(el){
+                if(!el.static){
+                    all.push(el)
+                    cur.push(el)
+                }
+            })
+
+            options.slides[currentSlide].elements.forEach(function(el){
+                if(el.static){
+                    cur.push(el)
+                }
+            })
+
+            options.slides.forEach(function(slide, index){
+				if(slide.elements){
+					slide.elements.forEach(function(el){
+						if(el.static ) {
+							all.push(el)
+						}
+					})
+				}
+            })
+
+
+            options.slides[currentSlide].elements = cur
+
+            layerRenderer.render(all, deviceType);
         }
 
         function updateDeviceType() {
@@ -1520,7 +1618,7 @@
 
         function updateCurrentElement(settingName, hover) {
             onElementSettingChanged(true);
-            layerRenderer.updateElement(currentElement, settingName, hover);
+            layerRenderer.updateElement(getElement(currentElement), settingName, hover);
         }
 
         function updateElementOffset(offset) {
@@ -1545,7 +1643,7 @@
                 toUpdate.position.offsetY = Number(toUpdate.position.offsetY || 0);
                 toUpdate.position.offsetX += o.x;
                 toUpdate.position.offsetY += o.y;
-                layerRenderer.updateElement(index, "position");
+                layerRenderer.updateElement(el, "position");
                 updateElementSetting("position.offsetX", parseInt(toUpdate.position.offsetX));
                 updateElementSetting("position.offsetY", parseInt(toUpdate.position.offsetY));
             });
@@ -1589,10 +1687,6 @@
 
         function updateElement() {
             layerRenderer.updateElement();
-        }
-
-        function clearLayers() {
-            layerRenderer && layerRenderer.render([]);
         }
 
         $(window).resize(function() {
@@ -1665,7 +1759,7 @@
                 }
             }
             updateCurrentElement(target.name, hover);
-            if (target.name == "mode" || target.name == "position.x" || target.name == "position.y") renderLayers();
+            if (target.name == "mode" || target.name == "position.x" || target.name == "position.y" || target.name == "static") renderLayers();
         }
 
         $('textarea[name="customCSS"]').bind("change keyup paste", function(e) {
@@ -1724,7 +1818,6 @@
                 mode: "content",
                 content: "Text",
                 htmlTag: "p",
-                contentAnimationType: "animating",
                 fontSize: "16",
                 fontFamily: "",
                 fontWeight: "normal",
@@ -1772,7 +1865,6 @@
                 mode: "content",
                 content: "Heading",
                 htmlTag: "h2",
-                contentAnimationType: "animating",
                 fontSize: "26",
                 fontFamily: "",
                 fontWeight: "normal",
@@ -1849,7 +1941,6 @@
                     borderColor: "#ffffff"
                 },
                 mode: "content",
-                contentAnimationType: "animating",
                 customCSS: "-webkit-transition: all .3s ease-in-out;\n-moz-transition: all .3s ease-in-out;\n-ms-transition: all .3s ease-in-out;\n-o-transition: all .3s ease-in-out;\ntransition: all .3s ease-in-out;\nletter-spacing: .04em;\n\n\n",
                 textAlign: "center",
                 lineHeight: 22,
@@ -2008,10 +2099,12 @@
         function generateNewColorPickerElements() {
             $(".color-picker").each(function() {
                 var hover = $(this).hasClass("has-hover");
+                var slide = $(this).hasClass("slide-option");
                 var name = $(this).attr("name");
-                var property = hover ? name + ".hover" : name;
+                name = hover ? name + ".hover" : name;
+                name = slide ? name + ".slide" : name;
 
-                createColorPickerElement($(this), null, property);
+                createColorPickerElement($(this), null, name);
             });
         }
 
@@ -2020,37 +2113,35 @@
             listOfDropdownsInEditor = editorElement.getElementsByTagName("select");
 
             function formatTransition(state) {
-                var path = window.stx_plugin_url + state.videoURL;
-                var lable = '';
-                if (!state.id && !state.videoURL) {
+                if (!state.id) {
                     return state.text;
                 }
+                var lable = '';
+                var path = window.data.stx_plugin_url + "assets/video/" + state.id + ".mp4"
                 if(state.disabled) var lable = '<span class="STX-transition-video-pro">PRO</span>';
-                var $state = $('<video width="130" height="74" autoplay loop muted>' + "<source src=" + path + ' type="video/mp4" />' + "</video>" + lable).hover(function(event) {
+                var name = STX.Effects[state.id].name
+                var $state = $('<video width="130" height="74" loop muted>' + "<source src=" + path + ' type="video/mp4" />' + "</video><p>" + name + "</p>" + lable).hover(function(event) {
                     event.preventDefault();
+                    var vid = this.parentElement.firstElementChild
                     if (event.type === "mouseenter") {
-                        $(this).removeAttr("controls");
+                        vid.play();
                     } else if (event.type === "mouseleave") {
-                        $(this).removeAttr("controls");
+                        vid.currentTime = 0;
+                        vid.pause();
                     }
+
                 });
 
                 return $state;
             }
 
             function formatTransitionSelection(state) {
-                var path = window.stx_plugin_url + state.videoURL;
-                if (!state.id && !state.videoURL) {
+                if (!state.id) {
                     return state.text;
                 }
-                var $state = $('<video width="280" height="auto" autoplay loop muted>' + "<source src=" + path + ' type="video/mp4" />' + "</video>").hover(function(event) {
-                    event.preventDefault();
-                    if (event.type === "mouseenter") {
-                        $(this).removeAttr("controls");
-                    } else if (event.type === "mouseleave") {
-                        $(this).removeAttr("controls");
-                    }
-                });
+                var path = window.data.stx_plugin_url + "assets/video/" + state.id + ".mp4"
+                var name = STX.Effects[state.id].name
+                var $state = $('<video width="280" height="auto" autoplay loop muted>' + "<source src=" + path + ' type="video/mp4" />' + "</video><p>"+ name +"</p>");
                 return $state;
             }
 
@@ -2682,7 +2773,7 @@
             for (var i = 0; i < listOfDropdownsInEditor.length; i++) {
                 switch (listOfDropdownsInEditor[i].name) {
                     case "transitionEffect":
-                        $(listOfDropdownsInEditor[i]).select2({
+                        $(listOfDropdownsInEditor[i]).select2stx({
                             dropdownParent: $("#edit-slide-modal"),
                             width: "100%",
                             selectionCssClass: "selection-transition-effect",
@@ -2695,9 +2786,8 @@
                                     text: "Default",
                                     children: [
                                         {
-                                            id: "",
-                                            text: "Default",
-                                            videoURL: "assets/video/slide.mp4"
+                                            id: "slide",
+                                            text: "Default"
                                         }
                                     ]
                                 },
@@ -2706,43 +2796,36 @@
                                     children: [
                                         {
                                             id: "blur",
-                                            text: "Blur",
-                                            videoURL: "assets/video/blur.mp4"
+                                            text: "Blur"
                                         },
                                         {
                                             id: "blur2",
                                             text: "Blur 2",
-                                            videoURL: "assets/video/blur2.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "blur3",
                                             text: "Blur 3",
-                                            videoURL: "assets/video/blur3.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "blur4",
                                             text: "Blur 4",
-                                            videoURL: "assets/video/blur4.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "blur5",
                                             text: "Blur ",
-                                            videoURL: "assets/video/blur5.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "blur6",
                                             text: "Blur 6",
-                                            videoURL: "assets/video/blur6.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "blur7",
                                             text: "Blur 7",
-                                            videoURL: "assets/video/blur7.mp4",
                                             disabled: true
                                         }
                                     ]
@@ -2753,25 +2836,21 @@
                                         {
                                             id: "crossfade1",
                                             text: "Crossfade 1",
-                                            videoURL: "assets/video/crossfade1.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "crossfade2",
                                             text: "Crossfade 2",
-                                            videoURL: "assets/video/crossfade2.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "crossfade3",
                                             text: "Crossfade 3",
-                                            videoURL: "assets/video/crossfade3.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "crossfade4",
                                             text: "Crossfade 4",
-                                            videoURL: "assets/video/crossfade4.mp4",
                                             disabled: true
                                         }
                                     ]
@@ -2781,13 +2860,11 @@
                                     children: [
                                         {
                                             id: "fade",
-                                            text: "Fade 1",
-                                            videoURL: "assets/video/fade.mp4"
+                                            text: "Fade 1"
                                         },
                                         {
                                             id: "fade2",
-                                            text: "Fade 2",
-                                            videoURL: "assets/video/fade2.mp4"
+                                            text: "Fade 2"
                                         }
                                     ]
                                 },
@@ -2796,67 +2873,51 @@
                                     children: [
                                         {
                                             id: "line",
-                                            text: "Line 1",
-                                            videoURL: "assets/video/line.mp4"
+                                            text: "Line 1"
                                         },
                                         {
                                             id: "line2",
                                             text: "Line 2",
-                                            videoURL: "assets/video/line2.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line3",
                                             text: "Line 3",
-                                            videoURL: "assets/video/line3.mp4",
-                                            disabled: true
-                                        },
-                                        {
-                                            id: "line3",
-                                            text: "Line 3",
-                                            videoURL: "assets/video/line3.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line4",
                                             text: "Line 4",
-                                            videoURL: "assets/video/line4.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line5",
                                             text: "Line 5",
-                                            videoURL: "assets/video/line5.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line6",
                                             text: "Line 6",
-                                            videoURL: "assets/video/line6.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line7",
                                             text: "Line 7",
-                                            videoURL: "assets/video/line7.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line8",
                                             text: "Line 8",
-                                            videoURL: "assets/video/line8.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line9",
                                             text: "Line 9",
-                                            videoURL: "assets/video/line9.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "line10",
                                             text: "Line 10",
-                                            videoURL: "assets/video/line10.mp4",
                                             disabled: true
                                         }
                                     ]
@@ -2866,8 +2927,7 @@
                                     children: [
                                         {
                                             id: "powerzoom",
-                                            text: "Powerzoom 1",
-                                            videoURL: "assets/video/powerzoom.mp4"
+                                            text: "Powerzoom 1"
                                         }
                                     ]
                                 },
@@ -2876,31 +2936,26 @@
                                     children: [
                                         {
                                             id: "roll",
-                                            text: "Roll 1",
-                                            videoURL: "assets/video/roll.mp4"
+                                            text: "Roll 1"
                                         },
                                         {
                                             id: "roll2",
                                             text: "Roll 2",
-                                            videoURL: "assets/video/roll2.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "roll3",
                                             text: "Roll 3",
-                                            videoURL: "assets/video/roll3.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "roll4",
                                             text: "Roll 4",
-                                            videoURL: "assets/video/roll4.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "roll5",
                                             text: "Roll 5",
-                                            videoURL: "assets/video/roll5.mp4",
                                             disabled: true
                                         }
                                     ]
@@ -2910,8 +2965,7 @@
                                     children: [
                                         {
                                             id: "slide",
-                                            text: "Slide 1",
-                                            videoURL: "assets/video/slide.mp4"
+                                            text: "Slide 1"
                                         }
                                     ]
                                 },
@@ -2920,8 +2974,7 @@
                                     children: [
                                         {
                                             id: "stretch",
-                                            text: "Stretch 1",
-                                            videoURL: "assets/video/stretch.mp4"
+                                            text: "Stretch 1"
                                         }
                                     ]
                                 },
@@ -2930,8 +2983,7 @@
                                     children: [
                                         {
                                             id: "twirl",
-                                            text: "Twirl 1",
-                                            videoURL: "assets/video/twirl.mp4"
+                                            text: "Twirl 1"
                                         }
                                     ]
                                 },
@@ -2940,8 +2992,7 @@
                                     children: [
                                         {
                                             id: "warp",
-                                            text: "Warp 1",
-                                            videoURL: "assets/video/warp.mp4"
+                                            text: "Warp 1"
                                         }
                                     ]
                                 },
@@ -2950,37 +3001,26 @@
                                     children: [
                                         {
                                             id: "zoom",
-                                            text: "Zoom 1",
-                                            videoURL: "assets/video/zoom.mp4"
+                                            text: "Zoom 1"
                                         },
                                         {
                                             id: "zoom2",
                                             text: "Zoom 2",
-                                            videoURL: "assets/video/zoom2.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "zoom3",
                                             text: "Zoom 3",
-                                            videoURL: "assets/video/zoom3.mp4",
-                                            disabled: true
-                                        },
-                                        {
-                                            id: "zoom3",
-                                            text: "Zoom 3",
-                                            videoURL: "assets/video/zoom3.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "zoom4",
                                             text: "Zoom 4",
-                                            videoURL: "assets/video/zoom4.mp4",
                                             disabled: true
                                         },
                                         {
                                             id: "zoom5",
                                             text: "Zoom 5",
-                                            videoURL: "assets/video/zoom5.mp4",
                                             disabled: true
                                         }
                                     ]
@@ -2991,7 +3031,7 @@
                     case "endAnimation.animation":
                         var animationType = "endAnimation";
 
-                        $(listOfDropdownsInEditor[i]).select2({
+                        $(listOfDropdownsInEditor[i]).select2stx({
                             dropdownParent: $("#edit-slide-modal"),
                             width: "100%",
                             selectionCssClass: "selection-transition-effect",
@@ -3168,7 +3208,7 @@
                     case "startAnimation.animation":
                         var animationType = "startAnimation";
 
-                        $(listOfDropdownsInEditor[i]).select2({
+                        $(listOfDropdownsInEditor[i]).select2stx({
                             dropdownParent: $("#edit-slide-modal"),
                             width: "100%",
                             selectionCssClass: "selection-transition-effect",
@@ -3463,11 +3503,18 @@
         }
 
         function clearEditLayerColorPickerElements() {
-            for (var property in colorPickerArray) {
-                if (colorPickerArray.hasOwnProperty(property)) {
-                    colorPickerArray[property].pickr.setColor(null, true);
-                }
-            }
+            colorPickers.forEach(function(picker){
+                if(!picker.name.includes("slide"))
+                    picker.pickr.setColor(null, true)
+            })
+        }
+
+        function setColorPicker(name, color){
+
+            colorPickers.forEach(function(colorPicker){
+                if(colorPicker.name == name)
+                    colorPicker.pickr.setColor(color)
+            })
         }
 
         $addTextButton.click(createTextElement);
@@ -3498,7 +3545,7 @@
                 e.preventDefault();
                 e.stopPropagation();
 
-                onLayerMouseDown($(this).index(), e.shiftKey);
+                onLayerMouseDown($(this).index(), e.shiftKey, e.button);
             });
 
             $layerList.append($el);
@@ -3575,7 +3622,7 @@
             var settings = hover ? elementSettingsHover : elementSettings;
 
             for (var key in settings) {
-                if (settings[key].type == "radio") settings[key].checked = false;
+                if (settings[key].type == "radio" || settings[key].type == "checkbox") settings[key].checked = false;
                 else if (settings[key]) settings[key].value = "";
             }
 
@@ -3598,8 +3645,8 @@
                                         .hasClass("STX-color-picker")
                                 ) {
                                     var pickerColor = val === "" ? null : val;
-                                    if (hover) colorPickerArray[key + ".hover"].pickr.setColor(pickerColor);
-                                    else colorPickerArray[key].pickr.setColor(pickerColor);
+                                    var name = hover ? key + '.hover' : key
+                                    setColorPicker(name, pickerColor)
                                 }
                             } else if (settings[key].classList.contains("unit")) {
                                 if (typeof val == "string") {
@@ -3625,14 +3672,13 @@
                                 if (typeof val2 == "boolean") settings[key + "." + key2].checked = val2;
 
                                 if (settings[key + "." + key2]) settings[key + "." + key2].value = val2;
-                                if ($(settings[key + "." + key2]).data('select2')) $(settings[key + "." + key2]).val(val2).trigger("change");
+                                if ($(settings[key + "." + key2]).data('select2stx')) $(settings[key + "." + key2]).val(val2).trigger("change");
                             }
                         }
                     }
                 }
             }
-            var t = getContentAnimationType();
-            updateContentAnimationType(t);
+            updateOnClickActionType(getOnClickActionType());
 
             if (obj.type == "heading") {
                 $(".slide-settings-main-menu-title").text("Edit Heading");
@@ -3714,8 +3760,9 @@
             });
         }
 
-        function getContentAnimationType() {
-            return $('select[name="contentAnimationType"]').val();
+
+        function getOnClickActionType() {
+            return $('select[name="onClick.type"]').val();
         }
 
         function updateElementSetting(name, val, hover) {
@@ -3804,8 +3851,35 @@
             return options.slides[currentSlide];
         }
 
-        function onLayerMouseDown(val, shiftKey) {
-            setCurrentElement(val);
+        function getIndexByID(id, slideIndex ){
+            var index = -1
+			if(options.slides[slideIndex].elements){
+				options.slides[slideIndex].elements.forEach(function(el, i){
+					if("n" + el.id == id)
+						index = i;
+				})
+			}
+            return index;
+        }
+
+        function onLayerEditorMouseDown(id, shiftKey) {
+            var index
+            options.slides.forEach(function(slide, i){
+                index = getIndexByID(id, i)
+                if(index != -1) {
+                    if(i != currentSlide){
+                        currentSlide = i;
+                        showSlide(currentSlide)
+                    }
+                    onLayerMouseDown(index, shiftKey)
+                }
+            })
+
+        }
+
+        function onLayerMouseDown(index, shiftKey) {
+
+            setCurrentElement(index);
 
             if (!shiftKey) {
                 $(".selected-layer").removeClass("selected-layer");
@@ -3845,7 +3919,7 @@
                 toUpdate.position.offsetY = Number(toUpdate.position.offsetY || 0);
                 toUpdate.position.offsetX = parseInt(toUpdate.position.offsetX);
                 toUpdate.position.offsetY = parseInt(toUpdate.position.offsetY);
-                layerRenderer.updateElement(index, "position");
+                layerRenderer.updateElement(el, "position");
                 updateElementSetting("position.offsetX", parseInt(toUpdate.position.offsetX));
                 updateElementSetting("position.offsetY", parseInt(toUpdate.position.offsetY));
             });
@@ -3856,7 +3930,7 @@
         }
 
         var layerRenderer = new STX.LayerRenderer({
-            onLayerMouseDown: onLayerMouseDown,
+            onLayerMouseDown: onLayerEditorMouseDown,
             onLayerMouseUp: onLayerMouseUp,
             onLayerMove: onLayerMove
         });
@@ -3942,7 +4016,7 @@
 
             var $elem = jQuery(document.activeElement);
             onElementSettingChanged(true);
-            if ($elem.parents(".element-settings").length == 0) {
+            if (($elem.parents(".element-settings").length == 0) && ($elem.parent(".pcr-interaction").length == 0)) {
                 layerClipboard.forEach(function(el) {
                     var clone = JSON.parse(JSON.stringify(el));
                     clone.id = null;
@@ -4084,7 +4158,7 @@
                     else offset.y += 1;
                     updateElementOffset(offset);
                 }
-            } else if (e.keyCode == "37") {
+            } else if (e.keyCode == "37" && !previewModal) {
                 if (currentElement > -1) {
                     var offset = { x: 0, y: 0 };
                     if (e.shiftKey) offset.x -= 10;
@@ -4093,7 +4167,7 @@
                 } else if (currentSlide > -1) {
                     if (document.activeElement.tagName != "INPUT") showPrevSlide();
                 }
-            } else if (e.keyCode == "39") {
+            } else if (e.keyCode == "39" && !previewModal) {
                 if (currentElement > -1) {
                     var offset = { x: 0, y: 0 };
                     if (e.shiftKey) offset.x += 10;

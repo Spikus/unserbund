@@ -6,7 +6,7 @@
 
         var self = this;
 
-        this.sliders = $.parseJSON(sliders);
+        this.sliders = $.parseJSON(data.sliders);
         var arr = [];
 
         for (var key in this.sliders) {
@@ -37,6 +37,10 @@
         $(".STX-slider-export-btn a").css({
             'cursor':'not-allowed'
         });
+
+        $(".dashicons-tablet").tipsy({ gravity: "n", opacity: 1, title: function() { return "This feature is available in PRO version!" } });
+        $(".dashicons-smartphone").tipsy({ gravity: "n", opacity: 1, title: function() { return "This feature is available in PRO version!" } });
+        $(".device-desktop").css("opacity", "1");
 
         $(".STX-designs").click(function() {
             $templatesModal.show();
@@ -88,7 +92,7 @@
                 url = slider.slides.length > 0 ? slider.slides[0].thumbSrc || slider.slides[0].src : "";
             }
 
-            if (/\.(jpg|jpeg|gif|png)$/i.test(url)) {
+            if (/\.(jpg|jpeg|gif|png|webp)$/i.test(url)) {
                 type = '<img title="Sort"  class="STX-image-preview" src="' + url + '">';
             } else if (/\.(mp4|ogg|ogv|webm)$/i.test(url)) {
                 type = '<video title="Sort"  class="STX-video-preview" src="' + url + '"></video>';
@@ -208,7 +212,7 @@
             var $templates = $(".STX-templates");
 
             arr.forEach(function(template) {
-                var bgUrl = window.stx_plugin_url + "assets/templates/" + template.name + ".jpg";
+                var bgUrl = window.data.stx_plugin_url + "assets/templates/" + template.name + ".jpg";
 
                 var btnText = template.free || _pro ? "Import" : "Buy Pro"
                 var btnClass = template.free || _pro ? "template-btn template-import-btn" : "template-btn template-buy-pro"
@@ -296,6 +300,21 @@
                 slug: 'image-gallery-slider',
                 free: true
             },
+			{
+				name: "cinematic_lightbox_slider",
+                title: "Cinematic Lightbox Slider",
+                slug: 'cinematic-lightbox-slider'
+			},
+			{
+				name: "static_app_slider",
+                title: "Static App Slider",
+                slug: 'static-app-slider'
+			},
+			{
+				name: "real_estate_with_tabs",
+                title: "Real estate with Tabs",
+                slug: 'real-estate-with-tabs'
+			},
             {
                 name: "business2",
                 title: "Business 2",
@@ -468,7 +487,7 @@
         addTemplateSliders(templateSliders);
 
         function duplicateSlider(id) {
-            var data = "action=transitionslider_duplicate&security=" + window.stx_nonce + "&currentId=" + id;
+            var data = "action=transitionslider_duplicate&security=" + window.data.stx_nonce + "&currentId=" + id;
 
             $.ajax({
                 type: "POST",
@@ -488,7 +507,7 @@
 
         function deleteSliders(arr) {
             var msg = "";
-            var data = "action=transitionslider_delete&security=" + window.stx_nonce;
+            var data = "action=transitionslider_delete&security=" + window.data.stx_nonce;
 
             if (arr) {
                 if (arr.length == 1) msg = "Delete slider";
@@ -516,7 +535,7 @@
             }
         }
         function getSliderOptions(id, onCompete) {
-            var data = "action=transitionslider_get_slider&security=" + window.stx_nonce + "&currentId=" + id;
+            var data = "action=transitionslider_get_slider&security=" + window.data.stx_nonce + "&currentId=" + id;
 
             $.ajax({
                 type: "POST",
@@ -707,8 +726,11 @@
                     if (_s.keyboard && !_s.keyboard.enable) _s.keyboard = false;
                     if (_s.autoplay && !_s.autoplay.enable) _s.autoplay = false;
                     if (_s.shadow && _s.shadow == "off") _s.shadow = null;
-                    _s.initialSlide = 0;
+                    if (_s.initialSlide) _s.initialSlide = parseInt(_s.initialSlide);
                     _s.hashNavigation = false;
+                    _s.forceResponsive = false;
+                    _s.forceResponsiveMobile = false;
+                    _s.forceResponsiveTablet = false;
 
                     for (var key in _s.slides) {
                         if (_s.slides[key].elements) {
@@ -751,6 +773,32 @@
             });
         }
 
+        function openModal(type, title) {
+            modal.fadeIn("fast", function() {});
+
+            modalTitle.text(title);
+            $(".slider_preview").hide();
+
+            modal.removeClass("previewActive");
+            modal.removeClass("importActive");
+
+            switch (type) {
+                case "import":
+                    modal.addClass("importActive");
+                    importInput.show();
+                    importText.show();
+                    break;
+            }
+        }
+        function closeModal() {
+            $("#preview-slider-modal").fadeOut("fast", function() {});
+
+            if (!$.isEmptyObject($("#slider-preview").data())) {
+                slider = $("#slider-preview").data("transitionSlider");
+                slider.stopSlider();
+            }
+        }
+
         function closeImportModal() {
             modal.fadeOut("fast", function() {});
         }
@@ -777,7 +825,7 @@
 
             $.ajax({
                 dataType: "text",
-                url: window.stx_plugin_url + "assets/templates/" + this.id + ".json",
+                url: window.data.stx_plugin_url + "assets/templates/" + this.id + ".json",
                 data: "",
                 success: function(data) {
                     var ajaxUrl = "admin-ajax.php?page=transition_slider_admin";
@@ -790,7 +838,7 @@
 
                         data: {
                             slider: slider,
-                            security: window.stx_nonce,
+                            security: window.data.stx_nonce,
                             action: "transitionslider_import"
                         },
 

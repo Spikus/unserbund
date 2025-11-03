@@ -1,4 +1,4 @@
-=== Transition Slider - Responsive Image Slider and Video Slider ===
+=== Transition Slider - Responsive Image Slider and Gallery ===
 Contributors: creativeinteractivemedia
 Donate link: https://transitionslider.com/
 License: GPLv3
@@ -6,8 +6,8 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: slide anything, master slider, wordpress slider, smart slider, meta slider, slider, slide anything, layer slider, video slider, touch slider, content slider, SEO, vertical slider, HTML5 slider, hardware accelerate, animation, mobile slider, iOS, android, youtube slider, horizontal slider, responsive slider, fullscreen slider, post slider, image slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery, lightweight slider, carousel, lightbox, slideshow
 Requires PHP: 5.4
 Requires at least: 4.8
-Tested up to: 5.6
-Stable tag: 2.15.0
+Tested up to: 5.8
+Stable tag: 2.20.3
 
 
 Easy to use WordPress video slider and image slider plugin with seamless transitions, responsive animated layers and templates included. Build any slider without coding! Create beautiful responsive slideshow, image slider, video slider, layer slider with animated layers and transition effects Slide, Fade, Zoom, Warp, Crossfade, Flash, Twirl, Roll, Stretch.
@@ -15,14 +15,14 @@ Easy to use WordPress video slider and image slider plugin with seamless transit
 
 == Description ==
 
->[Demo](https://transitionslider.com/ "Live Transition Slider demo") | [Example Sliders](hhttps://transitionslider.com/templates "Example Sliders") | [Features](https://transitionslider.com "All features") | [Documentation](https://transitionslider.com/documentation/wordpress/ "Transition Slider documentation") | [Support](https://wordpress.org/support/plugin/transition-slider-lite "Free support")
+>[Demo](https://transitionslider.com/ "Live Transition Slider demo") | [Example Sliders](hhttps://transitionslider.com/templates "Example Sliders") | [Features](https://transitionslider.com "All features") | [Documentation](https://transition-slider.gitbook.io/wordpress "Transition Slider documentation") | [Support](https://wordpress.org/support/plugin/transition-slider-lite "Free support")
 
 
 = Overview =
 
-**Transition Slider** is unique innovative image and video slider with seamless transitions and responsive animated layers. Showcase your images and videos in your website across all browsers & devices with this unique and most powerful Slider around. Build any slider without coding! Create beautiful responsive slideshow, image slider, video slider, gallery slider, layer slider with animated layers and effects **Slide**, **Fade**, **Zoom**, **Warp**, **Crossfade**, **Flash**, **Twirl**, **Roll**, **Stretch**.
+**Transition Slider** is unique innovative image and video slider and gallery with seamless transitions and responsive animated layers. Showcase your images and videos in your website across all browsers & devices with this unique and most powerful Slider around. Build any slider without coding! Create beautiful responsive slideshow, image slider, video slider, gallery slider, layer slider with animated layers and effects **Slide**, **Fade**, **Zoom**, **Warp**, **Crossfade**, **Flash**, **Twirl**, **Roll**, **Stretch**.
 
-[youtube https://www.youtube.com/watch?v=TNzgYqOheWM]
+[youtube https://www.youtube.com/watch?v=zJGESBS6ZdM]
 
 = Templates =
 
@@ -45,8 +45,9 @@ Transition Slider comes with professionally designed templates that you can easi
 * [Business Slider Template](https://transitionslider.com/templates/business)
 * [Car Sales Slider Template](https://transitionslider.com/templates/car-sales)
 
-= 33 PRO Templates =
+= 34 PRO Templates =
 
+* [Real Estate Slider with Tabs Template](https://transitionslider.com/templates/real-estate-slider-with-tabs)
 * [Gym Slider Template](https://transitionslider.com/templates/gym)
 * [Fashion Slider Template](https://transitionslider.com/templates/fashion)
 * [Sport News Slider Template](https://transitionslider.com/templates/sport-news)
@@ -59,7 +60,7 @@ Transition Slider comes with professionally designed templates that you can easi
 
 * [Transition Slider Demo Sliders](https://transitionslider.com)
 * [Transition Slider Features](https://transitionslider.com)
-* [Transition Slider Manual](https://transitionslider.com/documentation/wordpress/)
+* [Transition Slider Manual](https://transition-slider.gitbook.io/wordpress)
 
 • [Upgrade to PRO](https://transitionslider.com/#pricing)
 
@@ -71,6 +72,14 @@ Bring your website to new level with transition effects only seen in professiona
 
 [youtube https://www.youtube.com/watch?v=usa-ou_p1fg]
 
+
+= Image Gallery / Video Gallery =
+
+Create image gallery or video gallery with unique and innovative transitions between images and videos. Add captions to images and videos easily with our visual slide editor.
+
+= SEO Slider =
+
+Slider has special option to preload first slide image, image starts to load even before slider scripts are finished with loading, which is great for SEO. This prevents content shift that is the main problem with sliders. It also loads first slide very fast which is great for user experience.
 
 = Line transitions - PRO =
 
@@ -85,7 +94,7 @@ No technical skills needed, simply choose a slider and insert the shortcode in y
 
 = Animated Layers =
 
-Completely new Layer editor gives you ability to design your slides easily by adding animated Text, Image, Button and Video elements, with advanced settings for each element. Each element has In animation, Out animation with customisable duration and delay.
+Completely new Layer editor gives you ability to design your slides easily by adding animated Text, Heading, Image, Button and Video elements, with advanced settings for each element. Each element has In animation, Out animation with customisable duration and delay.
 
 [youtube https://www.youtube.com/watch?v=dJlNc1JJWNA]
 
@@ -101,9 +110,12 @@ Slider can have responsive height (fixed aspect ratio) or fixed height. There is
 
 As you edit slides in beautiful interface you can watch your changes instantly in live preview, which makes creating slides fast and efficient.
 
-= Mobile and Tablet settings - PRO =
+= Mobile and Tablet Scene view - PRO =
+In PRO version you can view your current built-up Slider scene instantly in different device modes (mobile, tablet).
 
-With mobile and tablet settings you can create fully responsive slider that will look great on all devices. You can have different slider size (portrait on mobile, landscape on desktop and tablet) and change any setting for layer elements (font size, position, spacing)
+= Mobile and Tablet Size settings - PRO =
+
+With mobile and tablet settings you can create fully responsive slider that will look great on all devices. You can have different slider size (portrait on mobile, landscape on desktop and tablet) and change any setting for layer elements (font size, position, spacing).
 
 [youtube https://www.youtube.com/watch?v=46kEaqIJw6U]
 
@@ -173,13 +185,35 @@ First slide is seamlessly displayed after the last slide without any carousel re
 
 Create a full slide link button for any slide within your slider.
 
+= Optional always visible Layer =
+
+There's great new option to have one Layer in between slide image and slide elements, which can be used to "darken" the slide image and to make texts and buttons stand out more on your slider. This extra Layer can be fully customized as changing the color, transparency and size of the Layer.
+
+= WebGl or CSS transition =
+
+If your preference is to have lightning fast slider and transitions between slides and you don't wann't to use advanced transitions, we made it possible as well with CSS transitions.
+
 = Mouse scroll navigation =
 
 You can navigate through slides with mouse scroll.
 
-= Autoplay =
+= Autoplay Slider=
 
-Get benefit from timer driven autoplaying slides so your users get visual representation before the actual interaction with slider.
+Get benefit from timer driven autoplaying slides so your users get visual representation before the actual interaction with slider. Also, you can enable progress indicator option for users to see how long each slide will be displaying before switching to Next Slide.
+
+= Autoplay Slides - PRO =
+
+In PRO version each Slide can have different autoplay timer. This would be of great use for displaying different products on image slides and videos on video slides. This way you can make certain slides last "longer" or "shorter".
+
+= Randomize Slides =
+Each time your webpage loads, slides can be displayed randomly.
+
+= Custom actions for Layer Elements - PRO =
+Each Layer element (Text, Button, Image) can have a custom action. For example, you can create set of tabs (buttons) and make each of them to switch to certain slide on click.
+
+= Static Elements - PRO =
+
+Layer elements like Text, Button and Image can be marked as "static". This means that you can make an element visible over all slides, all the time, which makes Transition Slider even more insightful.
 
 = Gutenberg compatible =
 
@@ -204,7 +238,7 @@ Get benefit from timer driven autoplaying slides so your users get visual repres
 • Deep linking
 • Slide link - entire slide is link
 • Switch slides with mouse scroll
-• CSS Styles - customize anything with custom css
+• CSS Styles - customize anything with custom css and preview live changes
 • 4 Preloader styles
 • Parallax
 
@@ -217,6 +251,8 @@ Get benefit from timer driven autoplaying slides so your users get visual repres
 • Import & export sliders
 • +11 pre-made text templates
 • +7 pre-made button templates
+• Autoplay timer for each Slide
+• Custom actions for Layer Element (switch to certain slide on button/text/image click)
 
 
 = Compatible Browsers =
@@ -231,7 +267,7 @@ Get benefit from timer driven autoplaying slides so your users get visual repres
 
 = Documentations =
 
-If you have any question about working with "Transition Slider", you can take a look at [online documentations](https://transitionslider.com/documentation/wordpress).
+If you have any question about working with "Transition Slider", you can take a look at [online documentations](https://transition-slider.gitbook.io/wordpress).
 
 
 = What our users say =
@@ -294,15 +330,99 @@ You can use automatic update to update the plugin safely.
 
 = Where can I find Transition Slider documentation and user guides =
 
-If you have any question about working with "Transition Slider", you can take a look at [online documentations](https://transitionslider.com/documentation/wordpress)
+If you have any question about working with "Transition Slider", you can take a look at [online documentations](https://transition-slider.gitbook.io/wordpress)
 
 
 
 == Changelog ==
 
+= Version 2.20.3 / (20.07.2021) =
+!!!    Great news for all our dear customers. For the next version we announce that Transition Slider 3 is coming    !!!
+
+* [IMPROVEMENT]   The new version of Transiiton Slider supports the .webp image format in the admin dashboard which is available and enabled on the latest version of WordPress 5.8.
+
+= Version 2.20.2 / (17.06.2021) =
+* [BUG]   Additional fixes for CORS policy browser where the slider did not load images if the assets were in a location without www. and the domain contains www.
+* [BUG]   Fixed Dashboard typo
+
+= Version 2.20.1 / (16.06.2021) =
+* [BUG]   Fixed a problem with the CORS policy browser where the slider did not load images if the assets were in a location without www. and the domain contains www.
+
+= Version 2.20.0 / (14.06.2021) =
+* [FEATURE]   A new TEMPLATE "Cinematic Slider" has been added to the template gallery.
+* [FEATURE]   We've added support for icons inside the button.
+* [IMPROVEMENT]   We added desktop / tablet / mobile icons to the slider preview.
+* [IMPROVEMENT]   To make your navigation easier, a new Getting Started video with voiceover has been added to our slider plugin.
+* [IMPROVEMENT]   Optimized script loading.
+* [IMPROVEMENT]   Fixed another issue with CORS policy (domain with www. And assets without www.).
+* [BUG]   Layer editor fixes: A static element with an absolute position is now running a click event.
+* [BUG]   Layer editor fixes: Dragging absolute elements now works without difficulty.
+* [BUG]   Layer editor fixes: Fixed a situation where a static element was not displayed on a slider where there were no static elements.
+* [BUG]   Layer editor fixes: Fixed copy / paste elements from one slide to another.
+
+= Version 2.19.0 / (31.05.2021) =
+* [FEATURE]   All layer elements have been expanded with another new option called box shadow. While the text and heading element got another text shadow option.
+* [FEATURE]   Added Welcome screen inside the plugin, in which you can watch a short Getting Started video.
+* [FEATURE]   We have expanded the Lightbox options so that now the Button element can open any image or video you want, just enter the URL.
+* [FEATURE]   New template - Static App Slider
+* [FEATURE]   New template - Cinematic Lightbox Slider
+* [FEATURE]   New template - Real estate with Tabs
+* [IMPROVEMENT]   A text effect called Effect9 (typing effect) enhanced and optimized to support multiple line text.
+* [IMPROVEMENT]   After importing the template, the slider thumbnails were not a display of local assets, now the asset src thumbnails are the local path.
+* [IMPROVEMENT]   Improved transitions where it is now possible for the current slide to go slower or its brightness to decrease.
+* [IMPROVEMENT]   Tests of the speed of loading the slider were made, and considering the results, a plan was made for the future progress of even greater acceleration of the slider.
+* [IMPROVEMENT]   We've added buttons to the Go Pro in a few more places to make it easier to access the details that our PRO version brings.
+* [IMPROVEMENT]   We've created a cleanup of some old options that are no longer needed: "contentAnimationType".
+* [IMPROVEMENT]   Once the iFrame element is added to the scene, the area that the iFrame occupies is now visible even before you insert the src of your iFrame.
+* [BUG]   (Dashboard) Fixed a bug where sometimes multiple slider previews via the thumbnail preview button did not work properly.
+* [BUG]   Special text effects optimized and removed bugs that appeared when there were multiple text elements with the same text effect on the slider.
+
+= Version 2.18.1 / (17.05.2021) =
+* [BUG]   Fixed issue where slider crashed when checking static elements.
+
+= Version 2.18.0 / (17.05.2021) =
+* [FEATURE]   From now on, each element has a static option with which any element can remain visible on any slide (eg you can add a watermark to your slide or custom navigation ...)
+* [FEATURE]   Through the static elements it is possible to arrange custom navigation and pagination, with which you can go to the next, previous or jump to any slide you define.
+* [FEATURE]   Extended autoplay option where now each slide can have its own autoplay duration.
+* [FEATURE]   The autoplay option now has a "Pause on hover" extension, when the user moves the mouse over the slider the current slide will be paused.
+* [FEATURE]   Autoplay also has an additional option - visual progress, with this option you can display a small circular progress bar that shows in real time what is duration of current slide.
+* [FEATURE]   From now on, the background slide does not have to be an image or a video, but can also be a color. We have expanded the option so that you can add two colors and create a gradient color, there is also the option of a horizontal or vertical gradient.
+* [FEATURE]   A new option that allows slides within the slider to be displayed in a random order when loading.
+* [FEATURE]   Crossfade - custom alpha map | it is possible to add any alpha map for the crossfade effect and thus we have enabled even more combinations to create new transitions.
+* [IMPROVEMENT]   We have added an option with which you can quickly load a slider on your page.
+* [IMPROVEMENT]   We have shown more clearly some of the options we offer in the PRO version using a banner.
+* [IMPROVEMENT]   The name of the transitions is now visible below each video.
+* [IMPROVEMENT]   Preview video transitions are now played only on the hover over the transition, to make it easier to spot the selected transition.
+* [IMPROVEMENT]   jQuery updated documentation that can be found at https://transition-slider.gitbook.io/wordpress/
+* [BUG]   For arabic web page display fixed the problem with the display of navigation arrows.
+* [BUG]   Fixed a situation where sometimes slides could not be edited.
+* [BUG]   The video preview of the transition is now playing when the slide is changed.
+* [BUG]   We fixed the initial slide option which now works in preview if the inital slide parameter changes.
+* [BUG]   The autoplay timer was sometimes not reset to change the slide via navigation or pagination.
+* [BUG]   Fixed a situation where the editor stopped working when changing the font color.
+
+= Version 2.17.1 / (06.04.2021) =
+* [IMPROVEMENT]   If the slider name is longer, then in the layer editor it overlaps over the device icon.
+* [BUG]   Fixed Copy / paste colors from one element to another element.
+* [BUG]   Fixed situations with copy / paste multiple elements on a layer.
+* [BUG]   Fixed button templates, now is possible to remove and change the border size.
+* [BUG]   Fixed the situation when the preview is opened while the layer editor is open, and when the forward / backward slides are changed with the arrows, now only the slides in the preview are changed, while in the layer editor the slides are not changed.
+* [BUG]   Right-clicking on the layer editor does not accidentally move absolutely positioned elements.
+* [BUG]   Copy / paste is again possible by right-clicking and selecting from the layer menu.
+* [BUG]   Effect9 or typing effect supports multiple words again (writing and deleting).
+* [BUG]   Effect4 corrected text position when used on a text block element.
+* [BUG]   Fade animation is completely removed from the layer at the end of the animation (100% translate)
+
+= Version 2.16.0 / (26.02.2021) =
+* [FEATURE]   Added new slider mode "webgl" or "css". If you don't want advanced transitions between slides, you can now use the "css" type of slider, which will work faster because it doesn't load the additional scripts needed for advanced transitions.
+* [FEATURE]   Added option for image elements, from now on you can put an onClick action of type "url" and set the URL you want the image to open when clicked on it.
+* [FEATURE]   Size options now support separate settings for tablet, mobile and desktop
+* [BUG]   Fixed Transition selector that in some cases did not change to the selected transition.
+* [BUG]   Fixed issue where sometimes the background slide could not be uploaded unless the user had small image generation enabled (Settings -> Media -> Media Settings). It is now possible to upload regardless of this option.
+* [BUG]   Fixed predefined transitions "blur2" and "blur3"
+
 = Version 2.15.1 / (10.02.2021) =
-[BUG]
-*   Fixed issue for users who had Media generation turned off (Settings -> Media) the plugin crashed when changing the background image of the slider.
+* [BUG]   Fixed issue for users who had Media generation turned off (Settings -> Media) the plugin crashed when changing the background image of the slider.
 
 = Version 2.15.0 / (02.02.2021) =
 * [FEATURE]   A new option that allows a true responsive and fullscreen slider regardless of the width and height of the container of the template in which it is located. The options are forceFullscreen and forceResponsive.

@@ -35,7 +35,6 @@
                   "backgroundColor":"rgba(51,0,40,0.26)",
                   "customCSS":"text-shadow: rgb(0,0,0) 0px 0px 1px;",
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "width":3840,
                   "height":2160,
                   "display":"block",
@@ -62,7 +61,6 @@
                   },
                   "width":1400,
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "mobile":{
                      "mode":"canvas",
                      "maxWidth":600,
@@ -97,7 +95,6 @@
                   },
                   "width":1400,
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "mobile":{
                      "position":{
                         "offsetX":240,
@@ -133,7 +130,6 @@
                   "width":2100,
                   "content":"SPIRAL",
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "mobile":{
                      "mode":"canvas",
                      "width":600,
@@ -175,7 +171,6 @@
                   "backgroundColor":"rgba(255,255,255,0)",
                   "lineHeight":68,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "paddingLeft":0,
                   "color":"#ffffff",
@@ -240,7 +235,6 @@
                   "textAlign":"left",
                   "lineHeight":29,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":25,
                   "marginBottom":25,
@@ -317,7 +311,6 @@
                   "fontFamily":"Jost",
                   "borderWidth":1,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"inline-block",
                   "marginRight":10,
                   "lineHeight":20,
@@ -385,7 +378,6 @@
                   "fontFamily":"Jost",
                   "borderWidth":1,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"inline-block",
                   "lineHeight":20,
                   "hover":{
@@ -450,7 +442,6 @@
                   "width":3840,
                   "height":2160,
                   "mode":"canvas",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "color":"#ffffff",
                   "mobile":{
@@ -489,7 +480,6 @@
                   "backgroundColor":"rgba(255,255,255,0)",
                   "lineHeight":68,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "color":"#ffffff",
                   "mobile":{
@@ -542,7 +532,6 @@
                   "textAlign":"center",
                   "lineHeight":35,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "marginTop":25,
                   "marginBottom":25,
@@ -605,7 +594,6 @@
                   "fontFamily":"Jost",
                   "borderWidth":1,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"inline-block",
                   "marginRight":10,
                   "lineHeight":20,
@@ -670,7 +658,6 @@
                   "fontFamily":"Jost",
                   "borderWidth":1,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"inline-block",
                   "lineHeight":20,
                   "hover":{
@@ -736,7 +723,6 @@
                   "lineHeight":68,
                   "customCSS":0,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"block",
                   "color":"#ae4122",
                   "mobile":{
@@ -800,7 +786,6 @@
                   "fontFamily":"Jost",
                   "borderWidth":1,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "marginRight":10,
                   "display":"inline-block",
                   "lineHeight":20,
@@ -859,7 +844,6 @@
                   "fontFamily":"Jost",
                   "borderWidth":1,
                   "mode":"content",
-                  "contentAnimationType":"animating",
                   "display":"inline-block",
                   "lineHeight":20,
                   "hover":{

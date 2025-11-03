@@ -1,6 +1,7 @@
 <div class="STX-form-tab" id="go-pro">
    <div class="STX-h2 STX-content-box-title-bg"><a class="STX-nav-go-pro" href="https://codecanyon.net/item/transition-slider-wordpress-plugin/23531533?ref=creativeinteractivemedia&amp;ref2=wporg" target="_blank" deluminate_imagetype="unknown">GO PRO VERSION!</a></div>
 
+
    <div class="STX-publish-table-wrap">
       <table class="form-table" id="go-pro-table">
          <tbody>

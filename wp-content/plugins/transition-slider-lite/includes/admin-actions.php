@@ -87,9 +87,34 @@
 
             break;
 
-        default:
+        case 'dashboard':
 
             include("sliders.php");
+
+            break;
+
+       case 'getting_started':
+
+            include("getting-started.php");
+
+            break;
+
+        case 'getting_started_dont_show':
+
+            update_option('transitionslider_getting_started_dont_show', true);
+            include("sliders.php");
+
+            break;
+
+        default:
+
+            if(!get_option('transitionslider_getting_started_dont_show'))
+
+                include("getting-started.php");
+
+            else
+
+                include("sliders.php");
 
             break;
 

@@ -3,8 +3,8 @@ Contributors: edo888
 Author: Translate AI Multilingual Solutions
 Tags: translate, translate wordpress, multilingual, translation, translate language, bilingual, localization, translation proxy, localisation, multilanguage, google translate
 Requires at least: 2.8.1
-Tested up to: 5.6
-Stable tag: 2.8.61
+Tested up to: 6.0
+Stable tag: 2.9.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://gtranslate.io/?xyz=998#pricing
@@ -48,7 +48,7 @@ Please check our [FAQ](https://gtranslate.io/?xyz=998#faq) to get quick answers.
 * Multilingual interface
 * Alternative flags for Quebec, Canada, USA, Brazil, Mexico, Argentina, Colombia
 * Lazy loading for language flags to boost performance
-* Live Chat Support
+* Forum Support
 
 **Paid Features**
 
@@ -175,8 +175,7 @@ For example http://example.com/*about-us* &rarr; http://example.com/*sobre-nosot
 This is an important part of multilingual SEO strategy. When you have URL Translate option and translate also your website URLs also known us slugs, you are creating more keywords, which count as an improvement in your page rank for that keywords.
 
 = Does it translate emails too? =
-Yes, you can now translate WooCommerce emails too. Email translate feature is in beta testing stage, so if you notice any problems, please contact our live chat and let us know.
-Please note that it is possible to notice partially translated emails at the beginning, but when our system learns more about your email templates everything will be translated.
+Yes, with our paid version we can also translate WooCommerce emails.
 
 = How the free version differs from the paid versions? =
 Free vesion is a nice looking language selector you can place on your website. It has a built in Javascript engine which allows to translate your website automatically to multiple languages. With our free translate plugin your website URL doesn't change and the translations are not stored. While paid versions are a translation proxy also known as Translation Delivery Network. We host the translated versions of your website on our cloud network under a language specific domain. In that case every language will have a separate domain or separate URL and be indexed in search engines, which will help you to increase international traffic and sales.
@@ -252,6 +251,71 @@ If you want us to translate your website professionally or provide you a proofre
 8. User Dashboard
 
 == Changelog ==
+= 2.9.12 =
+* Fix for conflict with WP Rocket plugin when "Load JavaScript deferred" option is enabled
+
+= 2.9.11 =
+* Fix for Divi when both "Defer jQuery" and "Enqueue jQuery Compatibility Script" are enabled in Divi Theme Performance options
+
+= 2.9.10 =
+* Added support for deffered jQuery library loading, this should fix issues with Divi theme jQuery library defer option
+
+= 2.9.9 =
+* Fixed information disclosure security issue through url_addon/debug.txt
+* Added admin notification when translation debug mode is on
+* Fixed typo in Irish language name in native alphabet
+* Added is_readable check for config.php file before modifying it
+* Added conflict notice for WPML Multilingual CMS plugin
+
+= 2.9.8 =
+* Fix for email translation issue related to new base64 encoding format introduced in v2.9.7
+* Added new fields into woocommerce script data for translation
+* Removed script_loader_tag format modification, which is not necessary any more
+
+= 2.9.7 =
+* Happy New Year! :)
+* Fixed language selector issue when using custom domains for different languages
+* Email translation logic updated to use base64 encoding to avoid potential firewall blocks
+
+= 2.9.6 =
+* New flat flags style in SVG format
+* Added check version to avoid double Google Translate library inclusion which may cause javascript "Uncaught RangeError" error in free version
+
+= 2.9.5 =
+* Fix for javascript error introduced in 2.9.4
+
+= 2.9.4 =
+* New interface for paid plans to easily configure custom domains for languages
+* Adding Vary: Accept-Language response header when auto redirecting to browser language
+* Google Analytics event tracking is on by default when analytics.js is present on the website, old ga.js support is removed
+
+= 2.9.3 =
+* Avoid minification of Google Translate javascript library by LiteSpeed Cache and WP Rocket cache plugins in the free version
+
+= 2.9.2 =
+* Smoother scrolling for Nice dropdown with flags language selector widget look
+
+= 2.9.1 =
+* New server added into our Translation Delivery Network
+
+= 2.8.65 =
+* Possible Cross-site scripting (XSS) vulnerability fixed, only possible for sub-domain, sub-directory paid options:
+An attacker can generate a malicious link and if followed by a victim with an old browser without proper URL encoding support (<= IE 9) then javascript code can be executed on victim's computer.
+Kudos to Ram Gall @ Wordfence for notifying
+
+= 2.8.64 =
+* New server added into our Translation Delivery Network
+
+= 2.8.63 =
+* Minor change: prefer IPv4 in paid version server communication as some hosts have issues with IPv6
+
+= 2.8.62 =
+* Tested with new WordPress 5.7 version
+* Fix for email translation debug
+* Avoid PHP warning suppression code
+* Autoswitch to browser language issue related to Chinese language code is fixed
+* Auto redirect to browser language issue related to Hebrew language code (he, iw) fixed
+
 = 2.8.61 =
 * Tested with new WordPress 5.6 version
 * Ground up rebuild of our Translation Proxy cloud network for paid customers, now page translations are 3x faster on average.

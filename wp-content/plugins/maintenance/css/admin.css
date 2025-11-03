@@ -29,6 +29,26 @@
   display: none;
 }
 
+.logo-image {
+  height: 45px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -26px;
+}
+
+.postbox-container.column-2 .postbox-header {
+  pointer-events: none;
+}
+
+.postbox-container.column-2 .handle-actions {
+  display: none;
+}
+
+#maintenance-options #poststuff .metabox-holder .postbox-container.column-2 {
+  position: sticky;
+  top: 40px;
+}
+
 #review-top p {
   font-size: 14px;
 }
@@ -50,11 +70,6 @@
 
 #promo-extended img {
   max-width: 100%;
-}
-
-#install-accessibe {
-  background: #136ef8;
-  padding: 10px;
 }
 
 #promo-sn img {
@@ -115,7 +130,7 @@
 
 .tzCheckBox.checked {
   background-position: top left;
-  margin: 8px 0 0 18px;
+  margin: 8px 24px 0 0;
 }
 
 .tzCheckBox .tzCBContent {
@@ -218,22 +233,6 @@
   padding: 6px 0 6px 40px;
 }
 
-.sidebar-promo h4.support {
-  background: url('../images/support.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-}
-
-.sidebar-promo h4.star {
-  background: url('../images/star.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-}
-
-.sidebar-promo h4.themes {
-  background: url('../images/themes.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-}
-
-.sidebar-promo h4.translate {
-  background: url('../images/translate.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-}
-
 .sidebar-promo p {
   color: #3e3e3e;
   font-family: Arial;
@@ -246,12 +245,6 @@
 .sidebar-promo a {
   color: #21759b;
   text-decoration: none;
-}
-
-.sidebar-promo.worker {
-  background-image: url('../images/worker.png');
-  background-repeat: no-repeat;
-  background-position: 100% 20px;
 }
 
 #maintenance-options input#page_title,
@@ -277,7 +270,12 @@
 
 #maintenance-options #poststuff .metabox-holder .postbox-container.column-2 {
   float: right;
-  width: 28%;
+  width: 33%;
+  min-width: 300px;
+}
+
+#side-sortables .postbox {
+  max-width: 500px;
   min-width: 300px;
 }
 
@@ -301,7 +299,6 @@
 
 .start-date,
 .end-date {
-  float: left;
   display: inline-block;
   margin: 0 20px 0 0;
 }
@@ -486,5 +483,167 @@
 
 .new-version-dialog ul {
   list-style-type: disc;
+  list-style-position: inside;
+}
+
+#promo-wpfssl {
+  border: 3px solid #42982e;
+}
+
+#promo-wpfssl a.button:hover, #promo-wpfssl a.button:active, #promo-wpfssl a.button:focus {
+  box-shadow: 0px 0px 10px 0px rgb(50 138 210 / 52%);
+  background: #42982e;
+  color: white;
+  border: none;
+}
+
+#promo-wpfssl a.button {
+  padding: 11px 30px;
+  color: white;
+  background: #42982e;
+  font-weight: 600;
+  border: none;
+  line-height: 1.5;
+  height: auto;
+  margin-bottom: 10px;
+  white-space: normal;
+  max-width: 90%;
+}
+
+.mtnc-pro-dialog .ui-dialog-titlebar {
+  display: none;
+}
+
+.mtnc-pro-dialog .logo img {
+  max-height: 55px;
+}
+
+.mtnc-pro-dialog .logo {
+  text-align: center;
+  background: #f8f8f8;
+  margin: -16px -16px 0 -16px;
+  padding: 15px;
+}
+
+.mtnc-pro-dialog .footer {
+  text-align: center;
+  background: #f8f8f8;
+  margin: 0 -16px -16px -16px;
+  padding: 20px;
+}
+
+.mtnc-pro-dialog .logo span {
+  display: block;
+  font-size: 18px;
+  margin: 10px;
+}
+
+.mtnc-pro-dialog .logo span b {
+  border-bottom: 3px solid #0387e6;
+}
+
+#mtnc-pro-table {
+  width: 100%;
+  margin: 10px auto 0 auto;
+  border-collapse: collapse;
+}
+
+#mtnc-pro-table td {
+  padding: 4px 10px 4px 34px;
+  border: none;
+  font-size: 14px;
+}
+
+#mtnc-pro-table tr:last-child td {
+  text-align: center;
+}
+
+#mtnc-pro-table .dashicons-yes {
+  color: #0387e6;
+}
+
+#mtnc-pro-table .dashicons {
+  padding-right: 8px;
+  margin-left: -27px;
+}
+
+.center {
+  text-align: center;
+}
+
+.prices del {
+  color: #00000099;
+}
+
+.prices span {
+  font-weight: 600;
+  font-size: 40px;
+  color: #0387e6;
+  line-height: 1;
+  display: inline-block;
+  padding-bottom: 15px;
+}
+
+#mtnc-pro-table tr:first-child td {
+  color: #000;
+  font-size: 18px;
+  font-weight: 800 !important;
+  padding: 10px 0;
+  text-align: center;
+}
+
+#mtnc-pro-table tr:last-child td {
+  padding: 20px 0 20px 0;
+  vertical-align: top;
+}
+
+#mtnc-pro-table tr:last-child td {
+  text-align: center;
+}
+
+a.button.button-buy {
+  padding: 11px 40px;
+  color: white;
+  background: #0387e6;
+  font-weight: 600;
+  border: none;
+  line-height: 1.5;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+a.button.button-buy:hover,
+a.button.button-buy:active,
+a.button.button-buy:focus {
+  box-shadow: 0px 0px 10px 0px rgb(50 138 210 / 52%);
+  background: #0387e6;
+  color: white;
+  border: none;
+}
+
+.wp-dialog.ui-widget-content {
+  background: #fff !important;
+}
+
+#mtnc-pro-dialog {
+  overflow: hidden;
+}
+
+label sup {
+  color: #0387e6;
+  font-weight: 600;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.form-table tr {
+  border-bottom: thin solid #f0f0f1;
+}
+.form-table tr:last-child {
+  border-bottom: none;
+}
+
+#mtnc-toc ul {
+  list-style: disc;
   list-style-position: inside;
 }

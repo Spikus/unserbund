@@ -68,7 +68,6 @@ if ( ! class_exists( 'EWWWIO_Background_Process' ) ) {
 		protected $cron_interval_identifier;
 
 		/**
-		 * Either an 'a' or a 'b', depending on which one is currently running.
 		 * A unique identifier for each background class extension.
 		 *
 		 * @var string
@@ -117,7 +116,7 @@ if ( ! class_exists( 'EWWWIO_Background_Process' ) ) {
 				return;
 			}
 
-			$exists = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->ewwwio_queue WHERE attachment_id = %d AND gallery = %s", $id, $this->active_queue ) );
+			$exists = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->ewwwio_queue WHERE attachment_id = %d AND gallery = %s LIMIT 1", $id, $this->active_queue ) );
 			if ( empty( $exists ) ) {
 				$to_insert = array(
 					'attachment_id' => $id,
@@ -137,12 +136,12 @@ if ( ! class_exists( 'EWWWIO_Background_Process' ) ) {
 		public function update( $id, $data = array() ) {
 			if ( ! empty( $id ) ) {
 				global $wpdb;
-				$wpdb->get_row( $wpdb->prepare( "UPDATE $wpdb->ewwwio_queue SET scanned=scanned+1 WHERE attachment_id = %d AND gallery = %s", $id, $this->active_queue ) );
+				$wpdb->get_row( $wpdb->prepare( "UPDATE $wpdb->ewwwio_queue SET scanned=scanned+1 WHERE attachment_id = %d AND gallery = %s LIMIT 1", $id, $this->active_queue ) );
 			}
 		}
 
 		/**
-		 * Delete queue
+		 * Delete queue item
 		 *
 		 * @param string $key Key.
 		 */

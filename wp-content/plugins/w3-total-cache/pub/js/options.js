@@ -642,7 +642,7 @@ jQuery(function() {
 					'config[user]': jQuery('#cdn_ftp_user').val(),
 					'config[path]': jQuery('#cdn_ftp_path').val(),
 					'config[pass]': jQuery('#cdn_ftp_pass').val(),
-					'config[pasv]': jQuery('#cdn_ftp_pasv:checked').length,
+					'config[pasv]': jQuery('#cdn__ftp__pasv:checked').length,
 					'config[default_keys]': jQuery('#cdn__ftp__default_keys:checked').length,
 					'config[pubkey]': jQuery('#cdn_ftp_pubkey').val(),
 					'config[privkey]': jQuery('#cdn_ftp_privkey').val()
@@ -969,6 +969,7 @@ jQuery(function() {
 		jQuery.post('admin.php?page=w3tc_dashboard', {
 			w3tc_test_redis: 1,
 			servers: jQuery('#redis_servers').val(),
+			verify_tls_certificates: jQuery('[id$=__redis__verify_tls_certificates]').is(':checked'),
 			dbid : jQuery('#redis_dbid').val(),
 			password : jQuery('#redis_password').val(),
 			_wpnonce: jQuery(this).metadata().nonce

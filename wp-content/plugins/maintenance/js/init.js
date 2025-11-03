@@ -114,58 +114,16 @@ jQuery(window).ready(function($) {
     return false;
   });
 
-  $('#accessibe_support').on('click change', function(e) {
-    e.preventDefault();
-    $(this).prop("checked", false);
+  jQuery('.install-wpfssl').on('click',function(e){
+    if (!confirm('The free WP Force SSL plugin will be installed & activated from the official WordPress repository.')) {
+      return;
+    }
 
-    $('.open-accessibe-upsell').first().trigger('click');
-
-    return false;
-  });
-
-  $('body').on('click', '.open-accessibe-upsell', function(e) {
-    e.preventDefault();
-
-    $(this).blur();
-
-    $('#accessibe-upsell-dialog').dialog('open');
-
-    return false;
-  });
-
-  $('#accessibe-upsell-dialog').dialog({'dialogClass': 'wp-dialog accessibe-upsell-dialog',
-                              'modal': 1,
-                              'resizable': false,
-                              'title': 'Make your site accessible in just a few clicks',
-                              'zIndex': 9999,
-                              'width': 550,
-                              'height': 'auto',
-                              'show': 'fade',
-                              'hide': 'fade',
-                              'open': function(event, ui) {
-                                maintenance_fix_dialog_close(event, ui);
-                                $(this).siblings().find('span.ui-dialog-title').html(mtnc.accessibe_dialog_upsell_title);
-                              },
-                              'close': function(event, ui) { },
-                              'autoOpen': false,
-                              'closeOnEscape': true
-  });
-  $(window).resize(function(e) {
-    $('#accessibe-upsell-dialog').dialog("option", "position", {my: "center", at: "center", of: window});
-  });
-
-
-  jQuery('#install-accessibe').on('click',function(e){
-    $('#accessibe-upsell-dialog').dialog('close');
-    jQuery('body').append('<div style="width:550px;height:450px; position:fixed;top:10%;left:50%;margin-left:-275px; color:#444; background-color: #fbfbfb;border:1px solid #DDD; border-radius:4px;box-shadow: 0px 0px 0px 4000px rgba(0, 0, 0, 0.85);z-index: 9999999;"><iframe src="' + mtnc.accessibe_install_url + '" style="width:100%;height:100%;border:none;" /></div>');
+    jQuery('body').append('<div style="width:550px;height:450px; position:fixed;top:10%;left:50%;margin-left:-275px; color:#444; background-color: #fbfbfb;border:1px solid #DDD; border-radius:4px;box-shadow: 0px 0px 0px 4000px rgba(0, 0, 0, 0.85);z-index: 9999999;"><iframe src="' + mtnc.wpfssl_install_url + '" style="width:100%;height:100%;border:none;" /></div>');
     jQuery('#wpwrap').css('pointer-events', 'none');
     e.preventDefault();
     return false;
   });
-
-
-
-  /******************* */
 
   wp.codeEditor.initialize(jQuery('#custom_css'), mtnc.cm_settings);
 
@@ -330,6 +288,67 @@ jQuery(window).ready(function($) {
     checkIfHasToShowDialog();
   }
 
+  $('#wpwrap').on('click', '.open-pro-dialog', function (e) {
+    e.preventDefault();
+    $(this).blur();
+
+    pro_feature = $(this).data('pro-feature');
+    if (!pro_feature) {
+      pro_feature = $(this).parent('label').attr('for');
+    }
+    open_upsell(pro_feature);
+
+    return false;
+  });
+
+  $('#mtnc-pro-dialog').dialog({
+    dialogClass: 'wp-dialog mtnc-pro-dialog',
+    modal: true,
+    resizable: false,
+    width: 850,
+    height: 'auto',
+    show: 'fade',
+    hide: 'fade',
+    close: function (event, ui) {},
+    open: function (event, ui) {
+      $(this).siblings().find('span.ui-dialog-title').html('Maintenance PRO is here!');
+      maintenance_fix_dialog_close(event, ui);
+    },
+    autoOpen: false,
+    closeOnEscape: true,
+  });
+
+  function open_upsell(feature) {
+    feature = clean_feature(feature);
+
+    $('#mtnc-pro-dialog').dialog('open');
+
+    $('#mtnc-pro-table .button-buy').each(function (ind, el) {
+      tmp = $(el).data('href-org');
+      tmp = tmp.replace('pricing-table', feature);
+      $(el).attr('href', tmp);
+    });
+  } // open_upsell
+
+  function clean_feature(feature) {
+    feature = feature || 'free-plugin-unknown';
+    feature = feature.toLowerCase();
+    feature = feature.replace(' ', '-');
+
+    return feature;
+  }
+
+  if (window.localStorage.getItem('mtnc_upsell_shown') != 'true') {
+    open_upsell('welcome');
+
+    window.localStorage.setItem('mtnc_upsell_shown', 'true');
+    window.localStorage.setItem('mtnc_upsell_shown_timestamp', new Date().getTime());
+  }
+
+  if (window.location.hash == '#open-pro-dialog') {
+    open_upsell('url-hash');
+    window.location.hash = '';
+  }
 });
 
 function maintenance_fix_dialog_close(event, ui) {

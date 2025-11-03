@@ -27,11 +27,20 @@
 
                     </div>
 
-                <div style="font-size: 14px;background-color: #f8bf3a;border-radius: 4px;padding: 4px;margin: 20px 0px 0px 0px;text-align: center;color: #fff;">
-            <div>This is Transition Slider Lite. Get PRO version to enable more features - premium templates, import &amp; export sliders, more options for slider responsive size.</div>
-        </div>
+                    <div class="STX-pro-banner">
+                <div style="font-size: 26px;">Why upgrade to Transition Slider Pro?</div>
+                <div class="STX-pro-banner-thumbs-wrapper">
+                    <a class="STX-pro-banner-thumb STX-banner-1" href="https://transitionslider.com/templates" target="_blank">High quality templates</a>
+                    <a class="STX-pro-banner-thumb STX-banner-2" href="https://transitionslider.com/templates/urban-shop" target="_blank">Quality text animations</a>
+                    <a class="STX-pro-banner-thumb STX-banner-3" href="https://transitionslider.com/templates" target="_blank">iFrame element and more...</a>
+                    <a class="STX-pro-banner-thumb STX-banner-4" href="https://transitionslider.com/templates" target="_blank">Adjust slider and layer settings on all devices</a>
+                    <a class="STX-pro-banner-thumb STX-banner-5" href="https://transitionslider.com/templates" target="_blank">Import / Export sliders</a>
+                    <a class="STX-pro-banner-thumb STX-banner-6" href="https://transitionslider.com/templates" target="_blank">Slide transitions: Line advanced, Crossfade gradient...</a>
+                    <a class="STX-pro-banner-thumb STX-banner-7" href="https://codecanyon.net/item/transition-slider-wordpress-plugin/23531533/support" target="_blank">6 months support from purchase with options to extend</a>
+                </div>
+            </div>
 
-                <div class="STX-admin-content STX-table STX-table-fixed STX-content">
+                    <div class="STX-admin-content STX-table STX-table-fixed STX-content">
             <div class="STX-tr">
                 <div class="STX-dashboard-wrapp STX-td STX-content-base-bg STX-content-wrapper">
                     <div class="STX-heading-bar ">
@@ -154,8 +163,15 @@
             <div class="edit-media-header">
             </div>
             <div class="media-frame-title STX-modal-title"><h1>Slider Preview</h1>
+                <div class="devices">
 
-                            </div>
+
+                                                            <div alt="f471" class="pro-version-icon enabled dashicons dashicons-desktop"></div>
+                    <div alt="f471" class="pro-version-icon disabled dashicons dashicons-tablet"></div>
+                    <div alt="f470" class="pro-version-icon disabled dashicons dashicons-smartphone"></div>
+
+                                    </div>
+            </div>
             <div class="media-frame-content STX-modal-frame-content">
                 <div id="slider-preview-container">
                     <div id="slider-preview"></div>
@@ -182,7 +198,9 @@
     wp_enqueue_script("transitionslider-lib-tipsy");
 	wp_enqueue_script("transitionslider-lib-fontselect");
     wp_enqueue_script("transitionslider-lib-webfontloader");
+    wp_enqueue_script("transitionslider-lib-iconify");
     wp_enqueue_script("transitionslider-build");
+    wp_enqueue_script("transitionslider-build-webgl");
 
     wp_enqueue_script('transitionslider-sliders');
 
@@ -213,6 +231,8 @@
         array_push($sliders_formatted,$s2);
     }
 
-    wp_localize_script('transitionslider-sliders', 'sliders', json_encode($sliders_formatted) );
-    wp_localize_script('transitionslider-sliders', 'stx_nonce', $ajax_nonce );
-    wp_localize_script('transitionslider-sliders', 'stx_plugin_url', $this->PLUGIN_DIR_URL );
+    wp_localize_script( 'transitionslider-sliders', 'data', array(
+            'sliders' => json_encode($sliders_formatted),
+            'stx_nonce' => $ajax_nonce,
+            'stx_plugin_url' => $this->PLUGIN_DIR_URL
+        ) );

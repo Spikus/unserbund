@@ -1,0 +1,1 @@
+˜ýúh<?php exit; ?>a:1:{s:7:"content";s:168:"a:6:{s:6:"active";b:1;s:14:"media_taxonomy";s:15:"rl_media_folder";s:10:"media_tags";b:0;s:15:"jstree_wholerow";b:1;s:12:"show_in_menu";b:0;s:15:"folders_removal";b:1;}";}

@@ -1,0 +1,11 @@
+���h<?php exit; ?>a:1:{s:7:"content";O:8:"stdClass":24:{s:2:"ID";i:94;s:11:"post_author";s:1:"1";s:9:"post_date";s:19:"2020-04-14 11:24:16";s:13:"post_date_gmt";s:19:"2020-04-14 11:24:16";s:12:"post_content";s:1970:"<!-- wp:paragraph -->
+<p>Мы разве способны любить так преданно, как они? Ждать их так же, как ждут нас они каждый день с работы, чтобы мы наконец уделили им немного своего внимания и погуляли с ними.<br>⠀<br>А эти их всё понимающие глаза и потрясающий ум! Думаю собаки так умны, потому что больше молчат, а мы болтаем без умолку, и многие сокровенные вещи просто обесцениваем. Слова многое искажают. А они нас любят без слов…. Просто очень честно и искренне! Даже если мы бываем к ним безразличны, а порой даже жестоки, они все равно любят.<br>⠀<br>Моя бабушка всегда любила собаку больше человека, и я не сразу поняла почему??! Теперь понимаю: Они часто гораздо человечнее нас! Их любовь к нам настолько подлинна, потому что безусловна. Нам бы у них этому поучится, да некогда?<br>Но если найти время — быть может для нас ещё не все потеряно!</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>За этого малыша Фараона спасибо огромное Vadim Komarov и его питомнику Vadim Komarov Kennel Unserbund</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/fBtOMdzRWvQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- /wp:html -->";s:10:"post_title";s:79:"У НАС В ГОСТЯХ УКРАИНСКАЯ ПЕВИЦА МИЛА НИТИЧ";s:12:"post_excerpt";s:0:"";s:11:"post_status";s:7:"publish";s:14:"comment_status";s:4:"open";s:11:"ping_status";s:4:"open";s:13:"post_password";s:0:"";s:9:"post_name";s:199:"%d1%83-%d0%bd%d0%b0%d1%81-%d0%b2-%d0%b3%d0%be%d1%81%d1%82%d1%8f%d1%85-%d1%83%d0%ba%d1%80%d0%b0%d0%b8%d0%bd%d1%81%d0%ba%d0%b0%d1%8f-%d0%bf%d0%b5%d0%b2%d0%b8%d1%86%d0%b0-%d0%bc%d0%b8%d0%bb%d0%b0-%d0%bd";s:7:"to_ping";s:0:"";s:6:"pinged";s:0:"";s:13:"post_modified";s:19:"2021-02-13 13:02:25";s:17:"post_modified_gmt";s:19:"2021-02-13 13:02:25";s:21:"post_content_filtered";s:0:"";s:11:"post_parent";i:0;s:4:"guid";s:27:"http://localhost:8888/?p=94";s:10:"menu_order";i:0;s:9:"post_type";s:4:"post";s:14:"post_mime_type";s:0:"";s:13:"comment_count";s:1:"0";s:6:"filter";s:3:"raw";}}
